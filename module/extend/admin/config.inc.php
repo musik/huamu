@@ -17,6 +17,7 @@ $RT['file']['comment'] = '评论管理';
 $RT['file']['guestbook'] = '留言管理';
 $RT['file']['vote'] = '投票管理';
 $RT['file']['html'] = '更新数据';
+$RT['file']['site'] = '分站';
 
 $RT['action']['spread']['add'] = '添加排名';
 $RT['action']['spread']['edit'] = '修改排名';

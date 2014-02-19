@@ -13,5 +13,6 @@ $menu = array(
 	array('票选管理', '?moduleid=3&file=poll'),
 	array('更新数据', '?moduleid=3&file=html'),
 	array('模块设置', '?moduleid=3&file=setting'),
+	array('分站', '?moduleid=3&file=site'),
 );
 ?>
