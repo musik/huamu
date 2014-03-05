@@ -19,21 +19,6 @@ show_menu($menus);
 <td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>标题</td>
 <td><input name="post[title]" type="text" id="title" size="60" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level);?> <?php echo dstyle('post[style]', $style);?> <br/><span id="dtitle" class="f_red"></span></td>
 </tr>
-<tr>
-<td class="tl"><span class="f_hid">*</span> 过期时间</td>
-<td><?php echo dcalendar('post[totime]', $totime);?>&nbsp;
-<select onchange="Dd('posttotime').value=this.value;">
-<option value="">快捷选择</option>
-<option value="">长期有效</option>
-<option value="<?php echo timetodate($DT_TIME+86400*3, 3);?>">3天</option>
-<option value="<?php echo timetodate($DT_TIME+86400*7, 3);?>">一周</option>
-<option value="<?php echo timetodate($DT_TIME+86400*15, 3);?>">半月</option>
-<option value="<?php echo timetodate($DT_TIME+86400*30, 3);?>">一月</option>
-<option value="<?php echo timetodate($DT_TIME+86400*182, 3);?>">半年</option>
-<option value="<?php echo timetodate($DT_TIME+86400*365, 3);?>">一年</option>
-</select>&nbsp;
-<span id="dposttotime" class="f_red"></span> 不选表示长期有效</td>
-</tr>
 <?php if($CP) { ?>
 <script type="text/javascript">
 var property_catid = <?php echo $catid;?>;
@@ -110,10 +95,6 @@ if($MOD['swfu']) {
 	</tr>
 	</table>
 </td>
-</tr>
-<tr>
-<td class="tl"><span class="f_hid">*</span> <?php echo $MOD['name'];?>区域</td>
-<td class="tr"><?php echo ajax_area_select('post[areaid]', '请选择', $areaid);?> <span id="dareaid" class="f_red"></span></td>
 </tr>
 <tr>
 <td class="tl"><span class="f_hid">*</span> 会员信息</td>

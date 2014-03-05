@@ -27,4 +27,5 @@ $urls['php']['item'][1] = array('example'=>'('.$L['url_php'].') show.php/itemid-
 $urls['php']['item'][2] = array('example'=>'('.$L['url_rewrite'].') show-htm-itmeid-1.html','index'=>'show-htm-itemid-{$itemid}.html', 'page'=>'show-htm-itemid-{$itemid}-page-{$page}.html');
 $urls['php']['item'][3] = array('example'=>'('.$L['url_rewrite'].') show-1-2.html','index'=>'show-{$itemid}.html', 'page'=>'show-{$itemid}-{$page}.html');
 $urls['php']['item'][4] = array('example'=>'('.$L['url_rewrite'].') show/1/','index'=>'show/{$itemid}/', 'page'=>'show/{$itemid}/{$page}/');
+$urls['php']['item'][5] = array('example'=>'('.$L['url_rewrite'].') 1/','index'=>'{$itemid}/', 'page'=>'{$itemid}-{$page}/');
 ?>

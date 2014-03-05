@@ -163,10 +163,12 @@ class subject {
 	}
 
 	function update($itemid) {
-    global $FD;
+    global $FD,$DT_PRE;
 		$item = $this->db->get_one("SELECT * FROM {$this->table} WHERE itemid=$itemid");
 		$update = '';
 		$keyword = $item['title'].','.strip_tags(cat_pos(get_cat($item['catid']), ',')).strip_tags(area_pos($item['areaid'], ','));
+    if(!isset($FD))
+      $FD = cache_read('fields-'.substr($this->table, strlen($DT_PRE)).'.php');
     if($FD){
       foreach($FD as $cf){
         if($cf['type'] == 'varchar'){

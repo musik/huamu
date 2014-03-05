@@ -9,4 +9,5 @@ session
 /config.inc.php
 /announce/*.html
 /index.html
+/subject
 

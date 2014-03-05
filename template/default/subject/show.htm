@@ -1,9 +1,10 @@
 {template 'header'}
 <script type="text/javascript">var module_id= {$moduleid},item_id={$itemid},content_id='content',img_max_width={$MOD[max_width]};</script>
 <div class="m">
-<div class="m_l f_l">
-	<div class="left_box">		
 		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')} &raquo; </div>
+      <h1 class="title_{$module}" id="title">{$title}</h1>
+<div class="m_l f_l">
+	<div class="left_boxx">		
 		<div class="info_main">		
 			<table width="100%">
 			<td width="250" valign="top">
@@ -16,18 +17,24 @@
 				{loop $thumbs $k $v}<img src="{$v}" width="60" height="60" onmouseover="if(this.src.indexOf('nopic60.gif')==-1)Album({$k}, '{$albums[$k]}');" class="{if $k}ab_im{else}ab_on{/if}" id="t_{$k}"/>{/loop}
 				</div>
 				<div class="b5"></div>
-				<div onclick="PAlbum(Dd('mid_pic'));" class="c_b t_c c_p"><img src="{DT_SKIN}image/ico_zoom.gif" width="16" height="16" align="absmiddle"/> 点击图片查看原图</div>
 			</td>
 			<td width="15"> </td>
 			<td valign="top">
 			<div id="big_div" style="display:none;"><img src="" id="big_pic"/></div>
-      <h1 class="title_{$module}" id="title">{$title}</h1>
+      <?php 
+      if(!isset($FD))
+        $FD = cache_read('fields-'.substr($table, strlen($DT_PRE)).'.php');
+        ?>
 			<ul class="attrs">
-        <li><strong>门</strong>：<a class="men" href="{$MOD[linkurl]}search.php?kw={$men}">{$men}</a></li>
+      {loop $FD $i $cf}
+      <li><strong>{$cf[title]}</strong>
+      <a class="{$cf[name]}" href="{$MOD[linkurl]}search.php?kw={$$cf[name]}" rel="nofollow">{$$cf[name]}</a>
+      </li>
+      {/loop}
 			{if $n1 && $v1}<li><strong>{$n1}</strong>：{$v1}</li>{/if}
 			{if $n2 && $v2}<li><strong>{$n2}</strong>：{$v2}</li>{/if}
 			{if $n3 && $v3}<li><strong>{$n3}</strong>：{$v3}</li>{/if}
-			<li><strong>浏览次数</strong>：<span id="hits">{$hits}</span></li>
+			<li><strong>浏览次数</strong><span id="hits">{$hits}</span></li>
 			{if $MOD[show_message] && $username && !$expired}
 			<li><img src="{DT_SKIN}image/btn_message.gif" alt="留言咨询" class="c_p" onclick="Go('{$MOD[linkurl]}{rewrite('message.php?itemid='.$itemid)}');"/></li>
 			{/if}
@@ -37,10 +44,13 @@
 			</table>
 		</div>
 		<div class="b10">&nbsp;</div>
-		<div class="left_head">详细说明</div>
+    <h2>{$title}简介</h2>
 		{if $CP}{template 'property', 'chip'}{/if}
 		<div class="content" id="content">{$content}</div>
 		<div class="b10">&nbsp;</div>
+    <h2>{$title}的图片</h2>
+    <h2>{$title}的供应信息</h2>
+    <h2>{$title}的养殖方法</h2>
 		<center>
 		[ <a href="{$MOD[linkurl]}search.php" rel="nofollow">{$MOD[name]}搜索</a> ]&nbsp;
 		[ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;
@@ -55,21 +65,11 @@
 </div>
 <div class="m_n f_l">&nbsp;</div>
 	<div class="m_r f_l">
-		<div class="contact_head">联系方式</div>		
-		<div class="contact_body" id="contact">{template 'contact', 'chip'}</div>
-		<div class="b10 c_b">&nbsp;</div>		
 		{if $MOD[page_srelate]}
-		{if $username}
-		<div class="box_head"><div><strong>该企业最新{$MOD[name]}</strong></div></div>
-		<div class="box_body f_gray li_dot">
-		<!--{tag("moduleid=$moduleid&condition=status=3 and username='$username'&pagesize=".$MOD[page_srelate]."&order=addtime desc", -2)}-->
-		</div>
-		{else}
 		<div class="box_head"><div><strong>同类{$MOD[name]}</strong></div></div>
 		<div class="box_body f_gray li_dot">
 		<!--{tag("moduleid=$moduleid&condition=status=3&catid=$catid&areaid=$cityid&pagesize=".$MOD[page_srelate]."&order=addtime desc")}-->
 		</div>
-		{/if}
 		{/if}
 	</div>
 </div>
