@@ -14,6 +14,7 @@ $L['edit_limit'] = '此信息发布已经超过{V0}天，不可再修改';
 $L['refresh_limit'] = '{V0}秒内只能刷新一次';
 $L['edit_refuse'] = '信息不允许被修改';
 $L['select_info'] = '请选择信息';
+$L['select_subject'] = '请选择话题';
 $L['select_goods'] = '请选择商品';
 $L['group_add'] = '您所在的会员组没有权限在分类 [{V0}] 发布信息，请更换分类';
 $L['success_edit'] = '修改成功';

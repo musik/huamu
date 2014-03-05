@@ -278,7 +278,7 @@ function get_cookie($var) {
 function get_table($moduleid, $data = 0) {
 	global $DT_PRE, $MODULE;
 	$module = $MODULE[$moduleid]['module'];
-	$C = array('article', 'brand', 'buy', 'down', 'info', 'photo', 'sell', 'video');
+	$C = array('article', 'brand', 'buy', 'down', 'info', 'photo', 'sell', 'video','subject');
 	if($data) {
 		return in_array($module, $C) ? $DT_PRE.$module.'_data_'.$moduleid : $DT_PRE.$module.'_data';
 	} else {
