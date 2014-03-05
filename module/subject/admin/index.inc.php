@@ -133,7 +133,7 @@ switch($action) {
 		$do->itemid = $itemid;
     $item = $do->get_one();
     require MD_ROOT. '/import/1688.php';
-    search_1688($item['title']);
+    process_1688($item['title']);
 
   break;
 	case 'move':
