@@ -129,6 +129,13 @@ switch($action) {
 			include tpl($action, $module);
 		}
 	break;
+  case 'import_sell':
+		$do->itemid = $itemid;
+    $item = $do->get_one();
+    require MD_ROOT. '/import/1688.php';
+    search_1688($item['title']);
+
+  break;
 	case 'move':
 		if($submit) {
 			$fromids or msg('请填写来源ID');

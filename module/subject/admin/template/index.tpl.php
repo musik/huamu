@@ -43,22 +43,22 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
 <th width="25"><input type="checkbox" onclick="checkall(this.form);"/></th>
-<th>分类</th>
+<th width=80>标 题</th>
+<th width=80>分类</th>
 <th width="14"> </th>
-<th>图片</th>
-<th>标 题</th>
-<th>会员</th>
+<th width=80>图片</th>
+<th width=80>会员</th>
 <th width="120"><?php echo $timetype == 'add' ? '添加' : '更新';?>时间</th>
-<th>浏览</th>
-<th width="50">操作</th>
+<th width=60>浏览</th>
+<th width="150">操作</th>
 </tr>
 <?php foreach($lists as $k=>$v) {?>
 <tr onmouseover="this.className='on';" onmouseout="this.className='';" align="center">
 <td><input type="checkbox" name="itemid[]" value="<?php echo $v['itemid'];?>"/></td>
+<td align="center">&nbsp;<a href="<?php echo $v['linkurl'];?>" target="_blank"><?php echo $v['title'];?></a><?php if($v['vip']) {?> <img src="<?php echo DT_SKIN;?>image/vip_<?php echo $v['vip'];?>.gif" title="<?php echo VIP;?>:<?php echo $v['vip'];?>" align="absmiddle"/><?php } ?></td>
 <td><a href="<?php echo $v['caturl'];?>" target="_blank"><?php echo $v['catname'];?></a></td>
 <td><?php if($v['level']) {?><a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=<?php echo $action;?>&level=<?php echo $v['level'];?>"><img src="admin/image/level_<?php echo $v['level'];?>.gif" title="<?php echo $v['level'];?>级" alt=""/></a><?php } ?></td>
 <td><a href="javascript:_preview('<?php echo $v['thumb'];?>');"><img src="<?php echo $v['thumb'] ? $v['thumb'] : DT_SKIN.'image/nopic60.gif';?>" width="60" style="padding:5px;"/></a></td>
-<td align="left">&nbsp;<a href="<?php echo $v['linkurl'];?>" target="_blank"><?php echo $v['title'];?></a><?php if($v['vip']) {?> <img src="<?php echo DT_SKIN;?>image/vip_<?php echo $v['vip'];?>.gif" title="<?php echo VIP;?>:<?php echo $v['vip'];?>" align="absmiddle"/><?php } ?></td>
 <td>
 <?php if($v['username']) { ?>
 <a href="javascript:_user('<?php echo $v['username'];?>');"><?php echo $v['username'];?></a>
@@ -73,6 +73,7 @@ ID：<input type="text" size="4" name="itemid" value="<?php echo $itemid;?>"/>&n
 <?php } ?>
 <td class="px11"><?php echo $v['hits'];?></td>
 <td>
+<a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=import_sell&itemid=<?php echo $v['itemid'];?>">导入供应</a>&nbsp;
 <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=edit&itemid=<?php echo $v['itemid'];?>"><img src="admin/image/edit.png" width="16" height="16" title="修改" alt=""/></a>&nbsp;
 <a href="?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=delete&itemid=<?php echo $v['itemid'];?>" onclick="return _delete();"><img src="admin/image/delete.png" width="16" height="16" title="删除" alt=""/></a>
 </td>
