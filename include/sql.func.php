@@ -30,6 +30,7 @@ function sql_split($sql) {
 function sql_execute($sql) {
 	global $db;
     $sqls = sql_split($sql);
+  var_dump($sqls);
 	if(is_array($sqls)) {
 		foreach($sqls as $sql) {
 			if(trim($sql) != '') $db->query($sql);
