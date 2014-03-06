@@ -133,7 +133,9 @@ switch($action) {
 		$do->itemid = $itemid;
     $item = $do->get_one();
     require MD_ROOT. '/import/1688.php';
-    process_1688($item['title']);
+    echo '<pre>';
+    $cl = new O688();
+    $cl->process($item['title']);
 
   break;
 	case 'move':
