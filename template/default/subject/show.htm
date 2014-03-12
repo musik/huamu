@@ -50,7 +50,9 @@
 		<div class="b10">&nbsp;</div>
     <h2>{$title}的图片</h2>
     <h2>{$title}的供应信息</h2>
-    <h2>{$title}的养殖方法</h2>
+    {template 'sells.show','subject'}
+    <h2>{$title}的相关资讯</h2>
+    {template 'news.show','subject'}
 		<center>
 		[ <a href="{$MOD[linkurl]}search.php" rel="nofollow">{$MOD[name]}搜索</a> ]&nbsp;
 		[ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;

@@ -335,5 +335,48 @@ class sell {
 		$this->errmsg = $e;
 		return false;
 	}
+  function search($q,$page = 1){
+    global $db;
+    $moduleid = 5;
+    $table = get_table($moduleid);
+    $sell_mod = cache_read('module-'.$moduleid.'.php');
+    if(!class_exists('SphinxClient'))
+      require DT_ROOT.'/include/sphinx.class.php';
+    $sx = new SphinxClient();
+    if($sell_mod['sphinx_host'] && $sell_mod['sphinx_port']) $sx->SetServer($sell_mod['sphinx_host'], $sell_mod['sphinx_port']);
+    $sx->SetArrayResult(true);
+    $sx->SetMatchMode(SPH_MATCH_PHRASE);
+    $sx->SetRankingMode(SPH_RANK_NONE);
+    $sx->SetSortMode(SPH_SORT_EXTENDED, 'id desc');
+    $pagesize = $sell_mod['pagesize'];
+    $offset = ($page-1)*$pagesize;
+    $sx->SetLimits($offset, $pagesize);
+    $r = $sx->Query($q, $sell_mod['sphinx_name']);
+    $time = $r['time'];
+    $items = $r['total_found'];
+    $total = $r['total'];
+    $pages = pages($items > $total ? $total : $items, $page, $pagesize);
+    foreach($r['matches'] as $k=>$v) {
+      $ids[$v['id']] = $v['id'];
+    }		
+    if($ids) {
+      $condition = "itemid IN (".implode(',', $ids).")";
+      $result = $db->query("SELECT ".$sell_mod['fields']." FROM {$table} WHERE {$condition}");
+      while($r = $db->fetch_array($result)) {
+        $r['adddate'] = timetodate($r['addtime'], 5);
+        $r['editdate'] = timetodate($r['edittime'], 5);
+        if($lazy && isset($r['thumb']) && $r['thumb']) $r['thumb'] = DT_SKIN.'image/lazy.gif" original="'.$r['thumb'];
+        $r['alt'] = $r['title'];
+        $r['title'] = set_style($r['title'], $r['style']);
+        $r['linkurl'] = $sell_mod['linkurl'].$r['linkurl'];
+        $_tags[$r['itemid']] = $r;
+      }
+      $db->free_result($result);
+      foreach($ids as $id) {
+        $tags[] = $_tags[$id];
+      }
+    }
+    return $tags;
+  }
 }
 ?>

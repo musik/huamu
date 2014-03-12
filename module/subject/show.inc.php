@@ -55,6 +55,14 @@ if(check_group($_groupid, $MOD['group_contact'])) {
 		$user_status = 3;
 	}
 }
+//require(DT_ROOT.'/module/sell/sell.class.php');
+//$sells = Sell::search($title);
+if(!class_exists('subject'))
+  require(DT_ROOT.'/module/subject/subject.class.php');
+$sc = new subjectRel(21);
+$news = $sc->search($title);
+$sc = new subjectRel(5);
+$sells = $sc->search($title);
 include DT_ROOT.'/include/update.inc.php';
 $seo_file = 'show';
 include DT_ROOT.'/include/seo.inc.php';

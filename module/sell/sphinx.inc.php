@@ -17,8 +17,8 @@ if($DT_QST) {
 	$sx->SetArrayResult(true);
 	$sx->SetMatchMode(SPH_MATCH_PHRASE);
 	$sx->SetRankingMode(SPH_RANK_NONE);
-	$sx->SetSortMode(SPH_SORT_EXTENDED, 'sorttime desc');
-	$sx->SetFilter('status', array(3));
+	$sx->SetSortMode(SPH_SORT_EXTENDED, 'id desc');
+	//$sx->SetFilter('status', array(3));
 	if($catid) $sx->SetFilter('catid', explode(',', $CAT['arrchildid']));
 	if($areaid) $sx->SetFilter('areaid', explode(',', $ARE['arrchildid']));
 	$pagesize = $MOD['pagesize'];
