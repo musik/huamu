@@ -25,20 +25,14 @@
       if(!isset($FD))
         $FD = cache_read('fields-'.substr($table, strlen($DT_PRE)).'.php');
         ?>
-			<ul class="attrs">
+			<div class="metas">
       {loop $FD $i $cf}
-      <li><strong>{$cf[title]}</strong>
+      <p><strong>{$cf[title]}</strong>:
       <a class="{$cf[name]}" href="{$MOD[linkurl]}search.php?kw={$$cf[name]}" rel="nofollow">{$$cf[name]}</a>
-      </li>
+      </p>
       {/loop}
-			{if $n1 && $v1}<li><strong>{$n1}</strong>：{$v1}</li>{/if}
-			{if $n2 && $v2}<li><strong>{$n2}</strong>：{$v2}</li>{/if}
-			{if $n3 && $v3}<li><strong>{$n3}</strong>：{$v3}</li>{/if}
-			<li><strong>浏览次数</strong><span id="hits">{$hits}</span></li>
-			{if $MOD[show_message] && $username && !$expired}
-			<li><img src="{DT_SKIN}image/btn_message.gif" alt="留言咨询" class="c_p" onclick="Go('{$MOD[linkurl]}{rewrite('message.php?itemid='.$itemid)}');"/></li>
-			{/if}
-			</ul>
+			<p><strong>浏览次数</strong>:<span id="hits">{$hits}</span></p>
+			</div>
 			</td>
 			</tr>
 			</table>
@@ -48,7 +42,7 @@
 		{if $CP}{template 'property', 'chip'}{/if}
 		<div class="content" id="content">{$content}</div>
 		<div class="b10">&nbsp;</div>
-    <h2>{$title}的图片</h2>
+    <!--<h2>{$title}的图片</h2>-->
     <h2>{$title}的供应信息</h2>
     {template 'sells.show','subject'}
     <h2>{$title}的相关资讯</h2>
