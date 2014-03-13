@@ -1,0 +1,23 @@
+{if $typeid==1}
+{$code}
+{elseif $typeid==2}
+<a href="{$url}" title="{$text_title}" target="_blank">{$text_name}</a>
+{elseif $typeid==3}
+{if $url}<a href="{$url}" target="_blank">{/if}<img src="{$image_src}" width="{$width}" height="{$height}" alt="{$image_alt}"/>{if $url}</a>{/if}
+{elseif $typeid==4}
+{if $url}<a href="{$url}" target="_blank"><img src="{DT_SKIN}image/spacer.gif" width="{$width}" height="{$height}" alt="" style="position:absolute;z-index:2;"/></a>{/if}<embed src="{$flash_src}" quality="high" loop="{if $flash_loop}true{else}false{/if}" extendspage="http://get.adobe.com/flashplayer/" type="application/x-shockwave-flash" wmode="transparent" width="{$width}" height="{$height}"></embed>
+{elseif $typeid == 5}
+<script type="text/javascript">
+var config = '5|0xFFFFFF|0x333333|80|0xFAFAFA|0x333333|0x000000';
+var files = "{loop $tags $k $v}{if $k}|{/if}{$v[thumb]}{/loop}";
+var links = "{loop $tags $k $v}{if $k}|{/if}{$v[linkurl]}{/loop}";
+var texts = '';
+document.write('<embed src="{DT_PATH}file/flash/slide.swf" wmode="opaque" FlashVars="config='+config+'&bcastr_flie='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'&menu="false" quality="high" width="{$width}" height="{$height}" type="application/x-shockwave-flash" extendspage="http://get.adobe.com/flashplayer/"></embed>');
+</script>
+{elseif $typeid==6}
+	{if $tags}
+		<div id="adword">
+		<div class="adword">{template 'list-'.$ad_module, 'tag'}</div>
+		</div>
+	{/if}
+{/if}

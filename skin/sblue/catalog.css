@@ -1,0 +1,60 @@
+.catalog_box {
+	Z-INDEX: 100; POSITION: relative
+}
+.catalog_box .bd {
+	BORDER-BOTTOM: 0px
+}
+.catalog TABLE {
+	WIDTH: 100%; BORDER-COLLAPSE: collapse
+}
+.catalog TABLE .tr1 TH {
+	BORDER-TOP: #dee1e6 1px solid
+}
+.catalog TABLE .tr1 TD {
+	BORDER-TOP: #dee1e6 1px solid
+}
+.catalog TABLE .tr4 TH {
+	BORDER-BOTTOM: #dee1e6 1px solid
+}
+.catalog TABLE .tr4 TD {
+	BORDER-BOTTOM: #dee1e6 1px solid
+}
+.catalog TABLE TH {
+	BORDER-BOTTOM: #eeeff0 1px solid; BORDER-LEFT: #dee1e6 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 6px; WIDTH: 20px; PADDING-RIGHT: 5px; FONT-SIZE: 16px; VERTICAL-ALIGN: middle; BORDER-TOP: #eeeff0 1px solid; BORDER-RIGHT: #eeeff0 1px solid; PADDING-TOP: 10px
+}
+.catalog TABLE TD {
+	BORDER-BOTTOM: #eeeff0 1px solid; BORDER-LEFT: #eeeff0 1px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; BORDER-TOP: #eeeff0 1px solid; BORDER-RIGHT: #dee1e6 1px solid; PADDING-TOP: 5px
+}
+.catalog TABLE TR.over TH {
+	BORDER-BOTTOM: #fbd289 1px solid; BORDER-LEFT: #fbd289 1px solid; BACKGROUND: #fdf2e1; BORDER-TOP: #fbd289 1px solid; BORDER-RIGHT: #fbd289 1px solid
+}
+.catalog TABLE TR.over TD {
+	BORDER-BOTTOM: #fbd289 1px solid; BORDER-LEFT: #fbd289 1px solid; BACKGROUND: #fffaf1; BORDER-TOP: #fbd289 1px solid; BORDER-RIGHT: #fbd289 1px solid
+}
+.catalog TABLE TR.bover TH {
+	BORDER-BOTTOM: #fbd289 1px solid
+}
+.catalog TABLE TR.bover TD {
+	BORDER-BOTTOM: #fbd289 1px solid
+}
+.catalog TABLE TR.tover TH {
+	BORDER-TOP: #fbd289 1px solid
+}
+.catalog TABLE TR.tover TD {
+	BORDER-TOP: #fbd289 1px solid
+}
+.catalog TABLE TD DL {
+	MARGIN: 0px 5px; WIDTH: 320px; TEXT-OVERFLOW: ellipsis; DISPLAY: inline; FONT: 12px/28px Arial, Helvetica, sans-serif; WHITE-SPACE: nowrap; FLOAT: left; HEIGHT: 28px; OVERFLOW: hidden; WORD-BREAK: break-all
+}
+.catalog TABLE TD DL DT A {
+	COLOR: #005aa8; FONT-SIZE: 14px; FONT-WEIGHT: bold; MARGIN-RIGHT: 10px
+}
+.catalog TABLE TD DL DD A {
+	FONT-SIZE: 12px; MARGIN-RIGHT: 8px
+}
+.catalog TABLE TD DL DT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-TOP: 0px
+}
+.catalog TABLE TD DL DD {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-TOP: 0px
+}

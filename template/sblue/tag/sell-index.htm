@@ -1,0 +1,11 @@
+<ul>
+{loop $tags $i $t}
+  <LI><A class=img href="{$t[linkurl]}" 
+    rel=nofollow target=_blank title="{$t[alt]}"><IMG width="{$width}" height="{$height}" alt="{$t[alt]}" 
+  src="{$t[thumb]}" onerror="this.src='{DT_SKIN}image/nopic.gif'"></A>
+  <DIV class=txt><A href="{$t[linkurl]}" 
+  rel=nofollow target=_blank title="{$t[alt]}">{$t[title]}</A>
+  <P><a href="{userurl($t[username])}" target=_blank title="{$t[company]}" style="color:#ff6600">{dsubstr(strip_tags($t[company]), 14)}</a></P></DIV></LI>
+{/loop}
+</ul>
+{if $showpage && $pages}<div class="pages">{$pages}</div>{/if}

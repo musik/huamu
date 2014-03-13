@@ -1,0 +1,225 @@
+.m_l {
+	WIDTH: 720px
+}
+.m_r {
+	WIDTH: 250px
+}
+.serving {
+	BORDER-LEFT: #b9d7f6 1px solid; WIDTH: 188px; BACKGROUND: #ecf5ff; FLOAT: left; HEIGHT: 204px; BORDER-RIGHT: #b9d7f6 1px solid
+}
+.serving A {
+	Z-INDEX: 19; BORDER-BOTTOM: #dae8f6 1px solid; POSITION: relative; LINE-HEIGHT: 34px; MARGIN-TOP: -2px; DISPLAY: block; HEIGHT: 34px; BORDER-TOP: #ecf5ff 1px solid
+}
+.serving A.firs {
+	LINE-HEIGHT: 33px; MARGIN-TOP: 0px; HEIGHT: 33px; BORDER-TOP: #b9d7f6 1px solid
+}
+.serving A.last {
+	BORDER-BOTTOM: #b9d8f7 1px solid
+}
+.serving A:link {
+	COLOR: #323232
+}
+.serving A:visited {
+	COLOR: #323232
+}
+.serving A:hover {
+	BORDER-BOTTOM-COLOR: #b9d8f7; BORDER-TOP-COLOR: #b9d8f7; BACKGROUND: #fff; COLOR: #323232; BORDER-RIGHT-COLOR: #b9d8f7; BORDER-LEFT-COLOR: #b9d8f7; TEXT-DECORATION: none
+}
+.serving A:active {
+	BORDER-BOTTOM-COLOR: #b9d8f7; BORDER-TOP-COLOR: #b9d8f7; BACKGROUND: #fff; COLOR: #323232; BORDER-RIGHT-COLOR: #b9d8f7; BORDER-LEFT-COLOR: #b9d8f7; TEXT-DECORATION: none
+}
+.serving A.firs:hover {
+	BORDER-TOP: #b9d8f7 1px solid
+}
+.serving SPAN {
+	POSITION: absolute; WIDTH: 32px; DISPLAY: block; BACKGROUND: url(image/default-big-bg.png) no-repeat; HEIGHT: 32px; TOP: 1px; LEFT: 9px; -moz-transition-duration: 0.3s; -webkit-transition-duration: 0.3s; -o-transition-duration: 0.3s; -ms-transition-duration: 0.3s; transition-duration: 0.3s
+}
+.serving SPAN.st-as {
+	BACKGROUND-POSITION: -266px 5px
+}
+.serving SPAN.st-bs {
+	BACKGROUND-POSITION: -266px -30px
+}
+.serving SPAN.st-cs {
+	BACKGROUND-POSITION: -266px -65px
+}
+.serving SPAN.st-ds {
+	BACKGROUND-POSITION: -266px -100px
+}
+.serving SPAN.st-es {
+	BACKGROUND-POSITION: -266px -135px
+}
+.serving SPAN.st-fs {
+	BACKGROUND-POSITION: -266px -170px
+}
+.serving A:hover SPAN {
+	-moz-transform: rotate(30deg); -webkit-transform: rotate(30deg); -o-transform: rotate(30deg); -ms-transform: rotate(30deg); transform: rotate(30deg)
+}
+.serving A STRONG {
+	FLOAT: left; MARGIN-LEFT: 41px; CURSOR: pointer
+}
+.serving A SMALL {
+	POSITION: absolute; COLOR: #597e9b; FONT-SIZE: 12px; TOP: 0px; CURSOR: pointer; RIGHT: 16px
+}
+.serving A B {
+	Z-INDEX: 11; BORDER-BOTTOM: #ecf5ff 1px solid; POSITION: absolute; BORDER-LEFT: #ecf5ff 1px solid; WIDTH: 5px; BACKGROUND: #ecf5ff; HEIGHT: 3px; BORDER-TOP: #ecf5ff 1px solid; TOP: 32px; BORDER-RIGHT: #ecf5ff 1px solid
+}
+.serving A B.rc-rt {
+	LEFT: 0px
+}
+.serving A B.rc-rb {
+	RIGHT: 0px
+}
+.serving A:hover B {
+	VISIBILITY: hidden
+}
+.announce {
+	BORDER-BOTTOM: #ebebeb 1px solid; POSITION: relative; BORDER-LEFT: #ebebeb 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 28px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; BACKGROUND: url(image/default-big-bg.png) repeat-x 0px -250px; HEIGHT: 28px; OVERFLOW: hidden; BORDER-TOP: #ebebeb 1px solid; BORDER-RIGHT: #ebebeb 1px solid; PADDING-TOP: 0px
+}
+.announce STRONG {
+	COLOR: #ff6600
+}
+.announce_l {
+	WIDTH: 70px; FLOAT: left
+}
+.announce_r {
+	MARGIN-TOP: 4px; WIDTH: 365px; FLOAT: left; HEIGHT: 20px; OVERFLOW: hidden
+}
+.announce_r LI {
+	LINE-HEIGHT: 20px; HEIGHT: 20px; OVERFLOW: hidden
+}
+.hotdoing-main-button {
+	BORDER-BOTTOM: #fff 1px solid; POSITION: absolute; BORDER-LEFT: #fff 1px solid; HEIGHT: 16px; BORDER-TOP: #fff 1px solid; TOP: 5px; RIGHT: 4px; BORDER-RIGHT: #fff 1px solid
+}
+.hotdoing-main-button A {
+	TEXT-INDENT: -7777px; BACKGROUND: url(image/default-big-bg.png) no-repeat; FLOAT: left; HEIGHT: 16px; OVERFLOW: hidden
+}
+.hotdoing-main-button A.on {
+	WIDTH: 15px; BACKGROUND-POSITION: left top
+}
+.hotdoing-main-button A.next {
+	WIDTH: 15px; BACKGROUND-POSITION: -15px top
+}
+.hotdoing-main-button A.more {
+	WIDTH: 21px; BACKGROUND-POSITION: -30px top
+}
+.hotdoing-main-button A.on:hover {
+	BACKGROUND-POSITION: left -25px
+}
+.hotdoing-main-button A.next:hover {
+	BACKGROUND-POSITION: -15px -25px
+}
+.hotdoing-main-button A.more:hover {
+	BACKGROUND-POSITION: -30px -25px
+}
+.trade_head {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 20px; PADDING-LEFT: 11px; PADDING-RIGHT: 0px; BACKGROUND: url(image/trade_head.gif) no-repeat; LETTER-SPACING: 1px; FONT-SIZE: 14px; PADDING-TOP: 4px
+}
+.trade_body {
+	BORDER-BOTTOM: #aaccee 1px solid; BORDER-LEFT: #aaccee 1px solid; PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; BORDER-TOP: #aaccee 1px solid; BORDER-RIGHT: #aaccee 1px solid; PADDING-TOP: 8px
+}
+.trade_body LI {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 23px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; HEIGHT: 22px; COLOR: #666666; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+.loading {
+	WIDTH: 100%; BACKGROUND: url(image/loading.gif) no-repeat center center; HEIGHT: 220px
+}
+.headline H2 {
+	TEXT-ALIGN: center; LINE-HEIGHT: 30px; MARGIN: 0px; HEIGHT: 29px; FONT-SIZE: 14px; OVERFLOW: hidden
+}
+.headline SPAN {
+	COLOR: #004499
+}
+.imall {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 2px
+}
+.imall IMG {
+	BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid; PADDING-TOP: 2px
+}
+.imall LI {
+	LINE-HEIGHT: 21px; WIDTH: 100px; HEIGHT: 22px; OVERFLOW: hidden
+}
+.isell {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 6px
+}
+.isell IMG {
+	BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid; PADDING-TOP: 3px
+}
+.isell LI {
+	LINE-HEIGHT: 28px; WIDTH: 100px; HEIGHT: 28px; OVERFLOW: hidden
+}
+.itrade {
+	HEIGHT: 115px; OVERFLOW: hidden
+}
+.newsr {
+	BORDER-BOTTOM: #c0c0c0 1px dotted; MARGIN: 0px 0px 5px
+}
+.quote_head {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 25px; PADDING-LEFT: 0px; PADDING-RIGHT: 3px; BACKGROUND: url(image/quote_head.gif) no-repeat; HEIGHT: 25px; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+.quote_head DIV {
+	TEXT-ALIGN: center; WIDTH: 80px; FONT-SIZE: 14px
+}
+.quote_head_i {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; PADDING-RIGHT: 0px; COLOR: #666666; PADDING-TOP: 2px
+}
+.quote_body {
+	BORDER-BOTTOM: #ff7300 1px solid; BORDER-LEFT: #ff7300 1px solid; PADDING-BOTTOM: 11px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #ff7300 1px solid; BORDER-RIGHT: #ff7300 1px solid; PADDING-TOP: 11px
+}
+.quote_body LI {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 20px; PADDING-LEFT: 35px; PADDING-RIGHT: 15px; BACKGROUND: url(image/ico_quote.gif) no-repeat 13px 1px; HEIGHT: 20px; COLOR: #666666; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+.know_credit {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 14px; PADDING-RIGHT: 0px; BACKGROUND: url(image/ico_reward.gif) no-repeat; COLOR: #666666; FONT-SIZE: 11px; PADDING-TOP: 0px
+}
+.video LI {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 21px; PADDING-RIGHT: 10px; BACKGROUND: url(image/ico_video.gif) no-repeat 2px 4px; PADDING-TOP: 0px
+}
+.imgtxt {
+	CLEAR: both
+}
+.imgtxt P {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 25px; MARGIN: 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; HEIGHT: 25px; FONT-SIZE: 13px; OVERFLOW: hidden; FONT-WEIGHT: bold; PADDING-TOP: 0px
+}
+.imgtxt DIV {
+	PADDING-BOTTOM: 5px; LINE-HEIGHT: 20px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; PADDING-TOP: 5px
+}
+.imgtxt IMG {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; PADDING-BOTTOM: 2px; MARGIN: 0px 10px 0px 0px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; FLOAT: left; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid; PADDING-TOP: 2px
+}
+.imgtxt EM {
+	FONT-STYLE: normal; COLOR: #ba2636
+}
+.imgtxt CITE {
+	FONT-STYLE: normal; FONT-FAMILY: Arial; COLOR: #ff6600; FONT-SIZE: 16px; FONT-WEIGHT: bold
+}
+.topr {
+	WIDTH: 520px; FLOAT: right
+}
+.topl {
+	WIDTH: 190px; FLOAT: left
+}
+.box_head_link {
+	BORDER-BOTTOM: #d5d5d5 1px solid; BORDER-LEFT: #d5d5d5 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 34px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; BACKGROUND: url(image/default-big-bg.png) #eff6ff repeat-x 0px -286px; HEIGHT: 34px; COLOR: #1b4c7a; OVERFLOW: hidden; BORDER-TOP: #d5d5d5 1px solid; BORDER-RIGHT: #d5d5d5 1px solid; PADDING-TOP: 0px
+}
+.prolist {
+	PADDING-BOTTOM: 8px; PADDING-LEFT: 8px; PADDING-RIGHT: 0px; PADDING-TOP: 3px
+}
+.prolist UL LI {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 6px; MARGIN: 5px 5px 0px 0px; PADDING-LEFT: 6px; WIDTH: 120px; PADDING-RIGHT: 6px; FLOAT: left; HEIGHT: 143px; PADDING-TOP: 6px
+}
+.prolist UL LI .img {
+	DISPLAY: block; HEIGHT: 100px
+}
+.prolist UL LI .txt {
+	BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #fff 1px solid; PADDING-BOTTOM: 3px; MARGIN-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; DISPLAY: block; FONT: 12px/16px Arial, Helvetica, sans-serif; OVERFLOW: hidden; BORDER-TOP: #fff 1px solid; BORDER-RIGHT: #fff 1px solid; PADDING-TOP: 3px
+}
+.prolist UL LI .txt P {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; COLOR: #999; PADDING-TOP: 0px
+}
+.prolist UL LI.over .txt {
+	BORDER-BOTTOM: #d3b590 1px solid; BORDER-LEFT: #d3b590 1px solid; BACKGROUND: #fdecb3; BORDER-TOP: #d3b590 1px solid; BORDER-RIGHT: #d3b590 1px solid
+}
+.prolist UL LI.over .txt A {
+	COLOR: #8b573d
+}

@@ -1,0 +1,8 @@
+/*
+	[Destoon B2B System] Copyright (c) 2008-2011 Destoon.COM
+	This is NOT a freeware, use is subject to license.txt
+*/
+body {_background-image:url('image/spacer.gif');_background-attachment:fixed;}
+#destoon_toolbar {_position:absolute;_top:expression(documentElement.scrollTop+documentElement.clientHeight-this.offsetHeight);}
+.imall {padding:0 5px 0 5px;}
+.isell {padding:0 5px 4px 5px;}

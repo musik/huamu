@@ -74,6 +74,8 @@ switch($action) {
 			if($msg) dalert($msg);
 
 			if($do->pass($post)) {
+        //muzik hack: detect_cat
+        $post = detect_cat($post,$moduleid);
 				$CAT = get_cat($post['catid']);
 				if(!$CAT || !check_group($_groupid, $CAT['group_add'])) dalert(lang($L['group_add'], array($CAT['catname'])));
 				if($MOD['upload_thumb'] && $MG['upload'] && strlen($post['thumb']) < 5) dalert($L['sell_upload_image']);

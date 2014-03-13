@@ -1,0 +1,70 @@
+{php $CSS = array('catalog');}
+{template 'header'}
+<div class="m">
+<div class="m_l f_l">
+	<div class="left_box">		
+		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a></div>
+		<div class="category" style="border-bottom:#CCCCCC 1px solid;">
+			<p><img src="{DT_SKIN}image/arrow.gif" width="17" height="12" alt=""/> <strong>按行业浏览</strong></p>
+			<div>
+			<table width="100%" cellpadding="3">
+			{php $maincat = get_maincat(0,4)}
+			{loop $maincat $k $v}
+			{if $k%$MOD[page_subcat]==0}<tr>{/if}
+			<td{if $v[catid]==$catid} class="f_b"{/if}><a href="{$MOD[linkurl]}{$v[linkurl]}">{set_style($v[catname],$v[style])}</a> <span class="f_gray px10">({$v[item]})</span></td>
+			{if $k%$MOD[page_subcat]==($MOD[page_subcat]-1)}</tr>{/if}
+			{/loop}
+			</table>
+			</div>
+		</div>
+		{if $page == 1}{ad($moduleid,$catid,$kw,6)}{/if}
+    </div>
+	{if $MOD[page_inew]}
+	<div class="b10"> </div>
+	<div class="box_head_1"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?new=1')}">更多..</a></span><strong>最新加入</strong></div></div>
+	<div class="box_body li_dot f_gray">
+	<!--{tag("moduleid=$moduleid&condition=groupid>5 and catids<>''&areaid=$cityid&pagesize=".$MOD[page_inew]."&order=userid desc&template=list-company&showpage=1&page=".$page)}-->
+	</div>
+	{/if}
+
+</div>
+<div class="m_n f_l">&nbsp;</div>
+<div class="m_r f_l">
+    <!--地区-->
+	<div class="box_head_1"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?area=0')}">全国..</a></span><strong>区域浏览</strong></div></div>
+	<div class="box_body li_dot f_gray">
+			<table width="100%" cellpadding="3">
+			{php $mainarea = get_mainarea($cityid)}
+			{loop $mainarea $k $v}
+			{if $k%4==0}<tr>{/if}
+			<td><a href="{$MOD[linkurl]}{rewrite('search.php?areaid='.$v['areaid'])}">{$v[areaname]}</a></td>
+			{if $k%4==3}</tr>{/if}
+			{/loop}
+			</table>
+		</div>
+    <!--/地区-->
+	<div class="b10"> </div>
+	{if $MOD[page_irec]}
+	<div class="box_head_1"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?vip=1')}">更多..</a></span><strong>名企推荐</strong></div></div>
+	<div class="box_body li_dot f_gray">
+	<!--{tag("moduleid=$moduleid&condition=level>0 and catids<>''&areaid=$cityid&pagesize=".$MOD[page_irec]."&order=vip desc&template=list-com")}-->
+	</div>
+	<div class="b10"> </div>
+	{/if}
+	{if $MOD[page_ivip]}
+	<div class="box_head_1"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?vip=1')}">更多..</a></span><strong>最新{VIP}</strong></div></div>
+	<div class="box_body li_dot f_gray">
+	<!--{tag("moduleid=$moduleid&condition=vip>0 and catids<>''&areaid=$cityid&pagesize=".$MOD[page_ivip]."&order=fromtime desc&template=list-com")}-->
+	</div>
+	<div class="b10"> </div>
+	{/if}
+	{if $MOD[page_inews]}
+	<div class="box_head_1"><div><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('news.php?more=1')}">更多..</a></span><strong>企业新闻</strong></div></div>
+	<div class="box_body li_dot f_gray">
+	<!--{tag("table=news&condition=status=3 and level>0&pagesize=".$MOD[page_inews]."&datetype=2&order=addtime desc&target=_blank")}-->
+	</div>
+	<div class="b10"> </div>
+	{/if}
+</div>
+</div>
+{template 'footer'}

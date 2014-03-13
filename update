@@ -1,0 +1,5 @@
+rm -rf hack
+#git clone git://github.com/musik/destoon-hack.git hack
+git clone git://gitcafe.com/muzik/destoon-hack.git hack
+cp -r hack/* ./
+echo "\$CFG['upyun'] = '1';" >> config.inc.php

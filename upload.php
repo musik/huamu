@@ -54,6 +54,11 @@ if($DT['uploadlog'] && $MG['uploadday']) {
 	}
 }
 require DT_ROOT.'/include/post.func.php';
+//muzik hacked
+if($CFG["upyun"]){
+  require DT_ROOT. "/upyun/upload.php";
+  exit();
+}
 $uploaddir = 'file/upload/'.timetodate($DT_TIME, $DT['uploaddir']).'/';
 is_dir(DT_ROOT.'/'.$uploaddir) or dir_create(DT_ROOT.'/'.$uploaddir);
 if($MG['uploadtype']) $DT['uploadtype'] = $MG['uploadtype'];

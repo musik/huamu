@@ -1,0 +1,18 @@
+h1. 又拍云存储
+
+//config.inc.php
+
+$CFG['upyun'] = true;
+$CFG['upyun_host'] = '.b0.upaiyun.com';
+$CFG['upyun_image_bucket'] = 'ynlp-assets';
+$CFG['upyun_nothumb_bucket'] = 'ynlp-nothumb';
+$CFG['upyun_file_bucket'] = 'ynlp-files';
+$CFG['upyun_username'] = 'username';
+$CFG['upyun_password'] = 'password';
+
+//upload.php,line 55
+
+if($CFG["upyun"]){
+  require DT_ROOT. "/upyun/upload.php";
+  exit();
+}

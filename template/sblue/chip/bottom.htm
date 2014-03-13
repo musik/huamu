@@ -1,0 +1,23 @@
+<div class="m">
+  <div class="foot">
+		<div id="webpage">
+		<a href="{$MODULE[1][linkurl]}" rel="nofollow">网站首页</a>
+		<!--{tag("table=webpage&condition=item=1&areaid=$cityid&order=listorder desc,itemid desc&template=list-webpage")}-->
+		| <a href="{$MODULE[1][linkurl]}sitemap/">网站地图</a>
+		{if $EXT[guestbook_enable]} | <a href="{$EXT[guestbook_url]}">网站留言</a>{/if}
+		{if $EXT[ad_enable]} | <a href="{$EXT[ad_url]}">广告服务</a>{/if}
+		{if $EXT[gift_enable]} | <a href="{$EXT[gift_url]}">积分换礼</a>{/if}
+		{if $EXT[feed_enable]} | <a href="{$EXT[feed_url]}">RSS订阅</a>{/if}
+		{if $DT[icpno]} | <a href="http://www.miibeian.gov.cn" target="_blank">{$DT[icpno]}</a>{/if}
+    </div>
+		<div id="copyright">{$DT[copyright]}</div>
+    <table style="MARGIN: auto" border="0" cellspacing="10" align="center">
+      <tbody>
+        <tr>
+          <td align="middle"><img src="/skin/sblue/images/00.gif" alt="&#29305;&#24555;&#36890;&#21830;&#21153; &#26381;&#21153;&#25512;&#24191;&#24179;&#21488;" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

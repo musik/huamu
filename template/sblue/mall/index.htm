@@ -1,0 +1,42 @@
+{template 'header'}
+<div class="m">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+	<td valign="top" class="left_menu">
+		<ul>
+		<li class="left_menu_on"><a href="{$MOD[linkurl]}">商品分类</a></li>
+		{loop $maincat $k $v}
+		<li class="left_menu_li"><a href="{$MOD[linkurl]}{$v[linkurl]}">{set_style($v[catname],$v[style])}({$v[item]})</a></li>
+		{/loop}
+		</ul>
+	</td>
+	<td valign="top">
+		{if $MOD[page_irec]}
+		<div class="tab_head">
+		<ul>
+			<li class="tab_2" id="mall_t_1" onmouseover="Tb(1, 2, 'mall', 'tab');">推荐商品</li>
+			<li class="tab_1" id="mall_t_2" onmouseover="Tb(2, 2, 'mall', 'tab');">热卖商品</li>
+		</ul>
+		</div>
+		<div class="box_body">
+			<div class="thumb" id="mall_c_1" style="display:">
+			<!--{tag("moduleid=$moduleid&length=20&condition=status=3 and level>0&areaid=$cityid&pagesize=".$MOD[page_irec]."&order=".$MOD[order]."&width=100&height=100&cols=5&template=thumb-mall&target=_blank")}-->
+			</div>
+			<div class="thumb" id="mall_c_2" style="display:none">			<!--{tag("moduleid=$moduleid&length=20&condition=status=3&areaid=$cityid&pagesize=".$MOD[page_irec]."&order=orders desc&width=100&height=100&cols=5&template=thumb-mall&target=_blank")}-->
+			</div>
+		</div>
+		<div class="b10">&nbsp;</div>
+		{/if}
+		{if $MOD[page_inew]}
+		<div class="box_head"><span class="f_r"><a href="{$MOD[linkurl]}{rewrite('search.php?new=1')}">更多..</a></span><strong>最新上架</strong></div>
+		<div class="box_body">
+			<div class="thumb">
+			<!--{tag("moduleid=$moduleid&length=20&condition=status=3&areaid=$cityid&pagesize=".$MOD[page_inew]."&order=".$MOD[order]."&width=100&height=100&cols=5&template=thumb-mall&target=_blank")}-->
+			</div>
+		</div>
+		{/if}
+	</td>
+	</tr>
+	</table>
+</div>
+{template 'footer'}

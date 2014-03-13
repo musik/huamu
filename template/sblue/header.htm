@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset={DT_CHARSET}"/>
+<title>{if $seo_title}{$seo_title}{else}{if $head_title}{$head_title}{$DT[seo_delimiter]}{/if}{if $city_sitename}{$city_sitename}{else}{$DT[sitename]}{/if}{/if}</title>
+{if $head_keywords}
+<meta name="keywords" content="{$head_keywords}"/>
+{/if}
+{if $head_description}
+<meta name="description" content="{$head_description}"/>
+{/if}
+<LINK rel=bookmark type=image/x-icon href="{DT_PATH}favicon.ico">
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="{DT_PATH}skin/default/ie6.css"/>
+<![endif]-->
+{if $head_canonical}
+<link rel="canonical" href="{$head_canonical}"/>
+{/if}
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}style.css"/>
+{if $moduleid>4}<link rel="stylesheet" type="text/css" href="{DT_SKIN}{$module}.css"/>{/if}
+{if $CSS}
+{loop $CSS $css}
+<link rel="stylesheet" type="text/css" href="{DT_SKIN}{$css}.css"/>
+{/loop}
+{/if}
+{if !DT_DEBUG}<script type="text/javascript">window.onerror=function(){return true;}</script>{/if}
+{if $itemid && $DT[anticopy]}
+<script type="text/javascript">
+document.oncontextmenu=function(e){return false;};
+document.onselectstart=function(e){return false;};
+</script>
+{/if}
+<SCRIPT type="text/javascript" src="{DT_PATH}file/script/jquery.js"></SCRIPT>
+<script type="text/javascript" src="{DT_PATH}lang/{DT_LANG}/lang.js"></script>
+<script type="text/javascript" src="{DT_PATH}file/script/config.js"></script>
+<script type="text/javascript" src="{DT_PATH}file/script/common.js"></script>
+<script type="text/javascript" src="{DT_PATH}file/script/page.js"></script>
+<BODY>
+<DIV class=top>
+<DIV class=top_div>
+  <DIV class=f_r><a href="{DT_PATH}member/grade.php" target=_blank style="color:red" rel=nofollow>VIP服务<a/>
+            |  <script type="text/javascript">addFav('收藏本页');</script> |
+			<a href="{$MODULE[3][linkurl]}shortcut.php" rel="nofollow">加入桌面</a>
+			{if $DT[city]} | [<span id="destoon_city">{$city_name}</span>] <a href="{DT_PATH}city.php" title="点击切换城市">切换</a>{/if} </DIV>
+<DIV id=destoon_member></DIV></DIV></DIV>
+<DIV class=m>
+	<div class="f_l logo"><a href="{$MODULE[1][linkurl]}"><img src="{if $MODULE[$moduleid][logo]}{DT_SKIN}image/logo_{$moduleid}.gif{elseif $DT[logo]}{$DT[logo]}{else}{DT_SKIN}image/logo.gif{/if}" alt="{$DT[sitename]}"/></a></div>	
+<DIV class=logot>{if $moduleid>3}<span class="other">{$MOD[name]}</span>{else}<SPAN class=index>云南礼品行业门户</SPAN> <SPAN 
+class=index>免费B2B电子商务网站</SPAN>{/if}</DIV>
+<DIV class="Search f_r">
+{if $MODULE[$moduleid][ismenu] && !$MODULE[$moduleid][islink]}
+				{php $searchid = $moduleid;}
+				{else}
+				{php $searchid = 5;}
+				{/if}
+<script type="text/javascript">var searchid = {$searchid};</script>
+<DIV class=header_search>
+<DIV class="header_searchbox zoom">
+<div id="search_tips" style="display:none;"></div>
+<form id="destoon_search" action="{DT_PATH}search.php" onsubmit="return Dsearch();">
+<input type="hidden" name="moduleid" value="{$searchid}" id="destoon_moduleid"/>
+<input name="kw" id="destoon_kw" type="text" class="header-searchtxt f_l" value="{if $kw}{$kw}{else}请输入关键字{/if}" onfocus="if(this.value=='请输入关键字') this.value='';"{if $DT[search_tips]} onkeyup="STip(this.value);" autocomplete="off"{/if}/>
+<input type="text" id="destoon_select" class="search_s" value="{dsubstr(strip_tags($MODULE[$searchid][name]), 4)}" readonly onfocus="this.blur();" onclick="Ds('search_module');"/>
+<DIV style="DISPLAY: none" id=search_tips 
+onmouseover="Ds('search_tips');Dh('search_module');" 
+onmouseout="Dh('search_tips');"></DIV>
+<div id="search_module" style="display:none;" onmouseout="Dh('search_module');" onmouseover="Ds('search_module');">
+{loop $MODULE $m}{if $m[ismenu] && !$m[islink]}<a href="javascript:void(0);" onclick="setModule('{$m[moduleid]}','{dsubstr(strip_tags($m[name]), 4)}')">{dsubstr(strip_tags($m[name]), 4)}</a>{/if}{/loop}
+</div>
+<INPUT class="header-searchbtn f_l" value=搜索 type=submit> </FORM>
+<DIV class=clear></DIV></DIV></DIV></DIV></DIV>
+<DIV class=m>
+<DIV id=menu>
+<UL class=menu_bar>
+<li><a href="{$MODULE[1][linkurl]}">首页</a></li>{loop $MODULE $m}{if $m[ismenu]}<li><a href="{$m[linkurl]}"{if $m[isblank]} target="_blank"{/if}{if $m[moduleid]==$moduleid} class="active"{/if}>{dsubstr(strip_tags($m[name]), 4)}</a></li>{/if}{/loop}
+</UL></DIV></DIV>
+<DIV class="m b10"></DIV>

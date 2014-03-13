@@ -128,6 +128,12 @@ $keyword = $kw ? str_replace(array(' ', '*'), array('%', '%'), $kw) : '';
 $today_endtime = strtotime(date('Y-m-d', $DT_TIME).' 23:59:59');
 $seo_file = $seo_title = $head_title = $head_keywords = $head_description = $head_canonical = $head_mobile = '';
 if($catid) $CAT = get_cat($catid);
+//hacked start 根据slug识别分类 需配合修改extend.func
+if (isset($catdir) && !$CAT){
+  $CAT = get_cat_by_dir($catdir,$moduleid);
+}
+//hacked end
+
 if($areaid) $ARE = get_area($areaid);
 $_userid = $_admin = $_aid = $_message = $_chat = $_sound = $_online = $_money = $_credit = $_sms = 0;
 $_username = $_company = $_passport = $_truename = '';

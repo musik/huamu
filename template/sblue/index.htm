@@ -1,0 +1,54 @@
+{php $CSS = array('index', 'catalog');}
+{template 'header'}
+<DIV class=m>
+  <DIV class="m_l f_l">
+    <!--产品供应-->
+    <DIV class=box_head><span class="f_r"><a href="{$MODULE[5][linkurl]}">更多..</a></span><STRONG>产品供应</STRONG></DIV>
+    <DIV class=box_body>
+      <DIV class="prolist zoom">
+        <!--{tag("moduleid=5&length=12&condition=status=3  and thumb<>''&areaid=$cityid&pagesize=".$DT['page_mall']."&order=itemid desc&width=100&height=100&cols=5&group=username&target=_blank&template=sell-index")}-->
+      </DIV>
+    </DIV>
+    <!--/产品供应-->
+    <DIV class=b10></DIV>
+    <!--供应目录-->
+    <DIV class=catalog>
+      {php $mid = 5;}
+      {template 'catalog-index', 'chip'}
+    </DIV>
+    <!--/供应目录-->
+  </DIV>
+  <DIV class="m_n f_l"></DIV>
+  <DIV class="m_r f_r">
+    <DIV class=box_head><span class="f_r"><a href="{$MODULE[4][linkurl]}">更多..</a></span><STRONG>VIP企业宣传</STRONG></DIV>
+    <DIV class="box_body li_dot">
+      <!--{tag("moduleid=4&condition=vip>0 and catids<>''&areaid=$cityid&pagesize=12&order=fromtime desc&template=list-com")}--></DIV>
+    <DIV class=b10></DIV>
+    <DIV class=box_head><span class="f_r"><a href="{$MODULE[4][linkurl]}">更多..</a></span><STRONG>最新企业</STRONG></DIV>
+    <DIV class="box_body li_dot">
+      <!--{tag("moduleid=4&condition=groupid>5 and catids<>''&areaid=$cityid&pagesize=".$DT['page_com']."&order=userid desc&template=list-com")}-->
+    </DIV>
+    <DIV class=b10></DIV>
+    <!--行业资讯-->
+    <DIV class=box_head><span class="f_r"><a href="{$MODULE[21][linkurl]}">更多..</a></span><STRONG>行业资讯</STRONG></DIV>
+    <DIV class=box_body>
+      <DIV class="li_dot f_gray">
+        <!--{tag("moduleid=21&condition=status=3&pagesize=".$DT['page_news']."&datetype=2&order=addtime desc&target=_blank")}-->
+      </DIV>
+    </DIV>
+    <!--/行业资讯-->
+  </DIV>
+
+</DIV>
+<DIV class=m>
+  <DIV class=b10></DIV>
+	<div class="tab_head">
+	<ul>
+		<li class="tab_2"><a href="{$EXT[link_url]}">友情链接</a></li>
+		<li class="tab_1"><a href="{$EXT[link_url]}{rewrite('index.php?action=reg')}">申请链接</a></li>
+	</ul>
+	</div>
+  <DIV class=box_body>
+    <!--{tag("table=link&condition=status=3 and level>0 and thumb='' and username=''&pagesize=".$DT['page_text']."&order=listorder desc,itemid desc&template=list-link&cols=9")}-->
+</DIV></DIV>
+{template 'footer'}
