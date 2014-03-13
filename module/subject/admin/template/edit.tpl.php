@@ -226,8 +226,8 @@ function check() {
 	}
 	f = 'title';
 	l = Dd(f).value.length;
-	if(l < 2) {
-		Dmsg('标题最少5字，当前已输入'+l+'字', f);
+	if(l < 1) {
+		Dmsg('标题最少1字，当前已输入'+l+'字', f);
 		return false;
 	}
 	if(Dd('islink').checked) {

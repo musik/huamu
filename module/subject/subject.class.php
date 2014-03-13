@@ -326,6 +326,7 @@ class subjectRel {
     $sx->SetRankingMode(SPH_RANK_NONE);
     $sx->SetSortMode(SPH_SORT_EXTENDED, 'id desc');
     $pagesize = $mod['pagesize'];
+    $pagesize = 55555;
     $offset = ($page-1)*$pagesize;
     $sx->SetLimits($offset, $pagesize);
     $sphinx_name = empty($mod['sphinx_name']) ? $mod['moduledir'] : $mod['sphinx_name'];
