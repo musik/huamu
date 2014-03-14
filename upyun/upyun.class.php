@@ -224,7 +224,6 @@ class UpYun {
      */
     public function getFileInfo($path) {/*{{{*/
         $rsp = $this->_do_request('HEAD', $path);
-      pebug($rsp);
 
         return $rsp;
     }/*}}}*/

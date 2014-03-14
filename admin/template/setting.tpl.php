@@ -1111,6 +1111,10 @@ foreach($NAME as $k=>$v) {
 <input type="radio" name="setting[upyun]" value="0"  <?php if(!$upyun){ ?>checked <?php } ?> /> 关闭
 </td>
 </tr>
+<tr>
+<td class="tl">公司网址前缀</td>
+<td><input type="text" name="setting[company_url_prefix]" value="<?php echo $company_url_prefix;?>" size="5"/></td>
+</tr>
 </table>
 </div>
 <script type="text/javascript">

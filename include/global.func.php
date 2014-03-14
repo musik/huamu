@@ -899,7 +899,9 @@ function userurl($username, $qstring = '', $domain = '') {
 				}
 			}
 		} else if($DT['rewrite']) {
-			$URL = DT_PATH.'com/'.$username.'/';
+      if(empty($DT['company_url_prefix']))
+        $DT['company_url_prefix'] = 'c-';
+			$URL = DT_PATH.$DT['company_url_prefix'].$username.'/';
 			if($qstring) {
 				parse_str($qstring, $q);
 				if(isset($q['file'])) {
