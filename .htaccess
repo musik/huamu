@@ -8,6 +8,9 @@ RewriteRule ^(.*)-htm-(.*)$ $1.php?$2
 RewriteRule ^(.*)/show-([0-9]+)([\-])?([0-9]+)?\.html$ $1/show.php?itemid=$2&page=$4
 RewriteRule ^(.*)/list-([0-9]+)([\-])?([0-9]+)?\.html$ $1/list.php?catid=$2&page=$4
 RewriteRule ^(.*)/([A-za-z0-9_\-]+)-c([0-9]+)-([0-9]+)\.html$ $1/list.php?catid=$3&catdir=$2&page=$4
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/([A-za-z0-9_\-]+)\.html$ $1/list.php?catdir=$2
 RewriteRule ^(.*)/show/([0-9]+)/([0-9]+)?([/])?$ $1/show.php?itemid=$2&page=$3
 RewriteRule ^(.*)/list/([0-9]+)/([0-9]+)?([/])?$ $1/list.php?catid=$2&page=$3
 RewriteRule ^(.*)/([0-9]+)(-[0-9]+)?/$ $1/show.php?itemid=$2&page=$3

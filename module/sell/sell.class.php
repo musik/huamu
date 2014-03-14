@@ -24,6 +24,10 @@ class sell {
 	function pass($post) {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
+    //muzik hack: detect_cat
+    //if(!$post['catid']){
+      //$post = detect_cat($post,$this->moduleid);
+    //}
 		if(!$post['catid']) return $this->_(lang('message->pass_cate'));
 		if(strlen($post['title']) < 3) return $this->_(lang('message->pass_title'));
 		if($post['totime']) {

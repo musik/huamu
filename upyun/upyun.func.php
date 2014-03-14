@@ -194,6 +194,7 @@ class upyun_uploader {
         }
       }
     }
+
     $this->url = $this->url();
   }
   function is_image() {

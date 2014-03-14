@@ -9,6 +9,7 @@ $menus = array (
     array('图片处理'),
     array('邮件发送'),
     array('页面细节'),
+    array('附加设置'),
 );
 show_menu($menus);
 ?>
@@ -1096,6 +1097,19 @@ foreach($NAME as $k=>$v) {
 <tr>
 <td class="tl">首页文字链接数量</td>
 <td><input type="text" name="setting[page_text]" value="<?php echo $page_text;?>" size="5"/></td>
+</tr>
+</table>
+</div>
+<?php//muzik  hacked?>
+<div id="Tabs7" style="display:none">
+<div class="tt">附加设置</div>
+<table cellpadding="2" cellspacing="1" class="tb">
+<tr>
+<td class="tl">使用upyun存储图片</td>
+<td>
+<input type="radio" name="setting[upyun]" value="1"  <?php if($upyun){ ?>checked <?php } ?> /> 开启&nbsp;&nbsp;
+<input type="radio" name="setting[upyun]" value="0"  <?php if(!$upyun){ ?>checked <?php } ?> /> 关闭
+</td>
 </tr>
 </table>
 </div>

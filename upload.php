@@ -55,7 +55,7 @@ if($DT['uploadlog'] && $MG['uploadday']) {
 }
 require DT_ROOT.'/include/post.func.php';
 //muzik hacked
-if($CFG["upyun"]){
+if($DT["upyun"]){
   require DT_ROOT. "/upyun/upload.php";
   exit();
 }

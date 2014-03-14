@@ -357,10 +357,10 @@ function check() {
 	var l;
 	var f;
 	f = 'catid_1';
-	if(Dd(f).value == 0) {
-		Dmsg('请选择所属分类', 'catid', 1);
-		return false;
-	}
+  if(Dd(f).value == 0) {
+    Dmsg('请选择所属分类', 'catid', 1);
+    return false;
+  }
 	f = 'title';
 	l = Dd(f).value.length;
 	if(l < 2 || l > 30) {

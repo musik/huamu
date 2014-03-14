@@ -45,6 +45,7 @@ if($do->image){
     }
   }
 }
+error_reporting(E_ALL);
 if($do->save()) {
   $img_w = $img_h = 0;
 	$saveto = $do->url;
@@ -59,7 +60,7 @@ if($do->save()) {
   }
 
 	$fid = isset($fid) ? $fid : '';
-	if(!$CFG["upyun"] && isset($old) && $old && in_array($from, array('thumb', 'photo'))) delete_upload($old, $_userid);
+	if(!$DT["upyun"] && isset($old) && $old && in_array($from, array('thumb', 'photo'))) delete_upload($old, $_userid);
 	$_SESSION['uploads'][] = $swfupload ? str_replace('.thumb.'.$do->ext, '', $saveto) : $saveto;
 	if($DT['uploadlog']) $db->query("INSERT INTO {$upload_table} (item,fileurl,filesize,fileext,upfrom,width,height,moduleid,username,ip,addtime,itemid) VALUES ('".md5($saveto)."','$saveto','$do->file_size','$do->ext','$from','$img_w','$img_h','$moduleid','$_username','$DT_IP','$do->uptime','$itemid')");
 	if($swfupload) exit('FILEID:'.$saveto);

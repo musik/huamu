@@ -33,6 +33,7 @@ function get_cats_for_detect($moduleid){
 
 //ini_set("pcre.recursion_limit", "300000");
 function detect_cat($post,$moduleid=5){
+  if($post['catid']) return $post; 
   $cats = get_cats_for_detect($moduleid);
   $names =  str_replace('/','\/',(implode('|',array_unique(array_values($cats)))));
 
