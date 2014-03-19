@@ -17,14 +17,14 @@ class subject {
 		$this->table_data = $table_data;
 		$this->split = $MOD['split'];
 		$this->db = &$db;
-		$this->fields = array('catid','level','title','style','fee','introduce','n1','n2','n3','v1','v2','v3','totime','areaid','thumb','thumb1','thumb2','status','hits','username','addtime','adddate','editor','edittime','editdate','ip','template','islink', 'linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype');
+		$this->fields = array('catid','level','title','style','fee','introduce','n1','n2','n3','v1','v2','v3','totime','areaid','thumb','thumb1','thumb2','status','hits','username','addtime','adddate','editor','edittime','editdate','ip','template','islink', 'linkurl','filepath','note','company','truename','telephone','mobile','address','email','msn','qq','ali','skype','listorder','slug');
     }
 
 	function pass($post) {
 		global $DT_TIME, $MOD;
 		if(!is_array($post)) return false;
 		if(!$post['catid']) return $this->_(lang('message->pass_catid'));
-		if(strlen($post['title']) < 3) return $this->_(lang('message->pass_title'));
+    if(strlen($post['title']) < 3) return $this->_(lang('message->pass_title'));
 		if($post['totime']) {
 			if(!is_date($post['totime'])) return $this->_(lang('message->pass_date'));
 			if(strtotime($post['totime'].' 23:59:59') < $DT_TIME) return $this->_(lang('message->pass_todate'));
@@ -34,8 +34,24 @@ class subject {
 		} else {
 			//if(!$post['content']) return $this->_(lang('message->pass_content'));
 		}
+    if(!$this->itemid && $this->exists("title = '$post[title]'"))
+      return $this->_("title 已存在");
+   
 		return true;
 	}
+  function ensure_slug_uniq($slug){
+    $current = $slug;
+    $i = 1;
+    $condition = $this->itemid ? " and itemid != $this->itemid" : "";
+    while($this->exists("slug = '$current' $condition")){
+      $i++;
+      $current = $slug . '-' . $i;
+    }
+    return $current;
+  }
+  function exists($condition = ''){
+		return $this->db->get_one("SELECT 1 FROM {$this->table} WHERE $condition LIMIT 1");
+  }
 
 	function set($post) {
 		global $MOD, $DT_TIME, $DT_IP, $AREA, $_username, $_userid;
@@ -74,6 +90,10 @@ class subject {
 			$post['content'] = dsafe($content);
 		}
 		$post['content'] = addslashes($post['content']);
+    if(!$post['slug'])
+      $post['slug'] = to_pinyin($post['title']);
+    $post['slug'] = $this->ensure_slug_uniq($post['slug']);
+      //pebug($post,1);
 		return array_map("trim", $post);
 	}
 
@@ -171,7 +191,7 @@ class subject {
       $FD = cache_read('fields-'.substr($this->table, strlen($DT_PRE)).'.php');
     if($FD){
       foreach($FD as $cf){
-        if($cf['type'] == 'varchar'){
+        if($cf['type'] == 'varchar' && !empty($item[$cf['name']])){
           $keyword .= ','. $item[$cf['name']];
         }
       }
@@ -356,6 +376,30 @@ class subjectRel {
       }
     }
     return $tags;
+  }
+}
+function keywords_update_sql($post_fields, $table, $itemid, $keyname = 'itemid', $fd = array()) {
+  global $db;
+  $attr = '';
+  if($fd){
+    foreach($fd as $cf){
+      if($cf['type'] == 'varchar' && !empty($post_fields[$cf['name']])){
+        $attr .= ','. $post_fields[$cf['name']];
+      }
+    }
+  }
+  if($attr){
+		$item = $db->get_one("SELECT * FROM {$table} WHERE itemid=$itemid");
+    $keyword = $item['title'].','.strip_tags(cat_pos(get_cat($item['catid']), ',')).','.strip_tags(area_pos($item['areaid'], ','));
+    $keyword .= $attr;
+    $keyword = str_replace('，',',',$keyword);
+    $arr = explode(',',$keyword);
+    $arr =array_unique($arr);
+    $keyword = implode(',',$arr);
+    if($keyword != $item['keyword']) {
+      $keyword = str_replace("//", '', addslashes($keyword));
+      return ",keyword='$keyword'";
+    }
   }
 }
 ?>

@@ -11,12 +11,25 @@ if($DT_BOT) dhttp(403);
 //$vars['GLOBALS'] = false;
 //var_export($vars);
 require DT_ROOT."/api/post/functions.php";
-//mlog($_POST);
+mlog($_POST,'');
 $action = $_GET['action'];
+$moduleid = $_REQUEST['moduleid'];
+$test = $_GET['test'];
 switch($action){
   case "new":
-    $cl = new AutoPost($_REQUEST['moduleid']);
-    $cl->post($_POST);
+    $ap = new AutoPost($moduleid);
+    if($test){
+      include DT_ROOT.'/api/post/test/'. $moduleid.'.php';
+    }
+    if(!$post)
+      $post = $_POST;
+    $ap->post($post);
+    break;
+  case "cats":
+    $cats = get_maincat(0,$moduleid);
+    foreach($cats as $cat){
+      echo "$cat[catid]|$cat[catname]","<br />";
+    }
     break;
   default:
     break;

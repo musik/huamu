@@ -19,6 +19,9 @@ function fields_update($post_fields, $table, $itemid, $keyname = 'itemid', $fd =
 		}
 	}
 	$sql = substr($sql, 1);
+  if(function_exists('keywords_update_sql')){
+    $sql .= keywords_update_sql($post_fields,$table,$itemid,$keyname,$FD);
+  }
 	if($sql) $db->query("UPDATE {$table} SET $sql WHERE `$keyname`=$itemid");
 }
 

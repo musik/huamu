@@ -1,0 +1,83 @@
+{php $CSS = array('index');}
+{template 'header'}
+<div id="ipad_tips" style="display:none;"></div>
+<div class="m">
+  <div class="m_l f_l">
+    <div class="box_head"><div><strong>推荐</strong></div></div>
+    <div class="icatalog_body">
+      <div class="list-inline">
+        <?php $moduleid = 25 ;?>
+        <!--{tag("moduleid=$moduleid&condition=status=3&pagesize=100&order=listorder desc&target=_blank")}-->
+      </div>
+    </div>
+  <div class="m b10">&nbsp;</div>
+    <div class="box_head">
+      <a href="{$MODULE[5][linkurl]}">最新供应</a>
+    </div>
+    <div class="box_body li_dot">
+      <div id="trade_c_2" class="itrade">
+        <!--{tag("moduleid=5&condition=status=3 and thumb=''&areaid=$cityid&pagesize=".$DT['page_trade']."&datetype=2&target=_blank&order=addtime desc")}-->
+      </div>
+    </div>
+  </div>
+  <div class="m_r f_r">
+    <div class="iuser"><a href="{$MODULE[2][linkurl]}{$DT[file_login]}" rel="nofollow" class="iuser_l" title="登录">登录</a><a href="{$MODULE[2][linkurl]}{$DT[file_register]}" rel="nofollow" class="iuser_r" title="注册">注册</a><a href="{$MODULE[2][linkurl]}{$DT[file_my]}" rel="nofollow" class="iuser_m" title="发布信息">发布信息</a></div>
+    <div class="b10">&nbsp;</div>
+    <div class="box_head">
+      <div id="site_stats">
+        <ul>
+          <li>产品总数:<span>{php echo $db->count($DT_PRE.'sell_5', 'status=3', 1800);}</span></li>
+          <li>企业总数:<span>{php echo $db->count($DT_PRE.'company', '1', 1800);}</span></li>
+          <li>在线会员:<span>{php echo $db->count($DT_PRE.'online', '1', 1800);}</span></li>
+        </ul>
+      </div>
+      <!--<a href="{$EXT[announce_url]}"><strong>网站动态</strong></a>-->
+      <!--<a href="#"><strong>云南企业</strong></a>-->
+      <a href="{$MODULE[4][linkurl]}"><strong>新近企业</strong></a>
+    </div>
+    <div class="box_body li_dot">
+      <div >
+        <!--{tag("moduleid=4&condition=groupid>5 and catids<>''&areaid=$cityid&pagesize=".$DT['page_com']."&order=userid desc&template=list-com")}-->
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<div class="m b10">&nbsp;</div>
+
+{if $DT[page_logo] || $DT[page_text]}
+<div class="m">
+  <div class="tab_head">
+    <span class="f_r f_n px12"><a href="{$MODULE[3][linkurl]}shortcut.php" rel="nofollow" class="g">保存本站桌面快捷方式 &darr;</a>&nbsp;&nbsp;&nbsp;</span>
+    <span class="f_r f_n px12">QQ 5826-5826&nbsp;&nbsp;&nbsp;</span>
+    <ul>
+      <li class="tab_2"><a href="{$EXT[link_url]}">友情链接</a></li>
+      <li class="tab_1"><a href="{$EXT[link_url]}{rewrite('index.php?action=reg')}">申请链接</a></li>
+    </ul>
+  </div>
+  <div class="box_body">
+    {if $DT[page_logo]}
+    <!--{tag("table=link&condition=status=3 and level>0 and thumb<>'' and username=''&areaid=$cityid&pagesize=".$DT['page_logo']."&order=listorder desc,itemid desc&lazy=$lazy&template=list-link&cols=9")}-->
+    {/if}
+    {if $DT[page_text]}
+    <!--{tag("table=link&condition=status=3 and level>0 and thumb='' and username=''&areaid=$cityid&pagesize=".$DT['page_text']."&order=listorder desc,itemid desc&template=list-link&cols=9")}-->
+    {/if}
+  </div>
+</div>
+{/if}
+<script type="text/javascript" src="{DT_STATIC}file/script/index.js"></script>
+<script type="text/javascript" src="{DT_STATIC}file/script/marquee.js"></script>
+<script type="text/javascript">
+  new dmarquee(22, 10, 3000, 'site_stats');
+  new dmarquee(22, 30, 3000, 'company');
+  if(get_cookie('auth')) {
+    $('.iuser_l')[0].title = '商务中心';
+    $('.iuser_l')[0].href = '{$MODULE[2][linkurl]}';
+    $('.iuser_l')[0].className = 'iuser_u';
+    $('.iuser_r')[0].title = '完善我的会员资料';
+    $('.iuser_r')[0].href = '{$MODULE[2][linkurl]}edit.php';
+    $('.iuser_r')[0].className = 'iuser_e';
+  }
+</script>
+{template 'footer'}

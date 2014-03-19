@@ -1,0 +1,33 @@
+div.metas{
+
+}
+.metas p{
+  margin: 0;
+  line-height: 2em;
+}
+
+.metas p strong{
+  font-weight: 500;
+  color: #666;
+}
+.metas p a:link,.metas p a:visited{
+  color: #06c;
+}
+h2{
+  color: #080;
+  font-weight: 500;
+  border-left: 2px solid #080;
+  text-indent: 10px;
+  background: #f8f8f8;
+  line-height: 1.8em;
+}
+h3{
+  font-weight: 500;
+}
+h3 a:link{
+  color: #06c;
+}
+h3 a:visited{
+  color: #036;
+}
+

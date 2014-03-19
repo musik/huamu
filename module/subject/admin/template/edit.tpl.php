@@ -19,6 +19,10 @@ show_menu($menus);
 <td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>标题</td>
 <td><input name="post[title]" type="text" id="title" size="60" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level);?> <?php echo dstyle('post[style]', $style);?> <br/><span id="dtitle" class="f_red"></span></td>
 </tr>
+<tr>
+<td class="tl"><span class="f_red">*</span> Slug</td>
+<td><input name="post[slug]" type="text" id="slug" size="12" value="<?php echo $slug;?>"/> </td>
+</tr>
 <?php if($CP) { ?>
 <script type="text/javascript">
 var property_catid = <?php echo $catid;?>;

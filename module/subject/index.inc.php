@@ -13,5 +13,12 @@ include DT_ROOT.'/include/seo.inc.php';
 $template = $MOD['template_index'] ? $MOD['template_index'] : 'index';
 $destoon_task = "moduleid=$moduleid&html=index";
 if($EXT['wap_enable']) $head_mobile = $EXT['wap_url'].'index.php?moduleid='.$moduleid.($page > 1 ? '&page='.$page : '');
+if($_GET['url']){
+  require DT_ROOT."/module/".$module."/".$module.".class.php";
+  $template = 'url-list';
+  $sn = new subject($moduleid);
+  $pagesize = 1000;
+  $subjects = $sn->get_list();
+}
 include template($template, $module);
 ?>

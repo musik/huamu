@@ -1005,6 +1005,7 @@ function itemurl($item, $page = 0) {
 	$file_ext = $DT['file_ext'];
 	$index = $DT['index'];
 	$itemid = $item['itemid'];
+	$slug = $item['slug'];
 	$title = file_vname($item['title']);
 	$addtime = $item['addtime'];
 	$catid = $item['catid'];

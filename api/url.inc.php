@@ -31,6 +31,7 @@ $urls['php']['item'][3] = array('example'=>'('.$L['url_rewrite'].') show-1-2.htm
 $urls['php']['item'][4] = array('example'=>'('.$L['url_rewrite'].') show/1/','index'=>'show/{$itemid}/', 'page'=>'show/{$itemid}/{$page}/');
 //muzik hacked:用于subject
 $urls['php']['item'][5] = array('example'=>'('.$L['url_rewrite'].') 1/','index'=>'{$itemid}/', 'page'=>'{$itemid}-{$page}/');
+$urls['php']['item'][6] = array('example'=>'('.$L['url_rewrite'].') slug/','index'=>'{$slug}/', 'page'=>'{$slug}-{$page}/');
 
 
 ?>

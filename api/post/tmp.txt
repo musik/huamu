@@ -1,1 +1,10 @@
-NULL
+array (
+  'moduleid' => '25',
+  'title' => '',
+  'summary' => '',
+  'key' => 'd8f63kd0',
+  'attrs' => '',
+  'photo' => '',
+  'vol' => '0',
+  'catid' => '5',
+)

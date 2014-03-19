@@ -25,11 +25,13 @@
         ?>
 			<div class="metas">
       {loop $FD $i $cf}
+      <?php if($cf['name'] == 'slug') continue;$val = $$cf['name'];?>
       <p><strong>{$cf[title]}</strong>:
-      <a class="{$cf[name]}" href="{$MOD[linkurl]}search.php?kw={$$cf[name]}" rel="nofollow">{$$cf[name]}</a>
+      {subject_display_field($val,$cf)}
       </p>
       {/loop}
 			<p><strong>浏览次数</strong>:<span id="hits">{$hits}</span></p>
+			<p><strong>指数</strong>:<span id="vol">{$listorder}</span></p>
 			</div>
 			</td>
 			</tr>
@@ -39,12 +41,15 @@
     <h2>{$title}简介</h2>
 		{if $CP}{template 'property', 'chip'}{/if}
 		<div class="content" id="content">{$content}</div>
-		<div class="b10">&nbsp;</div>
-    <!--<h2>{$title}的图片</h2>-->
+    <?php if (array_key_exists(5,$MODULE)){?>
     <h2>{$title}的供应信息</h2>
     {template 'sells.show','subject'}
+    <a href="{$MODULE[5][linkurl]}search.php?kw={$title}">更多</a>
+    <?php } ?>
+    <?php if (array_key_exists(21,$MODULE)){?>
     <h2>{$title}的相关资讯</h2>
     {template 'news.show','subject'}
+    <?php } ?>
 		<center>
 		[ <a href="{$MOD[linkurl]}search.php" rel="nofollow">{$MOD[name]}搜索</a> ]&nbsp;
 		[ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;

@@ -6,6 +6,12 @@ function pebug($arr,$exit = false){
     if($exit) exit();
 }
 define('DEFAULT_CITY',false);
+function to_pinyin($str,$type=null){
+  if(!class_exists('Pinyin'))
+    require DT_ROOT. '/extend/Pinyin/Pinyin.php';
+  $arr = Pinyin::getPinyin($str,$type);
+  return $arr[0];
+}
 //hacked start get_cat_by_dir
 function get_cat_by_dir($catdir,$moduleid) {
 	global $db;
@@ -77,5 +83,6 @@ function update_cat_by_detect($id){
     $db->query("update {$db->pre}sell set catid = $r[catid] where itemid = $id");
   }
 }
+
 //hacked end
 ?>
