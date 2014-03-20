@@ -118,13 +118,26 @@ class AutoPost{
     return $r['areaid'];
   }
   function parse_subject($data){
-    global $DT_PRE;
-    $data['status'] = 3;
+    global $DT_PRE,$DT;
+    if(!$data['status'])
+      $data['status'] = 2;
     $data['listorder'] = $data['vol'];
     $data['username'] = 'admin';
     if(!$data['introduce'] && $data['summary']){
       $data['introduce'] = $data['summary'];
       unset($data['summary']);
+    }
+    if(!$data['thumb'] && $data['photo']){
+      if(preg_match('/^http/',$data['photo'])){
+        global $_userid;
+        $_userid = 1;
+        $data['thumb'] = save_remote("src=" . $data['photo']);
+        $data['thumb'] = substr($data['thumb'],4,strlen($data['thumb']));
+       }else{
+         if(preg_match('/src="(file.+?)"/',$data['photo'],$match)){
+          $data['thumb'] = $DT['linkurl']. $match[1];
+         }
+       }
     }
     if(!$data['content'] && $data['introduce']){
       $data['content'] = $data['introduce'];

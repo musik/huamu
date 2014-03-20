@@ -1,8 +1,13 @@
-<ul>
+{if $sells}
+<ul class="sells">
 {loop $sells $sell}
 <li>
-<h3><a href="{$sell[linkurl]}" target="_blank">{$sell[title]}</a></h3>
-<p>{$sell[introduce]}</p>
+<h3 class="inline"><a href="{$sell[linkurl]}" target="_blank">{$sell[title]}</a></h3>
+<span>{$sell[introduce]}</span>
 </li>
 {/loop}
 </ul>
+<p class="actions"><a href="{$linkurl}sell">更多</a></p>
+{else}
+<p class="notice">暂无供应信息</p>
+{/if}

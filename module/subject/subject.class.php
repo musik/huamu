@@ -334,7 +334,7 @@ class subjectRel {
     $this->moduleid = $moduleid;
     $this->table = get_table($moduleid);
   }
-  function search($q,$page=1){
+  function search($q,$page=1,$pagesize = 10){
     global $db;
     $mod = cache_read('module-'.$this->moduleid.'.php');
     if(!class_exists('SphinxClient'))
@@ -345,8 +345,7 @@ class subjectRel {
     $sx->SetMatchMode(SPH_MATCH_PHRASE);
     $sx->SetRankingMode(SPH_RANK_NONE);
     $sx->SetSortMode(SPH_SORT_EXTENDED, 'id desc');
-    $pagesize = $mod['pagesize'];
-    $pagesize = 55555;
+    //$pagesize = $mod['pagesize'];
     $offset = ($page-1)*$pagesize;
     $sx->SetLimits($offset, $pagesize);
     $sphinx_name = empty($mod['sphinx_name']) ? $mod['moduledir'] : $mod['sphinx_name'];

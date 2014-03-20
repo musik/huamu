@@ -17,7 +17,8 @@ $post = array (
 <p><strong>属：</strong>黄杨属</p>
 <p><strong>种：</strong>黄杨</p>
 <p><strong>命名者及年代：</strong>Cheng,1962</p>',
-  'photo' => 'http://imgsrc.baidu.com/baike/pic/item/64380cd7912397dd8633e99f5982b2b7d1a287e6.jpg',
+  'photo' => '<img src="file/upload/201403/19/16-34-44-37-1.jpg" />',
   'vol' => '122',
   'catid' => '5',
+  'status' => 3
 );

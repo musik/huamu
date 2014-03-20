@@ -8,11 +8,11 @@ if($itemid)
 else if($slug)
   $item = $db->get_one("SELECT * FROM {$table} WHERE slug='$slug'");
 
-if($item && $item['status'] > 2) {
+if($item && ($_admin || $item['status'] > 2)) {
 	if($item['islink']) dheader($item['linkurl']);
 	if($MOD['show_html'] && is_file(DT_ROOT.'/'.$MOD['moduledir'].'/'.$item['linkurl'])) d301($MOD['linkurl'].$item['linkurl']);
 	extract($item);
-} else {
+}else{
 	include load('404.inc');
 }
 $CAT = get_cat($catid);
@@ -31,36 +31,9 @@ if($CP) {
 $adddate = timetodate($addtime, 5);
 $editdate = timetodate($edittime, 5);
 $todate = $totime ? timetodate($totime, 3) : 0;
-$expired = $totime && $totime < $DT_TIME ? true : false;
 $linkurl = $MOD['linkurl'].$linkurl;
 $thumbs = get_albums($item);
 $albums =  get_albums($item, 1);
-$update = '';
-$fee = get_fee($item['fee'], $MOD['fee_view']);
-if(check_group($_groupid, $MOD['group_contact'])) {
-	if($fee) {
-		$user_status = 4;
-		$destoon_task = "moduleid=$moduleid&html=show&itemid=$itemid";
-	} else {
-		$user_status = 3;
-		$member = $item['username'] ? userinfo($item['username']) : array();
-		if($item['totime'] && $item['totime'] < $DT_TIME && $item['status'] == 3) $update .= ",status=4";
-		if($member) {
-			foreach(array('groupid', 'vip','validated','company','truename','telephone','mobile','address','qq','msn','ali','skype') as $v) {
-				if($item[$v] != $member[$v]) $update .= ",$v='".addslashes($member[$v])."'";
-			}
-			if($item['email'] != $member['mail']) $update .= ",email='$member[mail]'";
-		}
-	}
-} else {
-	$user_status = $_userid ? 1 : 0;
-	if($_username && $item['username'] == $_username) {
-		$member = userinfo($item['username']);
-		$user_status = 3;
-	}
-}
-//require(DT_ROOT.'/module/sell/sell.class.php');
-//$sells = Sell::search($title);
 if(!class_exists('subject'))
   require(DT_ROOT.'/module/subject/subject.class.php');
 $sc = new subjectRel(21);

@@ -1,4 +1,5 @@
-<ul>
+{if $news}
+<ul class="news">
 {loop $news $r}
 <li>
 <h3><a href="{$r[linkurl]}" target="_blank">{$r[title]}</a></h3>
@@ -6,3 +7,7 @@
 </li>
 {/loop}
 </ul>
+<p class="actions"><a href="{$linkurl}news">更多</a></p>
+{else}
+<p class="notice">暂无相关资讯</p>
+{/if}

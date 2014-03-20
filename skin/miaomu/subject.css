@@ -31,3 +31,26 @@ h3 a:visited{
   color: #036;
 }
 
+h3.inline{
+  display: inline;
+}
+ul.sells{
+  /*border-top: 1px solid #eee;*/
+}
+ul.sells h3 a:hover{
+  color: #ccc;
+}
+ul.sells li{
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+  line-height: 2em;
+  height: 2em;
+  overflow: hidden;
+}
+#subject-photo{
+ margin: 5px 0;
+ height: 160px;
+ width: 160px;
+ overflow: hidden;
+}
+

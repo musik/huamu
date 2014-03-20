@@ -26,8 +26,8 @@ if($_catids || $_areaids) require DT_ROOT.'/admin/admin_check.inc.php';
 if(in_array($action, array('', 'check', 'expire', 'reject', 'recycle'))) {
 	$sfields = array('模糊', '标题', '公司名', '联系人', '联系电话', '联系地址', '电子邮件', '联系MSN', '联系QQ', '会员名', 'IP', '参数名1', '参数名2', '参数名3', '参数值1', '参数值2', '参数值3');
 	$dfields = array('keyword', 'title', 'company', 'truename', 'telephone', 'address', 'email', 'msn', 'qq','username', 'ip', 'n1', 'n2', 'n3', 'v1', 'v2', 'v3');
-	$sorder  = array('结果排序方式', '更新时间降序', '更新时间升序', '添加时间降序', '添加时间升序', '浏览次数降序', '浏览次数升序', '信息ID降序', '信息ID升序');
-	$dorder  = array($MOD['order'], 'edittime DESC', 'edittime ASC', 'addtime DESC', 'addtime ASC', 'hits DESC', 'hits ASC', 'itemid DESC', 'itemid ASC');
+	$sorder  = array('结果排序方式', '指数降序','更新时间降序', '更新时间升序', '添加时间降序', '添加时间升序', '浏览次数降序', '浏览次数升序', '信息ID降序', '信息ID升序');
+	$dorder  = array($MOD['order'], 'listorder desc','edittime DESC', 'edittime ASC', 'addtime DESC', 'addtime ASC', 'hits DESC', 'hits ASC', 'itemid DESC', 'itemid ASC');
 	$level = isset($level) ? intval($level) : 0;
 	isset($fields) && isset($dfields[$fields]) or $fields = 0;
 	isset($order) && isset($dorder[$order]) or $order = 0;

@@ -7,16 +7,16 @@
 	<div class="left_boxx">		
 		<div class="info_main">		
 			<table width="100%">
-			<td width="250" valign="top">
+			<td width="180" valign="top">
 				<div id="mid_pos"></div>
-				<div id="mid_div" onmouseover="SAlbum();" onmouseout="HAlbum();" onclick="PAlbum(Dd('mid_pic'));">
-				<img src="{$albums[0]}" width="240" height="180" id="mid_pic"/><span id="zoomer"></span>
+				<div id="subject-photo" onclick="PAlbum(Dd('mid_pic'));">
+				<img src="{$albums[0]}" height=160 width="160" id="mid_pic"/><span id="zoomer"></span>
 				</div>
 				<div class="b5"></div>
 				<div>
 				</div>
 			</td>
-			<td width="15"> </td>
+			<td width="10"> </td>
 			<td valign="top">
 			<div id="big_div" style="display:none;"><img src="" id="big_pic"/></div>
       <?php 
@@ -44,7 +44,6 @@
     <?php if (array_key_exists(5,$MODULE)){?>
     <h2>{$title}的供应信息</h2>
     {template 'sells.show','subject'}
-    <a href="{$MODULE[5][linkurl]}search.php?kw={$title}">更多</a>
     <?php } ?>
     <?php if (array_key_exists(21,$MODULE)){?>
     <h2>{$title}的相关资讯</h2>
