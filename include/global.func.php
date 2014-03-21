@@ -5,7 +5,15 @@
 */
 defined('IN_DESTOON') or exit('Access Denied');
 function dhtmlspecialchars($string) {
-    return is_array($string) ? array_map('dhtmlspecialchars', $string) : str_replace('&amp;', '&', htmlspecialchars($string, ENT_QUOTES));
+	if(is_array($string)) {
+		return array_map('dhtmlspecialchars', $string);
+	} else {
+		if(defined('DT_ADMIN')) {
+			return str_replace(array('&amp;'), array('&'), htmlspecialchars($string, ENT_QUOTES));
+		} else {
+			return str_replace(array('&amp;', '&quot;', '&#34;', '"'), array('&', '', '', ''), htmlspecialchars($string, ENT_QUOTES));
+		}
+	}
 }
 
 function daddslashes($string) {
@@ -25,8 +33,8 @@ function dsafe($string) {
 		return array_map('dsafe', $string);
 	} else {
 		if(strlen($string) < 20) return $string;
-		$match = array("/&#([a-z0-9]+)([;]*)/i","/\<\!\-\-([\s\S]*?)\-\-\>/","/\/\*([\s\S]*?)\*\//","/on(mouse|exit|error|click|dblclick|key|load|unload|change|move|submit|reset|cut|copy|select|start|stop|drag|touch)/i","/s[[:space:]]*c[[:space:]]*r[[:space:]]*i[[:space:]]*p[[:space:]]*t[[:space:]]*>/i","/about/i","/frame/i","/link/i","/import/i","/expression/i","/meta/i","/textarea/i","/eval/i");
-		$replace = array("","","","o&#110;\\1","scrip&#116;>","abou&#116;","fram&#101;","lin&#107;","impor&#116;","expressio&#110;","met&#97;","textare&#97;","eva&#108;");
+		$match = array("/&#([a-z0-9]+)([;]*)/i","/\<\!\-\-([\s\S]*?)\-\-\>/","/\/\*([\s\S]*?)\*\//","/on(mouse|exit|error|click|dblclick|key|load|unload|change|move|submit|reset|cut|copy|select|start|stop|drag|touch)/i","/s[[:space:]]*c[[:space:]]*r[[:space:]]*i[[:space:]]*p[[:space:]]*t/i","/about/i","/frame/i","/link/i","/import/i","/expression/i","/meta/i","/textarea/i","/eval/i");
+		$replace = array("","","","0n\\1","scr-pt","ab0ut","fra-me","1ink","imp0rt","expressi0n","me-ta","text-area","eva1");
 		return preg_replace($match, $replace, $string);
 	}
 }
@@ -109,6 +117,7 @@ function dsubstr($string, $length, $suffix = '', $start = 0) {
 }
 
 function encrypt($txt, $key = '') {
+	$key or $key = DT_KEY;
 	$rnd = md5(microtime());
 	$len = strlen($txt);
 	$ren = strlen($rnd);
@@ -122,6 +131,7 @@ function encrypt($txt, $key = '') {
 }
 
 function decrypt($txt, $key = '') {
+	$key or $key = DT_KEY;
 	$txt = kecrypt(base64_decode($txt), $key);
 	$len = strlen($txt);
 	$str = '';
@@ -278,7 +288,7 @@ function get_cookie($var) {
 function get_table($moduleid, $data = 0) {
 	global $DT_PRE, $MODULE;
 	$module = $MODULE[$moduleid]['module'];
-	$C = array('article', 'brand', 'buy', 'down', 'info', 'photo', 'sell', 'video','subject');
+  $C = array('article', 'brand', 'buy', 'down', 'info', 'photo', 'sell', 'video','subject');
 	if($data) {
 		return in_array($module, $C) ? $DT_PRE.$module.'_data_'.$moduleid : $DT_PRE.$module.'_data';
 	} else {
@@ -899,9 +909,9 @@ function userurl($username, $qstring = '', $domain = '') {
 				}
 			}
 		} else if($DT['rewrite']) {
-      if(empty($DT['company_url_prefix']))
-        $DT['company_url_prefix'] = 'c-';
-			$URL = DT_PATH.$DT['company_url_prefix'].$username.'/';
+        if(empty($DT['company_url_prefix']))
+          $DT['company_url_prefix'] = 'c-';
+        $URL = DT_PATH.$DT['company_url_prefix'].$username.'/';
 			if($qstring) {
 				parse_str($qstring, $q);
 				if(isset($q['file'])) {

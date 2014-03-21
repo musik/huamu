@@ -39,12 +39,10 @@ class page {
 		} else {			
 			$post['addtime'] = $DT_TIME;
 		}
-		if(!defined('DT_ADMIN')) {
-			$content = $post['content'];
-			unset($post['content']);
-			$post = dhtmlspecialchars($post);
-			$post['content'] = dsafe($content);
-		}
+		$content = $post['content'];
+		unset($post['content']);
+		$post = dhtmlspecialchars($post);
+		$post['content'] = dsafe($content);
 		if($MOD['page_clear'] || $MOD['page_save']) {
 			$post['content'] = stripslashes($post['content']);
 			$post['content'] = save_local($post['content']);

@@ -62,8 +62,9 @@ if($action == 'add') {
 			if($typeid == 6 || $typeid == 7) {
 				$ad['key_moduleid'] = $p['moduleid'];
 				$ad['key_catid'] = $post['catid'];
-				$ad['key_word'] = $post['word'];
+				$ad['key_word'] = trim(strip_tags($post['word']));
 			}
+			$ad['addtime'] = $ad['edittime'] = $DT_TIME;
 			$ad['fromtime'] = strtotime($post['fromtime']);
 			$ad['totime'] = strtotime($post['fromtime']) + 86400*30*$month;
 			$ad['pid'] = $pid;
@@ -72,7 +73,7 @@ if($action == 'add') {
 			$ad['currency'] = $currency;
 			$ad['title'] = $post['fromtime'].'('.$_username.')';
 			$ad['introduce'] = timetodate($DT_TIME, 5).' '.$L['ad_buy_paid'].$amount.$unit;
-			$ad['note'] = $L['ad_buy_note'].'('.$DT_IP.')';
+			$ad['note'] = $post['note'].' - '.$L['ad_buy_note'].'('.$DT_IP.')';
 			$ad['status'] = 2;
 			$ad['username'] = $_username;
 			$ad = dhtmlspecialchars($ad);

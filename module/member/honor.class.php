@@ -46,12 +46,10 @@ class honor {
 			if($r['thumb']) $old .= '<img src="'.$r['thumb'].'">';
 			delete_diff($new, $old);
 		}
-		if(!defined('DT_ADMIN')) {
-			$content = $post['content'];
-			unset($post['content']);
-			$post = dhtmlspecialchars($post);
-			$post['content'] = dsafe($content);
-		}
+		$content = $post['content'];
+		unset($post['content']);
+		$post = dhtmlspecialchars($post);
+		$post['content'] = dsafe($content);
 		if($MOD['credit_clear'] || $MOD['credit_save']) {
 			$post['content'] = stripslashes($post['content']);
 			$post['content'] = save_local($post['content']);

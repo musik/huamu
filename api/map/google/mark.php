@@ -31,15 +31,14 @@ function mapOnLoad() {
 		map.addControl(new GLargeMapControl3D());
 		map.addControl(new GMenuMapTypeControl());
 		map.addControl(new GScaleControl());
-		map.addOverlay(new GMarker(new GLatLng(<?php echo $map;?>)));//
+		map.addOverlay(new GMarker(new GLatLng(<?php echo $map;?>)));
 			GEvent.addListener(map, 'click', function(overlay,point) {
 				if(overlay) {
 				} else if(point) {
 					map.clearOverlays();
 					map.addOverlay(new GMarker(point));
 					try {
-						//window.parent.document.getElementById('map').value = point.y+','+point.x;
-						window.parent.document.getElementById('map').value = point['pb']+','+ point['qb'];
+						window.parent.document.getElementById('map').value = point['d']+','+ point['e'];
 						window.parent.cDialog();
 					} catch(e) {}
 				}

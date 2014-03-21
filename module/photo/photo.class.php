@@ -56,13 +56,10 @@ class photo {
 			$post['username'] = $post['editor'] = $_username;
 			$post['ip'] = $DT_IP;
 		}
-		if(!defined('DT_ADMIN')) {
-			$content = $post['content'];
-			unset($post['content']);
-			$post = dhtmlspecialchars($post);
-			$post['content'] = $content;
-		}
-		$post['content'] = addslashes($post['content']);
+		$content = $post['content'];
+		unset($post['content']);
+		$post = dhtmlspecialchars($post);
+		$post['content'] = addslashes(dsafe($content));
 		return array_map("trim", $post);
 	}
 

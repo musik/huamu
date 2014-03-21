@@ -176,7 +176,7 @@ switch($action) {
 	break;
 	case 'main':
 		if($submit) {
-			$note = '<?php exit;?>'.stripslashes($note);
+			$note = '<?php exit;?>'.htmlspecialchars(stripslashes($note));
 			file_put(DT_ROOT.'/file/user/'.dalloc($_userid).'/'.$_userid.'/note.php', $note);
 			dmsg('更新成功', '?action=main');
 		} else {

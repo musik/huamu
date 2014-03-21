@@ -11,7 +11,7 @@ require DT_ROOT.'/include/post.func.php';
 $do = new member;
 if($submit) {
 	if(word_count($note) > 1000) message($L['index_msg_note_limit']);
-	$note = '<?php exit;?>'.stripslashes($note);
+	$note = '<?php exit;?>'.htmlspecialchars(stripslashes($note));
 	file_put(DT_ROOT.'/file/user/'.dalloc($_userid).'/'.$_userid.'/note.php', $note);
 	dmsg($L['op_update_success'], $MODULE[2]['linkurl']);
 } else {

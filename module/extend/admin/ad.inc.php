@@ -92,6 +92,7 @@ switch($action) {
 		isset($order) && isset($dorder[$order]) or $order = 0;
 		isset($typeid) or $typeid = 0;
 		$areaid = isset($areaid) ? intval($areaid) : 0;
+		if($job == 'check' && $order == 0) $order = 1;
 		$fields_select = dselect($sfields, 'fields', '', $fields);
 		$order_select  = dselect($sorder, 'order', '', $order);
 		$condition = $job == 'check' ? "status=2" : "status=3";

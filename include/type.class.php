@@ -40,15 +40,19 @@ class dtype {
 	}
 
 	function add($post) {
-		if(!$post['typename']) return false;
+		$post['typename'] = dhtmlspecialchars(trim(strip_tags($post['typename'])));
+		if(strlen($post['typename']) < 2) return false;
 		$post['listorder'] = intval($post['listorder']);
+		$post['style'] = dhtmlspecialchars($post['style']);
 		$this->db->query("INSERT INTO {$this->table} (listorder,typename,style,item,cache) VALUES('$post[listorder]','$post[typename]','$post[style]','$this->item','$this->cache')");
 	}
 
 	function edit($post) {
 		foreach($post as $k=>$v) {
-			if(!$v['typename']) continue;
+			$v['typename'] = dhtmlspecialchars(trim(strip_tags($v['typename'])));
+			if(strlen($v['typename']) < 2) continue;
 			$v['listorder'] = intval($v['listorder']);
+			$v['style'] = dhtmlspecialchars($v['style']);
 			$k = intval($k);
 			$this->db->query("UPDATE {$this->table} SET listorder='$v[listorder]',typename='$v[typename]',style='$v[style]' WHERE typeid='$k' AND item='$this->item'");
 		}

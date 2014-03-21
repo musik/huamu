@@ -67,13 +67,10 @@ class resume {
 		} else {			
 			$post['ip'] = $DT_IP;
 		}
-		if(!defined('DT_ADMIN')) {
-			$content = $post['content'];
-			unset($post['content']);
-			$post = dhtmlspecialchars($post);
-			$post['content'] = dsafe($content);
-		}
-		$post['content'] = addslashes($post['content']);
+		$content = $post['content'];
+		unset($post['content']);
+		$post = dhtmlspecialchars($post);
+		$post['content'] = addslashes(dsafe($content));
 		return array_map("trim", $post);
 	}
 

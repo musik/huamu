@@ -52,24 +52,19 @@ $RT['action']['group']['delete'] = '会员组删除';
 
 $RT['action']['record']['add'] = '资金增减';
 $RT['action']['record']['delete'] = '删除记录';
-$RT['action']['record']['export'] = '导出记录';
 
 $RT['action']['credit']['add'] = '积分奖惩';
 $RT['action']['credit']['delete'] = '删除记录';
-$RT['action']['credit']['export'] = '导出记录';
 
 $RT['action']['sms']['add'] = '短信增减';
 $RT['action']['sms']['delete'] = '删除记录';
-$RT['action']['sms']['export'] = '导出记录';
 
 $RT['action']['charge']['check'] = '审核记录';
 $RT['action']['charge']['recycle'] = '作废记录';
 $RT['action']['charge']['delete'] = '删除记录';
-$RT['action']['charge']['export'] = '导出记录';
 
 $RT['action']['cash']['show'] = '查看申请';
 $RT['action']['cash']['edit'] = '受理申请';
-$RT['action']['cash']['export'] = '导出记录';
 
 $RT['action']['pay']['delete'] = '删除记录';
 

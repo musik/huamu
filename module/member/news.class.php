@@ -36,12 +36,10 @@ class news {
 			$old = $r['content'];
 			delete_diff($new, $old);
 		}
-		if(!defined('DT_ADMIN')) {
-			$content = $post['content'];
-			unset($post['content']);
-			$post = dhtmlspecialchars($post);
-			$post['content'] = dsafe($content);
-		}
+		$content = $post['content'];
+		unset($post['content']);
+		$post = dhtmlspecialchars($post);
+		$post['content'] = dsafe($content);
 		if($MOD['news_clear'] || $MOD['news_save']) {
 			$post['content'] = stripslashes($post['content']);
 			$post['content'] = save_local($post['content']);

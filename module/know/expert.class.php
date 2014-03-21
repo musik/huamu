@@ -39,12 +39,10 @@ class expert {
 			$old = $r['content'];
 			delete_diff($new, $old);
 		}
-		if(!defined('DT_ADMIN')) {
-			$content = $post['content'];
-			unset($post['content']);
-			$post = dhtmlspecialchars($post);
-			$post['content'] = dsafe($content);
-		}
+		$content = $post['content'];
+		unset($post['content']);
+		$post = dhtmlspecialchars($post);
+		$post['content'] = dsafe($content);
 		$post['content'] = addslashes(save_remote(save_local(stripslashes($post['content']))));
 		return array_map("trim", $post);
 	}
