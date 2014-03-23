@@ -1,0 +1,20 @@
+  <% if nginx_host_uniq %>
+   server {
+     server_name <%=nginx_host_alias%>;
+     rewrite ^ http://<%=nginx_host_uniq%>$request_uri? permanent;	
+   }
+  <% end %>
+  # <%= application %> Server
+  server {
+      <%#client_max_body_size 500M;%>
+      server_name <%=nginx_host_name%>;
+
+      <%#keepalive_timeout 5;%>
+      root <%= deploy_to %>/current;
+      access_log <%= deploy_to%>/shared/log/access.log;
+      error_log  <%= deploy_to%>/shared/log/error.log;
+      
+      include global/restrictions.conf;
+      include global/php.conf;
+      include global/destoon-ynlp.conf;
+  }

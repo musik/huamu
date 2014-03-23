@@ -14,8 +14,8 @@ if($MOD['cat_property'] && $CAT['property']) {
 }
 unset($CAT['moduleid']);
 extract($CAT);
-if(1){
-  $maincat = get_maincat($child ? $catid : $parentid, $moduleid);
+$maincat = get_maincat($child ? $catid : $parentid, $moduleid);
+if($MOD['sphinx']){
   require DT_ROOT.'/module/'.$module.'/'.$module.'.class.php';
   $sc = new sell($moduleid);
   $rs = $sc->search($CAT['catname'],$page);
