@@ -377,7 +377,7 @@ class sell {
         $tags[] = $_tags[$id];
       }
     }
-    return $tags;
+    return compact('tags','pages');
   }
 }
 ?>
