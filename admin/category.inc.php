@@ -17,6 +17,7 @@ $menus = array (
     array('管理分类', '?file='.$file.'&mid='.$mid),
     array('分类复制', '?file='.$file.'&action=copy&mid='.$mid),
     array('分类导入', '?file='.$file.'&action=import&mid='.$mid),
+    array('智能分类', '?file='.$file.'&action=detect&mid='.$mid),
     array('批量索引', '?file='.$file.'&action=letters&mid='.$mid),
     array('更新地址', '?file='.$file.'&action=url&mid='.$mid),
     array('更新统计', '?file='.$file.'&action=count&mid='.$mid),
@@ -168,6 +169,24 @@ switch($action) {
     
 		} else {
 			include tpl('category_import');
+    }
+  break;
+  //muzik hacked:智能分类
+  case 'detect':
+    if($submit){
+      if($parentid){
+        $pcat = get_cat($parentid);
+        if($pcat['child'] == 0){
+          $cats = array($pcat) ;
+        }else{
+          $cats = get_maincat($parentid,$mid);
+          pebug($cats);
+        }
+        detect_items_for_cats($cats,$mid);  
+      }
+			dmsg('更新成功', "?mid=$mid&file=$file&action=count");
+		} else {
+			include tpl('category_detect');
     }
   break;
 	case 'count':

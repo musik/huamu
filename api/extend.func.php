@@ -84,5 +84,18 @@ function update_cat_by_detect($id){
   }
 }
 
+//hacked detect_sells
+function detect_items_for_cats($cats,$mid){
+  $tb =get_table($mid);
+  foreach($cats as $cat){
+    detect_items_for_cat($cat,$mid,$tb);
+  }
+}
+function detect_items_for_cat($cat,$mid,$table){
+  global $db;
+  $condition = "WHERE title like '%{$cat[catname]}%' and catid != {$cat[catid]}";
+  $sql = "update {$table} set catid = {$cat[catid]} $condition";
+  $db->query($sql);
+}
 //hacked end
 ?>
