@@ -8,8 +8,8 @@
 			<div class="icatalog_body">
 				<div class="icatalog">
 					{php $mid = 5;}
-					{php $child = get_maincat(0, $mid, 1);}
-					{loop $child $i $c}
+					{php $cats = get_maincat(0, $mid, 1);}
+					{loop $cats $i $c}
 					{if $i<120 && $c[child]}
 					{php $sub = get_maincat($c[catid], $mid, 1);}
 					<ul>
@@ -62,22 +62,35 @@
 		</div>
 
     </div>
+{if !$DT[home_sell_catids]}
     <div class="m b10">&nbsp;</div>
     <div class="m_r_2 f_l">
       <div class="box_head">
         <a href="{$MODULE[5][linkurl]}">最新产品</a>
       </div>
       <div class="box_body">
-            {if $DT[home_sell_catids]}
-      <!--{tag("catid=".$DT['home_sell_catids']."&moduleid=5&length=18&condition=status=3  and thumb<>''&areaid=$cityid&pagesize=".$DT['page_sell']."&order=itemid desc&width=100&height=100&cols=4&group=username&target=_blank&template=thumb-table")}-->
-            {else}
       <!--{tag("moduleid=5&length=18&condition=status=3  and thumb<>''&areaid=$cityid&pagesize=".$DT['page_sell']."&order=itemid desc&width=100&height=100&cols=4&group=username&target=_blank&template=thumb-table")}-->
-          {/if}
       </div>
     </div>
+    {/if}
 	</div>
 </div>
 <div class="m b10">&nbsp;</div>
+{if $DT[home_sell_catids]}
+<div class="m">
+    <?php $ids = explode(',',$DT['home_sell_catids'])?>
+    {loop $ids $catid}
+    <?php $cat = get_cat($catid);?>
+      <div class="box_head">
+        <a href="{$MODULE[5][linkurl]}{$cat[linkurl]}">{$cat[catname]}</a>
+      </div>
+      <div class="box_body">
+      <!--{tag("catid=".$catid."&moduleid=5&length=18&condition=status=3  and thumb<>''&areaid=$cityid&pagesize=".$DT['page_sell']."&order=itemid desc&width=100&height=100&cols=6&group=username&target=_blank&template=thumb-table")}-->
+  </div>
+  <div class="b10">&nbsp;</div>
+  {/loop}
+  </div>
+{/if}
 
 {if $DT[page_logo] || $DT[page_text]}
 <div class="m">
