@@ -13,9 +13,9 @@
 					{if $i<120 && $c[child]}
 					{php $sub = get_maincat($c[catid], $mid, 1);}
 					<ul>
-					<li><a href="{$MODULE[$mid][linkurl]}{$c[linkurl]}" target="_blank"><strong>{set_style($c[catname], $c[style])}</strong></a></li>
+					<li class="vh"><a href="{$MODULE[$mid][linkurl]}{$c[linkurl]}" target="_blank"><strong>{set_style($c[catname], $c[style])}</strong></a></li>
 					{loop $sub $j $s}
-					{if $j<4}<li><a href="{$MODULE[$mid][linkurl]}{$s[linkurl]}" target="_blank">{set_style($s[catname], $s[style])}</a></li>{/if}
+					{if $j<8}<li><a href="{$MODULE[$mid][linkurl]}{$s[linkurl]}" target="_blank">{set_style($s[catname], $s[style])}</a></li>{/if}
 					{/loop}
 					</ul>
 					{/if}

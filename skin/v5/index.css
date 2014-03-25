@@ -21,9 +21,10 @@ a.iuser_e:hover {background-position:-120px -105px;}
 .icatalog_body {border:#DDDDDD 1px solid;border-top:none;padding:6px 8px 6px 8px;}
 
 .icatalog {height:auto;overflow:hidden;}
-.icatalog ul {height:32px;overflow:hidden;border-bottom:#EEEEEE 1px solid;}
-.icatalog li {float:left;height:32px;line-height:32px;padding:0 6px 0 2px;}
-.icatalog strong {color:#225588;font-size:14px;}
+.icatalog ul {height:56px;overflow:hidden;border-bottom:#EEEEEE 1px solid;}
+.icatalog li {float:left;height:28px;line-height:28px;padding:0 6px 0 2px;}
+.icatalog li.vh {font-size:14px;}
+.icatalog strong {color:#225588;}
 
 #site_stats {float:right;height:22px;overflow:hidden;margin:3px 0 0 0;width:200px;}
 #site_stats li {height:22px;line-height:22px;overflow:hidden;text-align:right;color:#666666;background:url('image/ico_arrow_up.gif') no-repeat right center;padding-right:12px;}
