@@ -184,7 +184,7 @@ switch($action) {
         }
         detect_items_for_cats($cats,$mid);  
       }
-			dmsg('更新成功', "?mid=$mid&file=$file&action=count");
+			dmsg('更新成功', "?mid=$mid&file=$file");
 		} else {
 			include tpl('category_detect');
     }

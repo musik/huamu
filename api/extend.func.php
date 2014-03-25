@@ -96,6 +96,10 @@ function detect_items_for_cat($cat,$mid,$table){
   $condition = "WHERE title like '%{$cat[catname]}%' and catid != {$cat[catid]}";
   $sql = "update {$table} set catid = {$cat[catid]} $condition";
   $db->query($sql);
+  $condition = "catid = {$cat[catid]} and status = 3";
+  $item = $db->count($table, $condition);
+  pebug("UPDATE {$db->pre}category SET item=$item WHERE catid=$cat[catid]");
+  //$db->query("UPDATE {$db->pre}category SET item=$item WHERE catid=$cat[catid]");
 }
 //hacked end
 ?>
