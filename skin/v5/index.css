@@ -21,7 +21,7 @@ a.iuser_e:hover {background-position:-120px -105px;}
 .icatalog_body {border:#DDDDDD 1px solid;border-top:none;padding:6px 8px 6px 8px;}
 
 .icatalog {height:auto;overflow:hidden;}
-.icatalog ul {height:56px;overflow:hidden;border-bottom:#EEEEEE 1px solid;}
+.icatalog ul {max-height:56px;overflow:hidden;border-bottom:#EEEEEE 1px solid;}
 .icatalog li {float:left;height:28px;line-height:28px;padding:0 6px 0 2px;}
 .icatalog li.vh {font-size:14px;}
 .icatalog strong {color:#225588;}
