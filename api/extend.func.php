@@ -95,7 +95,7 @@ function detect_items_for_cat($cat,$mid,$table=null){
   global $db;
   if(!$table)
     $table = get_table($mid);
-  if($mid = 4){
+  if($mid == 4){
     $col = 'company';
     //todo: catids不兼容子分类
     $newval = sprintf("',%1\$s,' , catids = ',%1\$s,'",$cat['catid']);
