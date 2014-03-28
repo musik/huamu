@@ -1116,7 +1116,11 @@ foreach($NAME as $k=>$v) {
 <td><input type="text" name="setting[company_url_prefix]" value="<?php echo $company_url_prefix;?>" size="5"/></td>
 </tr>
 <tr>
-<td class="tl">首页供应信息分类ID</td>
+<tr>
+<tr>
+<td colspan=2 class="tl">云南礼品网首页设置</td>
+</tr>
+<td class="tl">供应信息只显示分类ID</td>
 <td><input type="text" name="setting[home_sell_catids]" value="<?php echo $home_sell_catids;?>" size="30"/></td>
 </tr>
 </table>

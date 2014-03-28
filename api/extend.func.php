@@ -91,12 +91,22 @@ function detect_items_for_cats($cats,$mid){
     detect_items_for_cat($cat,$mid,$tb);
   }
 }
-function detect_items_for_cat($cat,$mid,$table){
+function detect_items_for_cat($cat,$mid,$table=null){
   global $db;
+  if(!$table)
+    $table = get_table($mid);
   $condition = "WHERE title like '%{$cat[catname]}%' and catid != {$cat[catid]}";
   $sql = "update {$table} set catid = {$cat[catid]} $condition";
   $db->query($sql);
-  $condition = "catid = {$cat[catid]} and status = 3";
+  if($cat['child'] != 0){
+    $cats = get_maincat($cat['catid'],$mid);
+    foreach($cats as $c){
+      detect_items_for_cat($c,$mid,$table);
+    }
+    $condition = "catid in ({$cat[arrchildid]}) and status = 3";
+  }else{
+    $condition = "catid = {$cat[catid]} and status = 3";
+  }
   $item = $db->count($table, $condition);
   $db->query("UPDATE {$db->pre}category SET item=$item WHERE catid=$cat[catid]");
 }

@@ -176,13 +176,7 @@ switch($action) {
     if($submit){
       if($parentid){
         $pcat = get_cat($parentid);
-        if($pcat['child'] == 0){
-          $cats = array($pcat) ;
-        }else{
-          $cats = get_maincat($parentid,$mid);
-          pebug($cats);
-        }
-        detect_items_for_cats($cats,$mid);  
+        detect_items_for_cat($pcat,$mid);
       }
 			dmsg('更新成功', "?mid=$mid&file=$file");
 		} else {
