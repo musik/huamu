@@ -1120,8 +1120,12 @@ foreach($NAME as $k=>$v) {
 <tr>
 <td colspan=2 class="tl">云南礼品网首页设置</td>
 </tr>
-<td class="tl">供应信息只显示分类ID</td>
+<td class="tl">首页调用供应信息分类ID</td>
 <td><input type="text" name="setting[home_sell_catids]" value="<?php echo $home_sell_catids;?>" size="30"/></td>
+</tr>
+</tr>
+<td class="tl">首页调用企业分类ID</td>
+<td><input type="text" name="setting[home_company_catids]" value="<?php echo $home_company_catids;?>" size="30"/></td>
 </tr>
 </table>
 </div>

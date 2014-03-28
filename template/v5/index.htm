@@ -57,7 +57,11 @@
 		</div>
 		<div class="box_body li_dot">
       <div >
+            {if $DT[home_company_catids]}
+      <!--{tag("catid=".$DT['home_company_catids']."&moduleid=4&condition=groupid>5&areaid=$cityid&pagesize=".$DT['page_com']."&order=userid desc&template=list-com")}-->
+            {else}
       <!--{tag("moduleid=4&condition=groupid>5 and catids<>''&areaid=$cityid&pagesize=".$DT['page_com']."&order=userid desc&template=list-com")}-->
+          {/if}
       </div>
 		</div>
 

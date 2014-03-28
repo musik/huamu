@@ -95,17 +95,29 @@ function detect_items_for_cat($cat,$mid,$table=null){
   global $db;
   if(!$table)
     $table = get_table($mid);
-  $condition = "WHERE title like '%{$cat[catname]}%' and catid != {$cat[catid]}";
-  $sql = "update {$table} set catid = {$cat[catid]} $condition";
+  if($mid = 4){
+    $col = 'company';
+    //todo: catids不兼容子分类
+    $newval = sprintf("',%1\$s,' , catids = ',%1\$s,'",$cat['catid']);
+    $condition = "WHERE $col like '%{$cat[catname]}%' and catid != ',{$cat[catid]},'";
+  }else{
+    $col = 'title';
+    $newval = $cat['catid'];
+    $condition = "WHERE $col like '%{$cat[catname]}%' and catid != {$cat[catid]}";
+  }
+  $sql = "update {$table} set catid = {$newval} $condition";
   $db->query($sql);
   if($cat['child'] != 0){
     $cats = get_maincat($cat['catid'],$mid);
     foreach($cats as $c){
       detect_items_for_cat($c,$mid,$table);
     }
-    $condition = "catid in ({$cat[arrchildid]}) and status = 3";
+    $condition = "catid in ({$cat[arrchildid]})";
   }else{
-    $condition = "catid = {$cat[catid]} and status = 3";
+    $condition = "catid = {$cat[catid]}";
+  }
+  if($mid != 4){
+    $condition .= " and status = 3" ;
   }
   $item = $db->count($table, $condition);
   $db->query("UPDATE {$db->pre}category SET item=$item WHERE catid=$cat[catid]");
