@@ -247,6 +247,10 @@ X
 <div class="tt">SEO优化</div>
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
+<td class="tl">绑定二级域名</td>
+<td><input name="setting[subdomain]" type="text" value="<?php echo $subdomain;?>" size="30"/> <?php tips('如果填写 .destoon.com 同时需要将域名泛解析 *.destoon.com 指向服务器IP，并且在服务器端绑定泛域名至 网站根目录 或者 网站根目录/subject 目录，生成的主页形式为username.destoon.com<br/>如果填写 i.destoon.com 同时需要将域名泛解析 i.destoon.com 指向服务器IP，并且在服务器端绑定域名至网站根目录/subject 目录，生成的主页形式为i.destoon.com/username/(注：此方式必须支持伪静态)');?></td>
+</tr>
+<tr>
 <td class="tl">首页是否生成html</td>
 <td>
 <input type="radio" name="setting[index_html]" value="1"  <?php if($index_html){ ?>checked <?php } ?>/> 是&nbsp;&nbsp;&nbsp;&nbsp;

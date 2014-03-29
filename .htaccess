@@ -22,3 +22,7 @@ RewriteRule ^(com)/([a-z0-9_\-]+)([/])?$ index.php?homepage=$2
 #RewriteRule ^(.*)/com/([a-z0-9_\-]+)/([a-z]+)/(.*)\.html$ $1/index.php?homepage=$2&file=$3&rewrite=$4
 #RewriteRule ^(.*)/com/([a-z0-9_\-]+)/([a-z]+)([/])?$ $1/index.php?homepage=$2&file=$3
 #RewriteRule ^(.*)/com/([a-z0-9_\-]+)([/])?$ $1/index.php?homepage=$2
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/([A-za-z0-9_\-]+)/$ $1/show.php?slug=$2
+RewriteRule ^(.*)/([A-za-z0-9_\-]+)/(sell|news)$ $1/show.php?slug=$2&module=$3

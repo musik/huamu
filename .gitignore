@@ -5,6 +5,7 @@ session
 /file/cache/
 /file/script/
 /file/md5/
+/file/sphinx/
 /about
 /config.inc.php
 /announce/*.html

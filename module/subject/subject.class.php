@@ -183,7 +183,7 @@ class subject {
 	}
 
 	function update($itemid) {
-    global $FD,$DT_PRE;
+    global $FD,$DT_PRE,$MOD;
 		$item = $this->db->get_one("SELECT * FROM {$this->table} WHERE itemid=$itemid");
 		$update = '';
 		$keyword = $item['title'].','.strip_tags(cat_pos(get_cat($item['catid']), ',')).strip_tags(area_pos($item['areaid'], ','));
@@ -201,7 +201,11 @@ class subject {
 			$update .= ",keyword='$keyword'";
 		}
 		$item['itemid'] = $itemid;
-		$linkurl = $item['islink'] ? $item['linkurl'] : itemurl($item);
+    if($MOD['subdomain']){
+      $linkurl = "http://{$item[slug]}$MOD[subdomain]";
+    }else{
+      $linkurl = $item['islink'] ? $item['linkurl'] : itemurl($item);
+    }
 		if($linkurl != $item['linkurl']) $update .= ",linkurl='$linkurl'";
 		$member = $item['username'] ? userinfo($item['username']) : array();
 		if($member) {
