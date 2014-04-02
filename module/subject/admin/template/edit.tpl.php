@@ -16,10 +16,6 @@ show_menu($menus);
 <td><?php echo $_admin == 1 ? category_select('post[catid]', '选择分类', $catid, $moduleid) : ajax_category_select('post[catid]', '选择分类', $catid, $moduleid);?>&nbsp;&nbsp;<input type="checkbox" name="post[islink]" value="1" id="islink" onclick="_islink();" <?php if($islink) echo 'checked';?>/> 外部链接 <span id="dcatid" class="f_red"></span></td>
 </tr>
 <tr>
-<td class="tl"><span class="f_red">*</span> sell分类</td>
-<td><?php echo $_admin == 1 ? category_select('post[sell_catid]', '选择分类', $sell_catid, 5) : ajax_category_select('post[sell_catid]', '选择分类', $sell_catid, 5);?> <span id="dsell_catid" class="f_red"></span></td>
-</tr>
-<tr>
 <td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>标题</td>
 <td><input name="post[title]" type="text" id="title" size="60" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level);?> <?php echo dstyle('post[style]', $style);?> <br/><span id="dtitle" class="f_red"></span></td>
 </tr>

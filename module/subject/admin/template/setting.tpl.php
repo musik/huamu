@@ -491,11 +491,11 @@ X
 </table>
 </div>
 <div id="Tabs3" style="display:none">
-<div class="tt">权限收费</div>
+<div class="tt">模块设置</div>
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
-<td class="tl">允许浏览模块首页</td>
-<td><?php echo group_checkbox('setting[group_index][]', $group_index);?></td>
+<td class="tl">关联模块</td>
+<td><?php echo module_checkbox('setting[module_index][]', $module_index,"1,2,3,4,$moduleid");?></td>
 </tr>
 </table>
 </div>

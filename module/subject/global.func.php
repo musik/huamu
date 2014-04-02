@@ -29,13 +29,30 @@ function subject_display_alias($val){
   return $val;
 }
 function subject_check_db(){
-  global $db,$table,$MODULE;
+  global $db,$table,$MODULE,$MOD;
   $rs = $db->get_list("show columns from $table");
-  foreach($MODULE as $k=>$m){
-    if($k < 4 or $m['module'] == 'subject') continue;
-    $key = $m['moduledir'] . "_cat_id";
-    if(!array_key_exists($key,$rs)){
-      $db->query("alter table $table add column $key int(10) default null");
+  $mod_ids = explode(',',$MOD['module_index']);
+  if($mod_ids){
+    foreach($MODULE as $k=>$m){
+      if(!in_array($k,$mod_ids)) continue;
+      $key = $m['moduledir'] . "_cat_id";
+      if(!array_key_exists($key,$rs)){
+        $db->query("alter table $table add column $key int(10) default null");
+      }
+    }
+  }
+}
+function subject_make_cats(){
+  global $db,$table,$MODULE,$MOD;
+  $rs = $db->get_list("show columns from $table");
+  $mod_ids = explode(',',$MOD['module_index']);
+  if($mod_ids){
+    foreach($MODULE as $k=>$m){
+      if(!in_array($k,$mod_ids)) continue;
+      $key = $m['moduledir'] . "_cat_id";
+      if(!array_key_exists($key,$rs)){
+        $db->query("alter table $table add column $key int(10) default null");
+      }
     }
   }
 }

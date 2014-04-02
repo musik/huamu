@@ -9,6 +9,7 @@ show_menu($menus);
 <tr>
 <td height="30">&nbsp;
 <input type="submit" value=" 安装模块 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=install';" title="安装模块"/>&nbsp;&nbsp;
+<input type="submit" value=" 生成分类 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=show&update=2';" title="生成该模块所有信息分类"/>
 </td>
 </tr>
 </table>

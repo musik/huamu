@@ -119,7 +119,7 @@ class subject {
 			$r['todate'] = timetodate($r['totime'], 3);
 			$r['alt'] = $r['title'];
 			$r['title'] = set_style($r['title'], $r['style']);
-			if(!$r['islink']) $r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
+			if(!$r['islink'] && !$MOD['subdomain']) $r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
 			$catids[$r['catid']] = $r['catid'];
 			$lists[] = $r;
 		}
@@ -181,6 +181,30 @@ class subject {
 		global $module, $MOD;
 		if($MOD['show_html'] && $itemid) tohtml('show', $module, "itemid=$itemid");
 	}
+  function mkcats($itemid){
+    global $MOD;
+		$item = $this->db->get_one("SELECT * FROM {$this->table} WHERE itemid=$itemid");
+    if(!class_exists('category'))
+      require DT_ROOT.'/include/category.class.php';
+    $mod_ids = explode(',',$MOD['module_index']);
+    if($mod_ids){
+      foreach($mod_ids as $mid){
+        $do = new category($mid);
+        $exists = $do->exists("moduleid = $mid and catdir = '$item[slug]'");
+        if($exists) continue;
+        $arr = array(
+          'catname' => $item['title'],
+          'catdir'  => $item['slug'],
+        );
+        $do->add($arr);
+        $exists = $do->exists("moduleid = $mid and catdir = '$item[slug]'");
+        update_category($exists);
+        //$exists = $do->exists("moduleid = $mid and catdir = '$item[slug]'");
+        //$do->category[$exists['catid']] = $exists;
+        //$do->delete($exists['catid']);
+      }
+    }
+  }
 
 	function update($itemid) {
     global $FD,$DT_PRE,$MOD;

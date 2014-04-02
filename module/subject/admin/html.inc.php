@@ -46,7 +46,7 @@ switch($action) {
 		}
 	break;
 	case 'show':
-		$update = (isset($update) && $update) ? 1 : 0;
+		$update = (isset($update) && $update) ? $update : 0;
 		if(!$update && !$MOD['show_html']) {
 			if($one) dheader( '?file=html&action=back&mid='.$moduleid);
 			$all ? msg($MOD['name'].'生成成功', $this_forward) : dmsg($MOD['name'].'生成成功', $this_forward);
@@ -72,7 +72,9 @@ switch($action) {
 			if($db->affected_rows($result)) {
 				while($r = $db->fetch_array($result)) {
 					$itemid = $r['itemid'];
-					$update ? $do->update($itemid) : tohtml('show', $module);
+          $update ?
+             ($update== 1 ? $do->update($itemid) : $do->mkcats($itemid)) :
+             tohtml('show', $module);
 				}
 				$itemid += 1;
 			} else {
@@ -112,6 +114,10 @@ switch($action) {
 	break;
   case 'install':
     subject_check_db();
+    msg('', '?moduleid='.$moduleid.'&file='.$file);
+  break;
+  case 'mkcats':
+    subject_make_cats();
     msg('', '?moduleid='.$moduleid.'&file='.$file);
   break;
 	default:
