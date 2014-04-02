@@ -5,6 +5,7 @@ $menus = array (
     array('基本设置'),
     array('SEO优化'),
     array('权限收费'),
+    array('额外设置'),
     array('定义字段', 'javascript:Dwidget(\'?file=fields&tb='.$table.'\', \'['.$MOD['name'].']定义字段\');'),
     array('模板管理', 'javascript:Dwidget(\'?file=template&dir='.$module.'\', \'['.$MOD['name'].']模板管理\');'),
 );
@@ -486,6 +487,15 @@ X
 <td>
 <input type="text" size="5" name="setting[credit_refresh]" value="<?php echo $credit_refresh;?>"/>
 </td>
+</tr>
+</table>
+</div>
+<div id="Tabs3" style="display:none">
+<div class="tt">权限收费</div>
+<table cellpadding="2" cellspacing="1" class="tb">
+<tr>
+<td class="tl">允许浏览模块首页</td>
+<td><?php echo group_checkbox('setting[group_index][]', $group_index);?></td>
 </tr>
 </table>
 </div>

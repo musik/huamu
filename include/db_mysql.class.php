@@ -78,6 +78,16 @@ class db_mysql {
 		$this->free_result($query);
 		return $r;
 	}
+	function get_list($sql, $type = '', $ttl = 0) {
+		$sql = str_replace(array('select ', ' limit '), array('SELECT ', ' LIMIT '), $sql);
+		$query = $this->query($sql, $type, $ttl);
+    while( $r = $this->fetch_array($query)){
+      $vals = array_values($r);
+      $rs[$vals[0]] = $r;
+    }
+		$this->free_result($query);
+		return $rs;
+	}
 	
 	function count($table, $condition = '', $ttl = 0) {
 		global $DT_TIME;

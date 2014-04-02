@@ -1,5 +1,16 @@
 <?php 
 defined('IN_DESTOON') or exit('Access Denied');
+if($MOD['subdomain']){
+  $host = get_env('host');
+  if(substr($host, 0, 4) != 'www.') {
+    $whost = $host;
+    $slug = str_replace($MOD['subdomain'], '', $host);
+		if(check_name($slug)) {
+      require DT_ROOT.'/module/'.$module.'/home.inc.php';
+      exit();
+    }
+  }
+}
 require DT_ROOT.'/module/'.$module.'/common.inc.php';
 if($MOD['index_html']) {	
 	$html_file = DT_ROOT.'/'.$MOD['moduledir'].'/'.$DT['index'].'.'.$DT['file_ext'];

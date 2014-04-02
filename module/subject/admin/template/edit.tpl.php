@@ -16,6 +16,10 @@ show_menu($menus);
 <td><?php echo $_admin == 1 ? category_select('post[catid]', '选择分类', $catid, $moduleid) : ajax_category_select('post[catid]', '选择分类', $catid, $moduleid);?>&nbsp;&nbsp;<input type="checkbox" name="post[islink]" value="1" id="islink" onclick="_islink();" <?php if($islink) echo 'checked';?>/> 外部链接 <span id="dcatid" class="f_red"></span></td>
 </tr>
 <tr>
+<td class="tl"><span class="f_red">*</span> sell分类</td>
+<td><?php echo $_admin == 1 ? category_select('post[sell_catid]', '选择分类', $sell_catid, 5) : ajax_category_select('post[sell_catid]', '选择分类', $sell_catid, 5);?> <span id="dsell_catid" class="f_red"></span></td>
+</tr>
+<tr>
 <td class="tl"><span class="f_red">*</span> <?php echo $MOD['name'];?>标题</td>
 <td><input name="post[title]" type="text" id="title" size="60" value="<?php echo $title;?>"/> <?php echo level_select('post[level]', '级别', $level);?> <?php echo dstyle('post[style]', $style);?> <br/><span id="dtitle" class="f_red"></span></td>
 </tr>
@@ -41,33 +45,6 @@ var property_admin = 1;
 <td><input name="post[linkurl]" type="text" id="linkurl" size="50" value="<?php echo $linkurl;?>"/> <span id="dlinkurl" class="f_red"></span></td>
 </tr>
 <tbody id="basic" style="display:<?php echo $islink ? 'none' : '';?>;">
-<tr>
-<td class="tl"><span class="f_hid">*</span> 主要参数</td>
-<td class="nv">
-<table cellspacing="1">
-<tr>
-<th>参数名称</th>
-<th>参数值</th>
-</tr>
-<tr>
-<td><input name="post[n1]" type="text" size="10" value="<?php echo $n1;?>" id="n1"/></td>
-<td><input name="post[v1]" type="text" size="20" value="<?php echo $v1;?>" id="v1"/></td>
-</tr>
-<tr>
-<td><input name="post[n2]" type="text" size="10" value="<?php echo $n2;?>" id="n2"/></td>
-<td><input name="post[v2]" type="text" size="20" value="<?php echo $v2;?>" id="v2"/></td>
-</tr>
-<tr>
-<td><input name="post[n3]" type="text" size="10" value="<?php echo $n3;?>" id="n3"/></td>
-<td><input name="post[v3]" type="text" size="20" value="<?php echo $v3;?>" id="v3"/></td>
-</tr>
-<tr>
-<td class="f_gray">例如：规格</td>
-<td class="f_gray">例如：10cm*20cm</td>
-</tr>
-</table>
-</td>
-</tr>
 <tr>
 <td class="tl"><span class="f_hid">*</span> 详细说明</td>
 <td><textarea name="post[content]" id="content" class="dsn"><?php echo $content;?></textarea>

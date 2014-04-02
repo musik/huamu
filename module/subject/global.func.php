@@ -28,4 +28,15 @@ function subject_display_alias($val){
   $val = implode(" , ",$arr1);
   return $val;
 }
+function subject_check_db(){
+  global $db,$table,$MODULE;
+  $rs = $db->get_list("show columns from $table");
+  foreach($MODULE as $k=>$m){
+    if($k < 4 or $m['module'] == 'subject') continue;
+    $key = $m['moduledir'] . "_cat_id";
+    if(!array_key_exists($key,$rs)){
+      $db->query("alter table $table add column $key int(10) default null");
+    }
+  }
+}
 ?>

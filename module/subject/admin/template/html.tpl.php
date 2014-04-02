@@ -4,6 +4,16 @@ include tpl('header');
 show_menu($menus);
 ?>
 <form method="post">
+<div class="tt">数据库检查</div>
+<table cellpadding="2" cellspacing="1" class="tb">
+<tr>
+<td height="30">&nbsp;
+<input type="submit" value=" 安装模块 " class="btn" onclick="this.form.action='?moduleid=<?php echo $moduleid;?>&file=<?php echo $file;?>&action=install';" title="安装模块"/>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+</form>
+<form method="post">
 <div class="tt">生成网页</div>
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>

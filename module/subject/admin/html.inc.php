@@ -110,6 +110,10 @@ switch($action) {
 		$catid or msg('请选择分类');
 		msg('', '?moduleid='.$moduleid.'&file='.$file.'&action=show&catid='.$catid.'&num='.$num);
 	break;
+  case 'install':
+    subject_check_db();
+    msg('', '?moduleid='.$moduleid.'&file='.$file);
+  break;
 	default:
 		$r = $db->get_one("SELECT min(itemid) AS fid,max(itemid) AS tid FROM {$table} WHERE status=3");
 		$fid = $r['fid'] ? $r['fid'] : 0;
