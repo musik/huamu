@@ -1,0 +1,9 @@
+{if $_GET['baike']}
+{loop $subjects $s}
+<a href="http://wapbaike.baidu.com/search?word={$s[title]}&submit=进入词条">{$s[title]}</a><br/>
+{/loop}
+{else}
+{loop $subjects $s}
+http://s.1688.com/selloffer/offer_search.htm?keywords={urlencode(iconv('UTF-8','GBK',$s[title]))}<br/>
+{/loop}
+{/if}

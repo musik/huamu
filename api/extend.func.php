@@ -84,5 +84,13 @@ function update_cat_by_detect($id){
   }
 }
 
+function check_module($name){
+  global $MODULE;
+  if(!$name) return false;
+  foreach($MODULE as $m){
+    if($m['moduledir'] == $name) return $m;
+  }
+  return false;
+}
 //hacked end
 ?>

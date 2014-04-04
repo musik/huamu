@@ -1,0 +1,100 @@
+<script type="text/javascript">var sh = '{$SMOD[linkurl]}search.php?catid={$scat[catid]}';</script>
+    {if $maincat}
+		<div class="category">
+			<p><img src="{DT_SKIN}image/arrow.gif" width="17" height="12" alt=""/> <strong>按行业浏览</strong></p>
+			<div>
+			<table width="100%" cellpadding="3">
+			{loop $maincat $k $v}
+			{if $k%$SMOD[page_subcat]==0}<tr>{/if}
+			<td{if $v[catid]==$catid} class="f_b"{/if}><a href="{$SMOD[linkurl]}{$v[linkurl]}">{set_style($v[catname],$v[style])}</a>{if !$cityid} <span class="f_gray px10">({$v[item]})</span>{/if}</td>
+			{if $k%$SMOD[page_subcat]==($SMOD[page_subcat]-1)}</tr>{/if}
+			{/loop}
+			</table>
+			</div>
+		</div>
+    {/if}
+		{if $CP}
+		{loop $PPT $p}
+		<div class="ppt">
+			<table cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			<td class="ppt_l" valign="top">按{$p[name]}</td>
+			<td class="ppt_r" valign="top">
+			{loop $p[options] $o}
+			<a href="###" onclick="Go(sh+'&ppt_{$p[oid]}={urlencode($o)}');">{$o}</a>&nbsp;|&nbsp;
+			{/loop}
+			</td>
+			</tr>
+			</table>
+		</div>
+		{/loop}
+		{/if}
+		{if $SHOWTYPE}
+		<div class="type">
+      <a href="{$linkpre}{$SMOD[moduledir]}" class="type_1">全部</a>
+		{loop $TYPE $k $v}
+    <a href="javascript:Go('{$linkpre}{$SMOD[moduledir]}{rewrite('?typeid='.$k)}');" class="type_2">{$v}</a>
+		{/loop}
+		</div>
+    {else}
+    {/if}
+		<form method="post">
+		<div class="sell_tip" id="sell_tip" style="display:none;" title="双击关闭" ondblclick="Dh(this.id);">
+			<div>
+				<p>您可以</p>
+				<input type="submit" value="对比选中" onclick="this.form.action='{$SMOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/> 或 
+				<input type="submit" value="批量询价" onclick="this.form.action='{$SMOD[linkurl]}inquiry.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
+			</div>
+		</div>
+		<div class="img_tip" id="img_tip" style="display:none;">&nbsp;</div>
+		<div class="tool">
+			<table>
+			<tr height="30">
+			<td width="25" align="center"><input type="checkbox" onclick="checkall(this.form);"/></td>
+			<td>
+				<input type="submit" value="对比选中" onclick="this.form.action='{$SMOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>&nbsp;
+				<input type="submit" value="批量询价" onclick="this.form.action='{$SMOD[linkurl]}inquiry.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
+			</td>
+			<td align="right">
+			<input type="checkbox" onclick="Go(sh+'&price=1');"/>标价&nbsp;
+			<input type="checkbox" onclick="Go(sh+'&thumb=1');"/>图片&nbsp;
+			<input type="checkbox" onclick="Go(sh+'&vip=1');"/>{VIP}&nbsp;
+			<select onchange="Go(sh+'&day='+this.value)">
+			<option value="0">更新时间</option>
+			<option value="1">1天内</option>
+			<option value="3">3天内</option>
+			<option value="7">7天内</option>
+			<option value="15">15天内</option>
+			<option value="30">30天内</option>
+			</select>&nbsp;
+			<select onchange="Go(sh+'&order='+this.value)">
+			<option value="0">显示顺序</option>
+			<option value="2">价格由高到低</option>
+			<option value="3">价格由低到高</option>
+			<option value="4">{VIP}级别由高到低</option>
+			<option value="5">{VIP}级别由低到高</option>
+			<option value="6">供货量由高到低</option>
+			<option value="7">供货量由低到高</option>
+			<option value="8">起订量由高到低</option>
+			<option value="9">起订量由低到高</option>
+			</select>&nbsp;			
+			<img src="{DT_SKIN}image/list_txt.gif" width="16" height="16" alt="文字列表" align="absmiddle" class="c_p" onclick="Go(sh+'&list=2');"/>&nbsp;
+			<img src="{DT_SKIN}image/list_img.gif" width="16" height="16" alt="图片列表" align="absmiddle" class="c_p" onclick="Go(sh+'&list=1');"/>&nbsp;
+			<img src="{DT_SKIN}image/list_mix_on.gif" width="16" height="16" alt="图文列表" align="absmiddle" class="c_p" onclick="Go(sh+'&list=0');"/>&nbsp;
+			</td>
+			</tr>
+			</table>
+		</div>
+		{if $tags}{template 'list-sell', 'tag'}{/if}
+		<div class="tool">
+			<table>
+			<tr height="30">
+			<td width="25"></td>
+			<td>
+				<input type="submit" value="对比选中" onclick="this.form.action='{$SMOD[linkurl]}compare.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>&nbsp;
+				<input type="submit" value="批量询价" onclick="this.form.action='{$SMOD[linkurl]}inquiry.php';" class="btn_1" onmouseover="this.className='btn_2'" onmouseout="this.className='btn_1'"/>
+			</td>
+			</tr>
+			</table>
+		</div>
+		</form>

@@ -1,0 +1,21 @@
+<h2>{$title}简介</h2>
+{if $CP}{template 'property', 'chip'}{/if}
+<div class="content" id="content">{$content}</div>
+<?php if (array_key_exists(5,$SMODS)){?>
+<h2>{$title}的供应信息</h2>
+{template 'sells.show','subject'}
+<?php } ?>
+<?php if (array_key_exists(21,$SMODS)){?>
+<h2>{$title}的相关资讯</h2>
+{template 'news.show','subject'}
+<?php } ?>
+<center>
+  [ <a href="{$MOD[linkurl]}search.php" rel="nofollow">{$MOD[name]}搜索</a> ]&nbsp;
+  [ <a href="javascript:SendFav();">加入收藏</a> ]&nbsp;
+  [ <a href="javascript:SendPage();">告诉好友</a> ]&nbsp;
+  [ <a href="javascript:Print();">打印本文</a> ]&nbsp;
+  [ <a href="javascript:window.close()">关闭窗口</a> ]
+</center>
+<br/>
+{template 'comment', 'chip'}
+<br/>

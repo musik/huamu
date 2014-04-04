@@ -6,7 +6,15 @@ if($MOD['subdomain']){
     $whost = $host;
     $slug = str_replace($MOD['subdomain'], '', $host);
 		if(check_name($slug)) {
-      require DT_ROOT.'/module/'.$module.'/home.inc.php';
+      if($smod){
+        $SMOD = check_module($smod);
+        if(!$SMOD)
+          include load('404.inc');
+      }
+      $action = $SMOD ? $SMOD['module'] : 'home';
+      require DT_ROOT.'/module/'.$module.'/item.inc.php';
+      include DT_ROOT.'/module/'.$module.'/'.$action.'.inc.php';
+      include template($template, $module);
       exit();
     }
   }

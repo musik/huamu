@@ -50,7 +50,31 @@ ul.sells li{
 #subject-photo{
  margin: 5px 0;
  height: 160px;
- width: 160px;
+ width: 280px;
  overflow: hidden;
 }
 
+#subject-info{width:100%;height:58px;margin-bottom:2em;position:relative;margin-top: 1.5em;}
+#subject-info .pic{float:left;margin-right:12px;}
+#subject-info .pic a{float: left;border: 1px solid #eee;}
+#subject-info .details{float:left;padding-top:2px}
+#subject-info a.colbutt{position:absolute;left:640px;top:35px;letter-spacing:0}
+#subject-info p.att{position:absolute;left:640px;top:38px;margin:0;background:url(http://img3.douban.com/f/shire/3611ec626fed94c0db6f13472c8171d5a76daca3/pics/allright-small.gif) no-repeat left center;padding-left:20px}
+#subject-info .details ul li{display:inline;margin-right:1em}
+#subject-info .details ul li.last{margin:0}
+#subject-info h1{font-size:;25px;margin: 0;padding:0 0 8px 0}
+
+.infobox{
+  background: #eee;
+  padding: 10px;
+}
+.tool{
+  border: 1px solid #eee;
+  border-width: 0;
+}
+.list{
+  margin: 0;
+}
+.list-first table{
+  border-top: 1px dotted #ccc;
+}

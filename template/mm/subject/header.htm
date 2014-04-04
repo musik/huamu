@@ -1,0 +1,18 @@
+<div id="subject-info">
+  <div class="pic">
+    <a href="">
+      <img src="{$albums[0]}" height=52 width="52" id="mid_pic"/>
+    </a>
+  </div>
+  <div class="details">
+    <h1>
+      {$title}
+    </h1>
+    <ul>
+      <li><a href="{$linkurl}">{$title}的主页</a></li>
+      {loop $SMODS $k $m}
+      <li><a href="{$linkpre}{$m[moduledir]}/">{$m[name]}</a></li>
+      {/loop}
+    </ul>
+  </div>
+</div>

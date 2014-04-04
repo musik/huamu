@@ -1,0 +1,48 @@
+{template 'header'}
+<script type="text/javascript">var module_id= {$moduleid},item_id={$itemid},content_id='content',img_max_width={$MOD[max_width]};</script>
+<div class="m">
+  <div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; {cat_pos($CAT, ' &raquo; ')} &raquo; </div>
+  {template 'header','subject'}
+  <div class="m_l f_l">
+    <div class="left_boxx">		
+      {template $view,'subject'}
+    </div>
+  </div>
+  <div class="m_n f_l">&nbsp;</div>
+  <div class="m_r f_l">
+    <div class="infobox">		
+      <div id="mid_pos"></div>
+      <div id="subject-photo">
+        <img src="{$albums[0]}" height=160 width="280" id="mid_pic"/>
+      </div>
+      <div class="b5"></div>
+      <div>
+      </div>
+      <div id="big_div" style="display:none;"><img src="" id="big_pic"/></div>
+      <?php 
+      if(!isset($FD))
+      $FD = cache_read('fields-'.substr($table, strlen($DT_PRE)).'.php');
+      ?>
+      <div class="metas">
+        {loop $FD $i $cf}
+        <?php if($cf['name'] == 'slug') continue;$val = $$cf['name'];?>
+        <p><strong>{$cf[title]}</strong>:
+        {subject_display_field($val,$cf)}
+        </p>
+        {/loop}
+        <p><strong>浏览次数</strong>:<span id="hits">{$hits}</span></p>
+        <p><strong>指数</strong>:<span id="vol">{$listorder}</span></p>
+      </div>
+    </div>
+    <div class="b10"></div>
+    {if $MOD[page_srelate]}
+    <div class="box_head"><div><strong>同类{$MOD[name]}</strong></div></div>
+    <div class="box_body f_gray li_dot">
+      <!--{tag("moduleid=$moduleid&condition=status=3&catid=$catid&areaid=$cityid&pagesize=".$MOD[page_srelate]."&order=addtime desc")}-->
+    </div>
+    {/if}
+  </div>
+</div>
+<script type="text/javascript" src="{DT_STATIC}file/script/album.js"></script>
+{if $content}<script type="text/javascript" src="{DT_STATIC}file/script/content.js"></script>{/if}
+{template 'footer'}
