@@ -32,6 +32,7 @@ if($flag) {
 	if($status == '1001') {
 		//您的处理逻辑请写在这里，如更新数据库等。
 		//注意：如果您在提交时同时填写了页面返回地址和后台返回地址，且地址相同，请在这里先做一次数据库查询判断订单状态，以防止重复处理该笔订单
+		$priv1 = intval($priv1);
 		$r = $db->get_one("SELECT * FROM {$DT_PRE}finance_charge WHERE itemid='$priv1'");
 		if($r) {
 			if($r['status'] == 0) {

@@ -32,9 +32,10 @@ function dsafe($string) {
 	if(is_array($string)) {
 		return array_map('dsafe', $string);
 	} else {
-		if(strlen($string) < 20) return $string;
-		$match = array("/&#([a-z0-9]+)([;]*)/i","/\<\!\-\-([\s\S]*?)\-\-\>/","/\/\*([\s\S]*?)\*\//","/on(mouse|exit|error|click|dblclick|key|load|unload|change|move|submit|reset|cut|copy|select|start|stop|drag|touch)/i","/s[[:space:]]*c[[:space:]]*r[[:space:]]*i[[:space:]]*p[[:space:]]*t/i","/about/i","/frame/i","/link/i","/import/i","/expression/i","/meta/i","/textarea/i","/eval/i");
-		$replace = array("","","","0n\\1","scr-pt","ab0ut","fra-me","1ink","imp0rt","expressi0n","me-ta","text-area","eva1");
+		$string = preg_replace("/&#([a-z0-9]+)([;]*)/i", "", $string);
+		if(preg_match("/&#([a-z0-9]+)([;]*)/i", $string)) return nl2br(strip_tags($string));
+		$match = array("/\<\!\-\-([\s\S]*?)\-\-\>/","/\/\*([\s\S]*?)\*\//","/on(mouse|exit|error|click|dblclick|key|load|unload|change|move|submit|reset|cut|copy|select|start|stop|drag|touch)/i","/s[[:space:]]*c[[:space:]]*r[[:space:]]*i[[:space:]]*p[[:space:]]*t/i","/about/i","/frame/i","/link/i","/import/i","/e[\\\]*x[\\\]*p[\\\]*r[\\\]*e[\\\]*s[\\\]*s[\\\]*i[\\\]*o[\\\]*n/i","/meta/i","/textarea/i","/eval/i");
+		$replace = array("","","0n\\1","scri-pt","ab0ut","fra-me","1ink","imp0rt","expressi0n","me-ta","text-area","eva1");
 		return preg_replace($match, $replace, $string);
 	}
 }
@@ -1054,21 +1055,21 @@ function timetodate($time = 0, $type = 6) {
 	return date($type, $time);
 }
 
-function log_write($message, $type = 'php') {
+function log_write($message, $type = 'php', $force = 0) {
 	global $DT_IP, $DT_TIME, $_username;
-	if(!DT_DEBUG) return;
+	if(!DT_DEBUG && !$force) return;
 	$DT_IP or $DT_IP = get_env('ip');
 	$DT_TIME or $DT_TIME = time();
 	$user = $_username ? $_username : 'guest';
-	$log = "<$type>\n";
+	$log = "<?php exit;?>\n<$type>\n";
 	$log .= "\t<time>".date('Y-m-d H:i:s', $DT_TIME)."</time>\n";
 	$log .= "\t<ip>".$DT_IP."</ip>\n";
 	$log .= "\t<user>".$user."</user>\n";
-	$log .= "\t<file>".$_SERVER['SCRIPT_NAME']."</file>\n";
+	$log .= "\t<php>".$_SERVER['SCRIPT_NAME']."</php>\n";
 	$log .= "\t<querystring>".str_replace('&', '&amp;', $_SERVER['QUERY_STRING'])."</querystring>\n";
-	$log .= "\t<message>".$message."\t</message>\n";
+	$log .= "\t<message>".(is_array($message) ? var_export($message, true) : $message)."</message>\n";
 	$log .= "</$type>";
-	file_put(DT_ROOT.'/file/log/'.date('Ym', $DT_TIME).'/'.$type.'-'.date('Y.m.d H.i.s', $DT_TIME).'-'.strtolower(random(10)).'.xml', $log);
+	file_put(DT_ROOT.'/file/log/'.date('Ym', $DT_TIME).'/'.date('Y.m.d H.i.s', $DT_TIME).'-'.$type.'.php', $log);
 }
 
 function load($file) {

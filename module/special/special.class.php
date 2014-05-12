@@ -84,7 +84,7 @@ class special {
 			$r['editdate'] = timetodate($r['edittime'], 5);
 			$r['alt'] = $r['title'];
 			$r['title'] = set_style($r['title'], $r['style']);
-			if(!$r['islink']) $r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
+			if(strpos($r['linkurl'], '://') === false) $r['linkurl'] = $MOD['linkurl'].$r['linkurl'];
 			$catids[$r['catid']] = $r['catid'];
 			$lists[] = $r;
 		}

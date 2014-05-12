@@ -7,7 +7,7 @@ $bank = 'tenpay';
 $PAY = cache_read('pay.php');
 if(!$PAY[$bank]['enable']) exit('fail');
 if(!$PAY[$bank]['partnerid']) exit('fail');
-if(!$PAY[$bank]['keycode']) exit('fail');
+if(strlen($PAY[$bank]['keycode']) < 10) exit('fail');
 $receive_url = '';
 
 require DT_ROOT.'/api/pay/'.$bank.'/ResponseHandler.class.php';
@@ -76,7 +76,7 @@ require DT_ROOT.'/api/pay/'.$bank.'/config.inc.php';
 				//注意判断返回金额
 
 				$total_fee = ($total_fee+$discount)/100;
-
+				$out_trade_no = intval($out_trade_no);
 				$r = $db->get_one("SELECT * FROM {$DT_PRE}finance_charge WHERE itemid='$out_trade_no'");
 				if($r) {
 					if($r['status'] == 0) {

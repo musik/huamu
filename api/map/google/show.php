@@ -28,7 +28,7 @@ function mapOnLoad() {
 		var mapObj = document.getElementById("map");
 		if (mapObj != "undefined" && mapObj != null) {
 			map = new GMap2(document.getElementById("map"));
-			map.setCenter(new GLatLng(<?php echo $map;?>), 15, G_NORMAL_MAP);
+			map.setCenter(new GLatLng(<?php echo $map;?>), 13, G_NORMAL_MAP);
 			map.addControl(new GLargeMapControl3D());
 			map.addControl(new GMenuMapTypeControl());
 			map.addControl(new GScaleControl());

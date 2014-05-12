@@ -17,14 +17,14 @@ body{height:100%;margin:0px;padding:0px}
 </style>
 <script type="text/javascript">window.onerror=function(){return true;}</script>
 <script type="text/javascript" src="<?php echo DT_PATH;?>file/script/config.js"></script>
-<script src="http://api.map.baidu.com/api?v=1.2&services=false" type="text/javascript"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&services=false"></script>
 </head>
 <body>
 <div id="container"></div>
 <script type="text/javascript">
 var map = new BMap.Map("container");
 var point = new BMap.Point(<?php echo $map;?>);
-map.centerAndZoom(point, 12);
+map.centerAndZoom(point, 15);
 map.addControl(new BMap.NavigationControl());
 map.addControl(new BMap.ScaleControl());
 map.addOverlay(new BMap.Marker(point));
@@ -34,6 +34,13 @@ map.addEventListener("dblclick", function(e){
 		window.parent.cDialog();
 	} catch(e) {}
 });
+<?php if($map == $map_mid) { ?>
+//自动定位
+var localCity = new BMap.LocalCity();
+localCity.get(function (r) {
+	map.centerAndZoom(r.center, 16);
+});
+<?php } ?>
 </script>
 </body>
 </html>

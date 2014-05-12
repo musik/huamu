@@ -125,6 +125,7 @@ switch($action) {
 		if($submit) {
 			$condition = str_replace('and', 'AND', trim($condition));
 			$condition = strpos($condition, 'AND') === false ? "itemid IN ($condition)" : substr($condition, 3);
+			$condition = stripslashes($condition);
 			if($type == 1) {
 				$ftb = $DT_PRE.'sell_5';
 				$ftb_data = $DT_PRE.'sell_data_5';

@@ -7,7 +7,6 @@ show_menu($menus);
 <div class="tt">会员搜索</div>
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="file" value="<?php echo $file;?>"/>
-<input type="hidden" name="export" id="export" value="<?php echo $export;?>"/>
 <table cellpadding="2" cellspacing="1" class="tb">
 <tr>
 <td>&nbsp;

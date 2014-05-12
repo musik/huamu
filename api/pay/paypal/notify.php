@@ -31,6 +31,7 @@ $txn_id = $_POST['txn_id'];
 $receiver_email = $_POST['receiver_email'];
 $payer_email = $_POST['payer_email'];
 $charge_status = 0;
+$item_number = intval($item_number);
 $r = $db->get_one("SELECT * FROM {$DT_PRE}finance_charge WHERE itemid='$item_number' AND status=0");
 if($r) {
 	$charge_orderid = $r['itemid'];

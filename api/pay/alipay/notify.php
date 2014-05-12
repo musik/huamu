@@ -7,7 +7,7 @@ $bank = 'alipay';
 $PAY = cache_read('pay.php');
 if(!$PAY[$bank]['enable']) exit('fail');
 if(!$PAY[$bank]['partnerid']) exit('fail');
-if(!$PAY[$bank]['keycode']) exit('fail');
+if(strlen($PAY[$bank]['keycode']) < 10) exit('fail');
 #cache_write('alipay-notify-post-'.date('Ymdhis').'.php', $_POST);
 function log_result($word) {
 	log_write($word, 'ralipay');
@@ -18,6 +18,7 @@ require DT_ROOT.'/api/pay/'.$bank.'/config.inc.php';
 $alipay = new alipay_notify($partner,$security_code,$sign_type,$_input_charset,$transport);
 $verify_result = $alipay->notify_verify();
 if($verify_result) {
+	$out_trade_no = intval($out_trade_no);
 	$r = $db->get_one("SELECT * FROM {$DT_PRE}finance_charge WHERE itemid='$out_trade_no'");
 	if($r) {
 		if($r['status'] == 0) {

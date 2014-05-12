@@ -1,5 +1,6 @@
 <?php
 defined('IN_DESTOON') or exit('Access Denied');
+preg_match("/^[0-9\.\,]{17,21}$/", $map) or $map = '';
 ?>
 <tr>
 <td class="tl">公司地图标注</td>
@@ -8,7 +9,7 @@ defined('IN_DESTOON') or exit('Access Denied');
 <a href="javascript:MapMark();" class="t">标注</a>&nbsp;|&nbsp;<a href="javascript:DelMark();" class="t">清空</a>
 <script type="text/javascript">
 function MapMark() {
-	Dwidget(DTPath+'api/map/baidu/mark.php?map='+Dd('map').value, '百度地图标注 - 在地图上双击鼠标完成标注');
+	Dwidget(DTPath+'api/map/baidu/mark.php?map='+Dd('map').value, '百度地图 - 在地图上双击鼠标完成标注');
 }
 function DelMark() {
 	Dd('map').value='';

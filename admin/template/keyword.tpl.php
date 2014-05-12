@@ -27,7 +27,7 @@ foreach($MODULE as $v) {
 &nbsp;
 <input type="text" name="psize" value="<?php echo $pagesize;?>" size="2" class="t_c" title="条/页"/>
 <input type="submit" value="搜 索" class="btn"/>&nbsp;
-<input type="button" value="重 置" class="btn" onclick="Go('?file=<?php echo $file;?>');"/>
+<input type="button" value="重 置" class="btn" onclick="Go('?file=<?php echo $file;?>&status=<?php echo $status;?>');"/>
 </td>
 </tr>
 </table>

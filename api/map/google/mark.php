@@ -32,13 +32,15 @@ function mapOnLoad() {
 		map.addControl(new GMenuMapTypeControl());
 		map.addControl(new GScaleControl());
 		map.addOverlay(new GMarker(new GLatLng(<?php echo $map;?>)));
-			GEvent.addListener(map, 'click', function(overlay,point) {
+			GEvent.addListener(map, 'dblclick', function(overlay,point) {
 				if(overlay) {
 				} else if(point) {
 					map.clearOverlays();
 					map.addOverlay(new GMarker(point));
 					try {
-						window.parent.document.getElementById('map').value = point['d']+','+ point['e'];
+						//for(var x in point) alert(x+':'+point[x]);
+						//var xy = point.toString();
+						window.parent.document.getElementById('map').value = point.lat()+','+point.lng();
 						window.parent.cDialog();
 					} catch(e) {}
 				}
@@ -57,19 +59,15 @@ function isArray(a) {return isObject(a) && a.constructor == Array;}
 function isObject(a) {return (a && typeof a == 'object') || isFunction(a);}
 function isFunction(a) {return typeof a == 'function';}
 window.onload=mapOnLoad;
-//]]>
 </script>
 </head>
 <body>
 <script type="text/javascript">
-//<![CDATA[
 if (GBrowserIsCompatible()) {
 document.write('<div id="map" class="map" style="width:100%;height:100%;"></div>');
 } else {
 document.write('The map could not be displayed on your browser.');
 }
-//]]>
 </script>
-<noscript>The map requires javascript to be enabled.</noscript>
 </body>
 </html>

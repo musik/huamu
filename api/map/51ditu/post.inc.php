@@ -1,7 +1,6 @@
 <?php
 defined('IN_DESTOON') or exit('Access Denied');
-include DT_ROOT.'/api/map/51ditu/config.inc.php';
-preg_match("/^[0-9\.\,]{13,17}$/", $map) or $map = $map_mid;
+preg_match("/^[0-9\.\,]{13,17}$/", $map) or $map = '';
 ?>
 <tr>
 <td class="tl">公司地图标注</td>
@@ -10,7 +9,7 @@ preg_match("/^[0-9\.\,]{13,17}$/", $map) or $map = $map_mid;
 <a href="javascript:MapMark();" class="t">标注</a>&nbsp;|&nbsp;<a href="javascript:DelMark();" class="t">清空</a>
 <script type="text/javascript">
 function MapMark() {
-	Dwidget(DTPath+'api/map/51ditu/mark.php?map='+Dd('map').value, '地图标注');
+	Dwidget(DTPath+'api/map/51ditu/mark.php?map='+Dd('map').value, '灵图地图 - 在地图上双击鼠标完成标注');
 }
 function DelMark() {
 	Dd('map').value='';
