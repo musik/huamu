@@ -16,7 +16,7 @@ if($_SERVER['QUERY_STRING']) {
 	header("Content-type:text/javascript");	
 	($DT['jstag'] && $DT['safe_domain'] && check_referer()) or exit('document.write("<h2>Invalid Referer</h2>");');
 	$tag = strip_sql(stripslashes(urldecode($tag)));
-	foreach(array('#', '$', '&amp;', 'table', 'fields', 'password', 'payword', 'debug') as $v) {
+	foreach(array($DT_PRE, '#', '$', '%', '&amp;', 'table', 'fields', 'password', 'payword', 'debug') as $v) {
 		strpos($tag, $v) === false or exit('document.write("<h2>Bad Parameter</h2>");');
 	}
 	ob_start();

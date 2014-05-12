@@ -8,6 +8,8 @@ $table = $DT_PRE.'webpage';
 if($itemid) {
 	$item = $db->get_one("SELECT * FROM {$table} WHERE itemid=$itemid");
 	($item && $item['item'] == 1) or wap_msg($L['msg_not_exist']);
+	$_item = $item['item'];
+	unset($item['item']);
 	extract($item);	
 	if($TP == 'touch') {
 		$head_link = 'index.php?action='.$action;

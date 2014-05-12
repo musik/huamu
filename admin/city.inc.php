@@ -113,7 +113,7 @@ class city {
 		$lists = array();
 		$result = $this->db->query("SELECT * FROM {$this->table} WHERE $condition ORDER BY letter,listorder LIMIT $offset,$pagesize");
 		while($r = $this->db->fetch_array($result)) {
-			$r['linkurl'] = DT_PATH.'city.php?action=go&forward=&areaid='.$r['areaid'];
+			$r['linkurl'] = DT_PATH.'api/city.php?action=go&forward=&areaid='.$r['areaid'];
 			$lists[] = $r;
 		}
 		return $lists;

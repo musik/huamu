@@ -246,6 +246,9 @@ function vip_year($fromtime) {
 
 function get_albums($item, $type = 0) {
 	$imgs = array();
+	if($item['thumb'] && !preg_match("/^[a-z0-9\-\.\:\/]{50,}$/i", $item['thumb'])) $item['thumb'] = '';
+	if($item['thumb1'] && !preg_match("/^[a-z0-9\-\.\:\/]{50,}$/i", $item['thumb1'])) $item['thumb1'] = '';
+	if($item['thumb2'] && !preg_match("/^[a-z0-9\-\.\:\/]{50,}$/i", $item['thumb2'])) $item['thumb2'] = '';
 	if($type == 0) {
 		$nopic = DT_SKIN.'image/nopic60.gif';
 		$imgs[] = $item['thumb'] ? $item['thumb'] : $nopic;

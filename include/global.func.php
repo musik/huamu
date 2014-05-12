@@ -34,8 +34,8 @@ function dsafe($string) {
 	} else {
 		$string = preg_replace("/&#([a-z0-9]+)([;]*)/i", "", $string);
 		if(preg_match("/&#([a-z0-9]+)([;]*)/i", $string)) return nl2br(strip_tags($string));
-		$match = array("/\<\!\-\-([\s\S]*?)\-\-\>/","/\/\*([\s\S]*?)\*\//","/on(mouse|exit|error|click|dblclick|key|load|unload|change|move|submit|reset|cut|copy|select|start|stop|drag|touch)/i","/s[[:space:]]*c[[:space:]]*r[[:space:]]*i[[:space:]]*p[[:space:]]*t/i","/about/i","/frame/i","/link/i","/import/i","/e[\\\]*x[\\\]*p[\\\]*r[\\\]*e[\\\]*s[\\\]*s[\\\]*i[\\\]*o[\\\]*n/i","/meta/i","/textarea/i","/eval/i");
-		$replace = array("","","0n\\1","scri-pt","ab0ut","fra-me","1ink","imp0rt","expressi0n","me-ta","text-area","eva1");
+		$match = array("/\<\!\-\-([\s\S]*?)\-\-\>/","/\/\*([\s\S]*?)\*\//","/s[[:space:]]*c[[:space:]]*r[[:space:]]*i[[:space:]]*p[[:space:]]*t/i","/e[\\\]*x[\\\]*p[\\\]*r[\\\]*e[\\\]*s[\\\]*s[\\\]*i[\\\]*o[\\\]*n/i","/on([a-z]{2,})([\(|\=|[:space:]]+)/i","/about/i","/frame/i","/link/i","/import/i","/meta/i","/textarea/i","/eval/i","/base64/i","/alert/i","/confirm/i","/prompt/i","/cookie/i","/document/i","/newline/i","/colon/i","/\\\x/i");
+		$replace = array("","","s<em></em>cript","ex<em></em>pression","o<em></em>n\\1\\2","a<em></em>bout","f<em></em>rame","l<em></em>ink","im<em></em>port","me<em></em>ta","text<em></em>area","e<em></em>val","base<em></em>64","a<em></em>lert","/con<em></em>firm/i","prom<em></em>pt","coo<em></em>kie","docu<em></em>ment","new<em></em>line","co<em></em>lon","\<em></em>x");
 		return preg_replace($match, $replace, $string);
 	}
 }
@@ -195,8 +195,8 @@ function strip_uri($uri) {
 }
 
 function strip_sql($string) {
-	$search = array("/union/i","/0x([a-z0-9]{2,})/i","/select([[:space:]\*\/\-])/i","/update([[:space:]\*\/])/i","/replace([[:space:]\*\/])/i","/delete([[:space:]\*\/])/i","/drop([[:space:]\*\/])/i","/outfile([[:space:]\*\/])/i","/dumpfile([[:space:]\*\/])/i","/load_file\(/i","/substring\(/i","/substr\(/i","/concat\(/i","/concat_ws\(/i","/ascii\(/i","/hex\(/i","/ord\(/i","/char\(/i");
-	$replace = array('unio&#110;','0&#120;\\1','selec&#116;\\1','updat&#101;\\1','replac&#101;\\1','delet&#101;\\1','dro&#112;\\1','outfil&#101;\\1','dumpfil&#101;\\1','load_fil&#101;(','substrin&#103;(','subst&#114;(','conca&#116;(','concat_w&#115;(','asci&#105;(','he&#120;(','or&#100;(','cha&#114;(');
+	$search = array("/union/i","/0x([a-z0-9]{2,})/i","/select([[:space:]\*\/\-])/i","/update([[:space:]\*\/])/i","/replace([[:space:]\*\/])/i","/delete([[:space:]\*\/])/i","/drop([[:space:]\*\/])/i","/outfile([[:space:]\*\/])/i","/dumpfile([[:space:]\*\/])/i","/load_file\(/i","/substring\(/i","/substr\(/i","/lesft\(/i","/concat\(/i","/concat_ws\(/i","/ascii\(/i","/hex\(/i","/ord\(/i","/chars[[:space:]]*\(/i");
+	$replace = array('unio&#110;','0&#120;\\1','selec&#116;\\1','updat&#101;\\1','replac&#101;\\1','delet&#101;\\1','dro&#112;\\1','outfil&#101;\\1','dumpfil&#101;\\1','load_fil&#101;(','substrin&#103;(','subst&#114;(','lef&#116;(','conca&#116;(','concat_w&#115;(','asci&#105;(','he&#120;(','or&#100;(','cha&#114;(');
 	return is_array($string) ? array_map('strip_sql', $string) : preg_replace($search, $replace, $string);
 }
 
@@ -1069,7 +1069,7 @@ function log_write($message, $type = 'php', $force = 0) {
 	$log .= "\t<querystring>".str_replace('&', '&amp;', $_SERVER['QUERY_STRING'])."</querystring>\n";
 	$log .= "\t<message>".(is_array($message) ? var_export($message, true) : $message)."</message>\n";
 	$log .= "</$type>";
-	file_put(DT_ROOT.'/file/log/'.date('Ym', $DT_TIME).'/'.date('Y.m.d H.i.s', $DT_TIME).'-'.$type.'.php', $log);
+	file_put(DT_ROOT.'/file/log/'.date('Ym', $DT_TIME).'/'.date('Y.m.d H.i.s', $DT_TIME).'-'.mt_rand(10, 99).'-'.$type.'.php', $log);
 }
 
 function load($file) {

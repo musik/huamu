@@ -32,7 +32,7 @@ class message {
 		global $DT, $MODULE, $MOD, $DT_TIME, $DT_IP, $_email, $L;
 		if(!$this->is_message($message)) return false;
 		clear_upload($message['content']);
-		$message['title'] = htmlspecialchars(trim($message['title']));
+		$message['title'] = dhtmlspecialchars(trim($message['title']));
 		$message['content'] = dsafe(addslashes(save_remote(save_local(stripslashes($message['content'])))));
 		if(isset($message['save'])) {
 			$this->db->query("INSERT INTO {$this->pre}message(title,typeid,content,fromuser,touser,addtime,ip,status) values('$message[title]','$message[typeid]','$message[content]','$this->username','$message[touser]','$DT_TIME','$DT_IP','1')");

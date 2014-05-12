@@ -48,6 +48,7 @@ switch($action) {
 		}
 		$word = stripslashes(trim($word));
 		$word = strip_tags($word);
+		$word = dsafe($word);
 		$word = nl2br($word);
 		$word = strip_nr($word);
 		$word = str_replace('|', ' ', $word);
