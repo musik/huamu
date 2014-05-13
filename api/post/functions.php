@@ -29,7 +29,6 @@ class AutoPost{
     $this->cl->table_data = get_table($this->moduleid,1);
     $this->cl->table_search = str_replace('data_','search_',$this->cl->table_data);
     $data = $this->parse_data($data);
-      //pebug($data,1);
     if($this->cl->pass($data)){
       $post_fields = $data["post_fields"];
       if($post_fields) {
@@ -47,30 +46,36 @@ class AutoPost{
   }
   function check_quote($data){
     global $MODULE,$db;
-    if(!$data['price']) return;
+    if(!$data['price'] or !$data['q'] or !$data['unit']) return;
     if(!$MODULE[7]) return;
     if($this->module != 'sell') return;
-    if($data['q']){
-      $prod = $db->get_one("select * from {$db->pre}quote_product where title = '$data[q]' and unit = '$data[unit]'");
-      if(!$prod){
-        $prod = $this->create_prod($data);
-      }
-      if(!$prod) return;
-      require DT_ROOT."/module/quote/price.class.php";
-      $pc = new price();
-      $data['pid'] = $prod['itemid'];
-      global $P;
-      $P = true;
-      if($pc->pass($data)){
-        $pc->add($data);
-      }else{
-        echo $pc->errmsg;
-      }
+    if(false === strpos('棵株支',$data['unit'])) return;
+    $data['unit'] = '株';
+    $prod = $db->get_one("select * from {$db->pre}quote_product where title = '$data[q]'");
+    if(!$prod){
+      $prod = $this->create_prod($data);
+    }
+    if(!$prod) return;
+    require DT_ROOT."/module/quote/price.class.php";
+    $pc = new price();
+    $data['pid'] = $prod['itemid'];
+    global $P;
+    $P = true;
+    if(preg_match_all('/(株高|胸径|地径|蓬径|苗龄)：(\S+)/',$data['content'],$ms)){
+      $data['note'] = implode(';',$ms[0]);
+    }
+    if(!$data['telephone'] && $data['mobile'])
+      $data['telephone'] = $data['mobile'];
+    if($pc->pass($data)){
+      $pc->add($data);
+    }else{
+      echo $pc->errmsg;
     }
   }
   function create_prod($data){
     global $db;
-    $cat = $db->get_one("select catid from {$db->pre}category where moduleid = 7 and catname = '{$data[catname]}'");
+    $catname = $data['catname'] ? $data['catname'] : $data['q'];
+    $cat = $db->get_one("select catid from {$db->pre}category where moduleid = 7 and catname = '{$catname}'");
     if(!$cat) return;
     require DT_ROOT."/module/quote/product.class.php";
     $pc = new product();
@@ -81,21 +86,73 @@ class AutoPost{
     );
     if($pc->pass($arr)){
       $itemid = $pc->add($arr);
-      return $pc->get_one($itemid);
+      return $pc->get_one();
     }else{
       echo $pc->errmsg;
     }
   }
   function parse_data($data){
+    global $db;
     unset($data["key"]);
     unset($data["moduleid"]);
+    if(!$data['catid'] && $data['q']){
+      $cat = $db->get_one("select catid from {$db->pre}category where moduleid = $this->moduleid and catname = '{$data[q]}'");
+      if($cat) $data['catid'] = $cat['catid'];
+     }
     if(method_exists($this,'parse_'.$this->module)){
       return call_user_func_array(array($this,'parse_'.$this->module),array($data));
     }
     return $data;
   }
+  function parse_article($data){
+    $this->check_exists($data);
+    global $db;
+    $data['tag'] = trim(str_replace(',',' ',$data['tag']));
+    $data['status'] = 3;
+    //pebug($data,1);
+    return $data;
+  }
+  function check_exists($data,$key='fromurl'){
+    global $db;
+    $condition = $key . "= '".$data[$key]."'";
+    $e = $db->get_one("select itemid from {$this->cl->table} where $condition");
+    if($e)
+      exit("error: $key 已存在");
+  }
 
+  function parse_title($data){
+    $vars = array(
+      '类型','品牌','加工产品种类','加工贸易形式',
+      '材质','品名','品种'
+    );
+    if(preg_match_all('/<p>(.+?)：(.+?)<\/p>/',$data['content'],$matches,PREG_SET_ORDER)){
+      foreach($matches as $m){
+        if(in_array($m[1],$vars)){
+          $ns[] = $m[2];
+        }
+      }
+      $title = implode('',$ns) . $data['areaname2'] . $data['title'];
+      $title = str_replace(' ','',$title);
+      $title = mb_substr($title,0,30,'UTF-8');
+      return $title;
+    }
+    return $data['title'];
+  }
+  function parse_thumb($data){
+    if(!$data['thumb'] && $data['photo_url']){
+      global $_userid;
+      $_userid = 1;
+      $data['photo_url'] = html_entity_decode($data['photo_url']);
+      $data['thumb'] = save_remote("src=" . $data['photo_url']);
+      $data['thumb'] = substr($data['thumb'],4,strlen($data['thumb']));
+    }
+    return $data;
+  }
   function parse_sell($data){
+    $data['title'] = $this->parse_title($data);
+    $this->check_exists($data,'title');
+    $data = $this->parse_thumb($data);
+    global $db;
     $keys = explode(',','style,brand,tag,keyword,pptword,thumb,thumb1,thumb2,email,msn,qq,skype,linkurl,filepath,notete');
     foreach($keys as $k){
       if(!array_key_exists($k,$data))
@@ -104,6 +161,14 @@ class AutoPost{
     $data['status'] = 3;
     if(!$data['areaid'] && $data['areaname'])
       $data['areaid'] = $this->detect_area($data["areaname2"] . " ". $data["areaname"]);
+    if($data['q']){
+      $cat = $db->get_one("select catid from {$db->pre}category where moduleid = $this->moduleid and catname = '{$data[q]}'");
+      if($cat) $data['catid'] = $cat['catid'];
+    }
+    if($data['fromurl']){
+      $post_fields['fromurl'] = $data['fromurl'];
+      $data["post_fields"] = $post_fields;
+    }
     return $data; 
   }
   function detect_area($str){
