@@ -42,6 +42,13 @@ $order_select  = dselect($sorder, 'order', '', $order);
 $type_select = dselect($TYPE, 'typeid', $L['all_type'], $typeid);
 $tags = $PPT = array();//PPT
 if($DT_QST) {
+  if($ku){
+    $topic = keyword_find_by_letter($ku,$moduleid);
+    if($topic){
+      $kw = $topic['word'];
+      $keyword = $topic['word'];
+    }
+  }
 	if($kw) {
 		if(strlen($kw) < $DT['min_kw'] || strlen($kw) > $DT['max_kw']) message(lang($L['word_limit'], array($DT['min_kw'], $DT['max_kw'])), $MOD['linkurl'].'search.php');
 		if($DT['search_limit'] && $page == 1) {

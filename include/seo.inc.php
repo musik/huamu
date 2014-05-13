@@ -88,10 +88,15 @@ switch($seo_file) {
 		}
 	break;
 	case 'search':
-		$seo_title = $seo_modulename.$L['search'].$seo_delimiter.$seo_page.$seo_sitename;
+		$seo_title = $kw.$seo_modulename.$seo_delimiter.$seo_page.$seo_sitename;
 		if($catid) $seo_title = $seo_catname.$seo_title;
 		if($areaid) $seo_title = $seo_areaname.$seo_title;
-		if($kw) $seo_title = $kw.$seo_delimiter.$seo_title;
+    if($kw){
+      $str = $kw;
+      if($topic && $kw != $topic['keyword'])
+        $str .= "_".str_replace(',','_',$topic['keyword']);
+      $seo_title = $str.$seo_delimiter.$seo_title;
+    }
 	break;
 	default:
 	break;
