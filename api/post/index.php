@@ -37,7 +37,7 @@ case "keyword_new":
 case 'keywords_rss':
   require DT_ROOT.'/include/keyword.class.php';
   $status = isset($kstatus) ? intval($kstatus) : 2;
-  $condition = "status=$status";
+  $condition = "status=$status and sellids is null";
   $pagesize = 10000;
   $offset = ($page - 1) * $pagesize;
   $do = new keyword();
