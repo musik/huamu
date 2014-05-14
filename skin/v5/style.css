@@ -267,3 +267,12 @@ a.type_2:hover {background:#258CFF;color:#FFFFFF;}
 .back2top a:hover {background:url('image/back2top.png') no-repeat -58px 0;}
 #destoon_city {color:red;}
 #powered {padding:6px 0 20px 0;}
+.topics{
+  margin: 1em;
+}
+.topics a{
+  float: left;
+  width: 20%;
+  margin-right: 20px;
+  line-height: 1.8em;
+}

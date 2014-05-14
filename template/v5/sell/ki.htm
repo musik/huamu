@@ -1,0 +1,44 @@
+{template 'header'}
+<div class="m">
+<div class="m_l_1 f_l">
+	<div class="left_box">		
+		<div class="pos">当前位置: <a href="{$MODULE[1][linkurl]}">首页</a> &raquo; <a href="{$MOD[linkurl]}">{$MOD[name]}</a> &raquo; <a href="{$MOD[linkurl]}search.php">搜索</a></div>
+		{if $lists}
+    <div class="topics">
+    {loop $lists $i $topic}
+    <a href="/s-{$topic[letter]}" target="_blank">{$topic[word]}</a>
+    {/loop}
+    <div class="c_b"></div>
+    </div>
+    {$pages}
+		{else}
+		{template 'noresult', 'message'}
+		{/if}
+	</div>
+</div>
+<div class="m_n f_l">&nbsp;</div>
+<div class="m_r_1 f_l">
+	<div class="sponsor">{ad($moduleid,$catid,$kw,7)}</div>
+	<div class="box_head"><div><strong>今日搜索排行</strong></div></div>
+	<div class="box_body">
+		<div class="rank_list">
+			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400&pagesize=10&order=today_search desc&key=today_search&template=list-search_rank")}-->
+		</div>		
+	</div>
+	<div class="b10">&nbsp;</div>
+	<div class="box_head"><div><strong>本周搜索排行</strong></div></div>
+	<div class="box_body">
+		<div class="rank_list">
+			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*7&pagesize=10&order=week_search desc&key=week_search&template=list-search_rank")}-->
+		</div>		
+	</div>
+	<div class="b10">&nbsp;</div>
+	<div class="box_head"><div><strong>本月搜索排行</strong></div></div>
+	<div class="box_body">
+		<div class="rank_list">
+			<!--{tag("moduleid=$moduleid&table=keyword&condition=moduleid=$moduleid and status=3 and updatetime>$today_endtime-86400*30&pagesize=10&order=month_search desc&key=month_search&template=list-search_rank")}-->
+		</div>		
+	</div>
+</div>
+</div>
+{template 'footer'}
