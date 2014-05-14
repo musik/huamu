@@ -106,10 +106,11 @@ if($DT_QST) {
 	$pages = pages($items, $page, $pagesize);
   if(!$items && $topic){
     $sellids = $topic["sellids"];
-    if(!$sellids) break;
-    $condition = "itemid in (".$sellids.")" ;
-    $items = $db->count($table, $condition, $DT['cache_search']);
-    $pages = pages($items, $page, $pagesize);
+    if($sellids){
+      $condition = "itemid in (".$sellids.")" ;
+      $items = $db->count($table, $condition, $DT['cache_search']);
+      $pages = pages($items, $page, $pagesize);
+    }
   }
 	if($items) {
 		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
