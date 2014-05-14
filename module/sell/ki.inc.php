@@ -14,7 +14,7 @@ $order_select  = dselect($sorder, 'order', '', $order);
 $status = isset($status) ? intval($status) : 3;
 $condition = "status=$status";
 if($keyword) $condition .= " AND keyword LIKE '%$keyword%'";
-if($mid) $condition .= " AND moduleid=$mid";
+if($moduleid) $condition .= " AND moduleid=$moduleid";
 $pagesize = 200;
 $lists = $do->get_list($condition, $dorder[$order]);
 $pages = str_replace('sell/ki-htm-page-1.html','ki',$pages);
