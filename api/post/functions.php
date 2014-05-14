@@ -15,6 +15,30 @@ function mlog($string,$append = true){
   $filename = DT_ROOT."/api/post/tmp.txt";
   xfile_put_contents($filename,$string,$append);
 }
+function keyword_new($str,$moduleid=5,$ali_cat=null){
+  $arr = explode("\n",$str);
+  $arr = array_unique($arr);
+  $size = count($arr);
+  $created = 0;
+  foreach($arr as $name){
+    $new = keyword_create(trim($name),0,$moduleid,$ali_cat);
+    if($new) $created++;
+  }
+  echo "done: size: $size ; created: $created";
+}
+function keyword_create($kw, $items, $moduleid,$ali_cat=null) {
+	global $db, $DT_TIME, $DT;
+	if(strlen($kw) < 3 || mb_strlen($kw,'UTF-8') > 8 || strpos($kw, ' ') !== false || strpos($kw, '%') !== false) return;
+	$kw = addslashes($kw);
+	$r = $db->get_one("SELECT * FROM {$db->pre}keyword WHERE moduleid=$moduleid AND word='$kw'");
+	if($r) return false;
+  $letter = gb2py($kw);
+  $status = 2;
+  //echo("INSERT INTO {$db->pre}keyword (moduleid,word,keyword,letter,items,updatetime,total_search,month_search,week_search,today_search,status) VALUES ('$moduleid','$kw','$kw','$letter','$items','$DT_TIME','0','0','0','0','$status')");exit();
+  $db->query("INSERT INTO {$db->pre}keyword (moduleid,word,keyword,letter,items,updatetime,total_search,month_search,week_search,today_search,status,ali_cat) VALUES ('$moduleid','$kw','$kw','$letter','$items','$DT_TIME','0','0','0','0','$status',$ali_cat)");
+  return true;
+}
+
 class AutoPost{
   function __construct($moduleid){
     $this->moduleid = $moduleid;

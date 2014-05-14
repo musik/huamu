@@ -7,6 +7,7 @@ defined('IN_DESTOON') or exit('Access Denied');
 $menus = array (
     array('已启用', '?file='.$file),
     array('待审核', '?file='.$file.'&status=2'),
+    array('安装', '?file='.$file.'&action=install'),
 
 );
 $MODULE[-7]['moduleid'] = -7;
@@ -23,6 +24,9 @@ switch($action) {
 		if(strtoupper(DT_CHARSET) != 'UTF-8') $word = convert($word, 'UTF-8', DT_CHARSET);
 		exit(gb2py($word));
 	break;
+  case "install";
+    msg($do->check_install() ? 'column added.' : '已安装', '?file='.$file);
+  break;
 	default:
 		if($submit) {
 			$do->update($post);
@@ -93,5 +97,11 @@ class keyword {
 	function delete($itemid) {
 		$this->db->query("DELETE FROM {$this->table} WHERE itemid=$itemid");
 	}
+  function check_install(){
+    $r = $this->db->get_one("show columns from $this->table like 'ali_cat'");
+    if($r) return false;
+    $this->db->query("alter table $this->table add column ali_cat integer(11)");
+    return true;
+  }
 }
 ?>

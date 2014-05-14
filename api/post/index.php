@@ -12,7 +12,7 @@ if($DT_BOT) dhttp(403);
 //$vars['GLOBALS'] = false;
 //var_export($vars);
 require DT_ROOT."/api/post/functions.php";
-//mlog($_POST,1);
+mlog($_POST,0);
 $action = $_GET['action'];
 $moduleid = $_REQUEST['moduleid'];
 $test = $_GET['test'];
@@ -25,6 +25,14 @@ case "new":
   if(!$post)
     $post = $_POST;
   $ap->post($post);
+  break;
+case "keyword_new":
+  if($test){
+    include DT_ROOT.'/api/post/test/keyword.php';
+  }
+  if(!$post)
+    $post = $_POST;
+  keyword_new($post['keywords'],$moduleid,$post['ali_cat']);
   break;
 case "cats":
   $cats = get_maincat(0,$moduleid);
