@@ -214,6 +214,10 @@ class AutoPost{
       $post_fields['fromurl'] = $data['fromurl'];
       $data["post_fields"] = $post_fields;
     }
+    if($data['keyword']){
+      $data['n1'] = '关键词';
+      $data['v1'] = $data['keyword'];
+    }
     return $data; 
   }
   function detect_area($str){
