@@ -46,6 +46,7 @@ function keywords_rss_1688($keywords){
     $op .= "<item><title>{$r['word']}</title><link>$link</link></item>\n";
     $links[] =$link;
   }
+  //$op .= "\t<pages><![CDATA[ $pages ]]</pages>\n</rss>";
   $op .= "\t</channel>\n</rss>";
   echo $op;
 }
@@ -160,18 +161,18 @@ class AutoPost{
       '类型','品牌','加工产品种类','加工贸易形式',
       '材质','品名','品种'
     );
+    $ns = array();
     if(preg_match_all('/<p>(.+?)：(.+?)<\/p>/',$data['content'],$matches,PREG_SET_ORDER)){
       foreach($matches as $m){
         if(in_array($m[1],$vars)){
           $ns[] = $m[2];
         }
       }
-      $title = implode('',$ns) . $data['areaname2'] . $data['title'];
-      $title = str_replace(' ','',$title);
-      $title = mb_substr($title,0,30,'UTF-8');
-      return $title;
     }
-    return $data['title'];
+    $title = implode('',$ns) . $data['areaname2'] . $data['title'];
+    $title = str_replace(' ','',$title);
+    $title = mb_substr($title,0,30,'UTF-8');
+    return $title;
   }
   function parse_thumb($data){
     if(!$data['thumb'] && $data['photo_url']){
@@ -188,7 +189,7 @@ class AutoPost{
     $this->check_exists($data,'title');
     $data = $this->parse_thumb($data);
     global $db;
-    $keys = explode(',','style,brand,tag,keyword,pptword,thumb,thumb1,thumb2,email,msn,qq,skype,linkurl,filepath,notete');
+    $keys = explode(',','style,brand,tag,keyword,pptword,thumb,thumb1,thumb2,email,msn,qq,skype,linkurl,filepath,note');
     foreach($keys as $k){
       if(!array_key_exists($k,$data))
         $data[$k] = '';
