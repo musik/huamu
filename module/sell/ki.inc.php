@@ -15,7 +15,7 @@ $status = isset($status) ? intval($status) : 3;
 $condition = "status=$status";
 if($keyword) $condition .= " AND keyword LIKE '%$keyword%'";
 if($moduleid) $condition .= " AND moduleid=$moduleid";
-$pagesize = 10;
+$pagesize = 200;
 $offset = ($page - 1) * $pagesize;
 $lists = $do->get_list($condition, $dorder[$order]);
 $pages = preg_replace('/\/\w+?\/ki-htm-page-1.html/','/ki',$pages);
