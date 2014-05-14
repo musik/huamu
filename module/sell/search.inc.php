@@ -44,7 +44,6 @@ $tags = $PPT = array();//PPT
 if($DT_QST) {
   if($ku){
     $topic = keyword_find_by_letter($ku,$moduleid);
-    pr($topic);
     if($topic){
       $kw = $topic['word'];
       $keyword = $topic['word'];
