@@ -38,6 +38,17 @@ function keyword_create($kw, $items, $moduleid,$ali_cat=null) {
   $db->query("INSERT INTO {$db->pre}keyword (moduleid,word,keyword,letter,items,updatetime,total_search,month_search,week_search,today_search,status,ali_cat) VALUES ('$moduleid','$kw','$kw','$letter','$items','$DT_TIME','0','0','0','0','$status',$ali_cat)");
   return true;
 }
+function keywords_rss_1688($keywords){
+  $op = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+  $op .= '<rss version="2.0">'."\n<channel>\n";
+  foreach($keywords as $r){
+    $link ="http://s.1688.com/selloffer/offer_search.htm?keywords=".urlencode(iconv("UTF-8","GBK",$r['word']));
+    $op .= "<item><title>{$r['word']}</title><link>$link</link></item>\n";
+    $links[] =$link;
+  }
+  $op .= "\t</channel>\n</rss>";
+  echo $op;
+}
 
 class AutoPost{
   function __construct($moduleid){
