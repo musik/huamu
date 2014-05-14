@@ -41,9 +41,10 @@ function keyword_create($kw, $items, $moduleid,$ali_cat=null) {
 function keywords_rss_1688($keywords){
   $op = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
   $op .= '<rss version="2.0">'."\n<channel>\n";
-  foreach($keywords as $r){
+  foreach($keywords as $i=>$r){
     $link ="http://s.1688.com/selloffer/offer_search.htm?keywords=".urlencode(iconv("UTF-8","GBK",$r['word']));
-    $op .= "<item><title>{$r['word']}</title><link>$link</link></item>\n";
+    $op .= "<item><i>$i</i><link>$link</link></item>\n";
+    //$op .= "<item><i>$i</i><title>{$r['word']}</title><link>$link</link></item>\n";
     $links[] =$link;
   }
   //$op .= "\t<pages><![CDATA[ $pages ]]</pages>\n</rss>";
