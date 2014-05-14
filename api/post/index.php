@@ -44,6 +44,18 @@ case 'keywords_rss':
   $lists = $do->get_list($condition, 'itemid desc');
   keywords_rss_1688($lists);
 break;
+case 'keywords_full':
+  require DT_ROOT.'/include/keyword.class.php';
+  $status = isset($kstatus) ? intval($kstatus) : 2;
+  $condition = "status=$status and sellids is not null";
+  $pagesize = 10000;
+  $offset = ($page - 1) * $pagesize;
+  $do = new keyword();
+  $lists = $do->get_list($condition, 'itemid desc');
+  foreach($lists as $i=>$r){
+    echo "$r[word]<br />\n";
+  }
+break;
 case "cats":
   $cats = get_maincat(0,$moduleid);
   //echo "cid|name|url|moduleid<br />";
