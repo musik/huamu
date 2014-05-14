@@ -4,8 +4,8 @@ RewriteEngine On
 RewriteBase /
 RewriteRule ^(.*)\.(asp|aspx|asa|asax|dll|jsp|cgi|fcgi|pl)(.*)$ /404.php
 RewriteRule ^(.*)/file/(.*)\.php(.*)$ /404.php
-RewriteRule ^(s-)([a-zA-Z0-9_\-]+)([/])?$ sell/search.php?ku=$2
-RewriteRule ^ki$ sell/ki.php
+RewriteRule ^(s-)([a-zA-Z0-9_\-]+)([/])?$ gong/search.php?ku=$2
+RewriteRule ^ki$ gong/ki.php
 RewriteRule ^(.*)-htm-(.*)$ $1.php?$2
 RewriteRule ^(.*)/show-([0-9]+)([\-])?([0-9]+)?\.html$ $1/show.php?itemid=$2&page=$4
 RewriteRule ^(.*)/list-([0-9]+)([\-])?([0-9]+)?\.html$ $1/list.php?catid=$2&page=$4
