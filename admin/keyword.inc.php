@@ -98,10 +98,15 @@ class keyword {
 		$this->db->query("DELETE FROM {$this->table} WHERE itemid=$itemid");
 	}
   function check_install(){
-    $r = $this->db->get_one("show columns from $this->table like 'ali_cat'");
-    if($r) return false;
-    $this->db->query("alter table $this->table add column ali_cat integer(11)");
-    return true;
+    $keys = array('ali_cat'=>'integer(11)','sellids'=>'varchar(255)');
+    $new = false;
+    foreach($keys as $key => $v){
+      $r = $this->db->get_one("show columns from $this->table like '$key'");
+      if($r) continue;
+      $this->db->query("alter table $this->table add column $key $v");
+      $new = true;
+    }
+    return $new;
   }
 }
 ?>

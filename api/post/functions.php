@@ -74,11 +74,18 @@ class AutoPost{
       $var = $this->cl->add($data);
       if($post_fields) fields_update($post_fields, $this->cl->table, $this->cl->itemid);
       //$this->check_quote($data);
+      if($data['keyword'])
+        $this->update_keyword($data['keyword'],$this->cl->itemid);
       echo "done";
     }else{
       echo "error:";
       echo($this->cl->errmsg);
     }
+  }
+  function update_keyword($name,$sell_id){
+    require DT_ROOT.'/include/keyword.class.php';
+    $do = new keyword();
+    $do->update_sells($name,$sell_id);
   }
   function check_quote($data){
     global $MODULE,$db;
@@ -170,7 +177,9 @@ class AutoPost{
       }
     }
     $title = implode('',$ns) . $data['areaname2'] . $data['title'];
-    $title = str_replace(' ','',$title);
+    $exclude = ",|.(){}[]-_/\;'\":，。（）【】 ";
+    $exclude = preg_split('/(?<!^)(?!$)/u',$exclude);
+    $title = str_replace($exclude,'',$title);
     $title = mb_substr($title,0,30,'UTF-8');
     return $title;
   }

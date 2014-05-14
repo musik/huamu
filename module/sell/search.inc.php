@@ -104,6 +104,13 @@ if($DT_QST) {
 	$offset = ($page-1)*$pagesize;
 	$items = $db->count($table, $condition, $DT['cache_search']);
 	$pages = pages($items, $page, $pagesize);
+  if(!$items && $topic){
+    $sellids = $topic["sellids"];
+    if(!$sellids) break;
+    $condition = "itemid in (".$sellids.")" ;
+    $items = $db->count($table, $condition, $DT['cache_search']);
+    $pages = pages($items, $page, $pagesize);
+  }
 	if($items) {
 		$order = $dorder[$order] ? " ORDER BY $dorder[$order]" : '';
 		$result = $db->query("SELECT $fds FROM {$table} WHERE {$condition}{$order} LIMIT {$offset},{$pagesize}", ($DT['cache_search'] && $page == 1) ? 'CACHE' : '', $DT['cache_search']);

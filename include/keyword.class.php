@@ -19,6 +19,17 @@ class keyword {
 		}
 		return $lists;
 	}
+  function update_sells($name,$sell_id){
+    $r = $this->db->get_one("select itemid,sellids from $this->table where word = '$name'");
+    if($r){
+      $sell_ids = $r["sellids"] ? explode(",",$r["sellids"]) : array();
+      if(!in_array($sell_id,$sell_ids)){
+        $sell_ids[] = $sell_id;
+        $sell_ids = implode(',',$sell_ids);
+        $this->db->query("update $this->table set sellids = '$sell_ids' where itemid = $r[itemid]");
+      }
+    }
+  }
 
 	function update($post) {
 		$this->add($post[0]);
