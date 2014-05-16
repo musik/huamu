@@ -44,10 +44,10 @@ class keyword {
         foreach($exists as $v){
           unset($kws[$v['word']]) ;
         }
+        $kws = array_flip($kws);
       }
       if($kws){
-        uksort($kws,'morelong');
-        $kws = array_flip($kws);
+        usort($kws,'morelong');
         $num = 4;
         $related = array_slice($kws,0,$num);
         $kws = array_slice($kws,$num,20);

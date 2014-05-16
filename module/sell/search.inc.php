@@ -47,7 +47,7 @@ if($DT_QST) {
     if($topic){
       $kw = $topic['word'];
       $keyword = $topic['word'];
-      if( $topic['content']){
+      if( $topic['content'] && $page==1){
         $lists = parse_keyword_content($topic['content']);
       }
     }
@@ -140,7 +140,6 @@ if($DT_QST) {
 $showpage = 1;
 $datetype = 5;
 $seo_file = 'search';
-$tags = array();
 include DT_ROOT.'/include/seo.inc.php';
 include template($MOD['template_search'] ? $MOD['template_search'] : 'search', $module);
 ?>
