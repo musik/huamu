@@ -94,7 +94,7 @@ switch($seo_file) {
     if($kw){
       $str = $kw;
       if($topic && $kw != $topic['keyword'])
-        $str .= "_".str_replace(',','_',$topic['keyword']);
+        $str .= "_".$topic['keyword'];
       $seo_title = $str.$seo_delimiter.$seo_title;
     }
 	break;

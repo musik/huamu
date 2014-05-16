@@ -26,6 +26,14 @@ function keyword_new($str,$moduleid=5,$ali_cat=null){
   }
   echo "done: size: $size ; created: $created";
 }
+function morelong($a,$b){
+  return mb_strlen($a,'utf-8') < mb_strlen($b,'utf-8');
+}
+function keyword_update($post,$moduleid){
+  require DT_ROOT . '/include/keyword.class.php';
+  $do = new keyword();
+  $do->update_content($post);
+}
 function keyword_create($kw, $items, $moduleid,$ali_cat=null) {
 	global $db, $DT_TIME, $DT;
 	if(strlen($kw) < 3 || mb_strlen($kw,'UTF-8') > 8 || strpos($kw, ' ') !== false || strpos($kw, '%') !== false) return;

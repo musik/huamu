@@ -276,3 +276,24 @@ a.type_2:hover {background:#258CFF;color:#FFFFFF;}
   margin-right: 20px;
   line-height: 1.8em;
 }
+ul.external{
+  width: 100%;
+  margin: 20px 0px 20px 0px;
+  padding: 0;
+}
+ul.external li{
+  float: left;
+  width: 170px;
+  margin: 0 0px 10px 20px;
+  overflow: hidden;
+  text-align: center;
+}
+ul.external li img{
+  margin: 3px;
+}
+ul.external li p{
+  margin: 0 3px;
+  height: 3.6em;
+  line-height: 1.8em;
+  overflow: hidden;
+}

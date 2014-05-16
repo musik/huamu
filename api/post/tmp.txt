@@ -1,2 +1,17 @@
 array (
+  'moduleid' => '5',
+  'key' => 'd8f63kd0',
+  'keyword' => '巴别鱼',
+  'related' => '巴别鱼口语一点通,  口语一点通,  指百针,  步步高点读机,  步步高h8,  洪恩点读笔,  英语点读笔,',
+  'data' => '{url: \\\'http://detail.1688.com/offer/38973334897.html\\\',photo: \\\'http://i01.c.aliimg.com/img/ibank/2014/643/833/1429338346_2055009783.220&#120;220.jpg\\\',title: \\\'官方正版 巴别鱼口语一点通V900 点读笔 引领口语革命 陪练专家\\\',\\\'website\\\': \\\'http://shop1394153471503.1688.com\\\',company: \\\'北京中联康瑞科技有限公司\\\'}
+
+{url: \\\'http://detail.1688.com/offer/38213909635.html\\\',photo: \\\'http://i04.c.aliimg.com/img/ibank/2014/385/003/1345300583_2055009783.220&#120;220.jpg\\\',title: \\\'官方正品指百针巴别鱼口语一点通V900S英语点读笔第四代口语革命\\\',\\\'website\\\': \\\'http://shop1394153471503.1688.com\\\',company: \\\'北京中联康瑞科技有限公司\\\'}
+
+{url: \\\'http://detail.1688.com/offer/1230827528.html\\\',photo: \\\'http://i00.c.aliimg.com/img/ibank/2013/195/134/770431591_1586598427.220&#120;220.jpg\\\',title: \\\'批发K8成人口语一点通 成人商务英语口语点读笔 巴别鱼点读笔\\\',\\\'website\\\': \\\'http://aaew888.1688.com\\\',company: \\\'深圳市宇达为电子有限公司\\\'}
+
+{url: \\\'http://detail.1688.com/offer/38971608920.html\\\',photo: \\\'http://i02.c.aliimg.com/img/ibank/2014/665/760/1425067566_2068834128.220&#120;220.jpg\\\',title: \\\'官方巴别鱼口语一点通V900英语点读笔口语革命第三 四代\\\',\\\'website\\\': \\\'http://shop1396532429920.1688.com\\\',company: \\\'李先生【个人】\\\'}
+
+{url: \\\'http://detail.1688.com/offer/38963703607.html\\\',photo: \\\'http://i03.c.aliimg.com/img/ibank/2014/914/486/1427684419_828465475.220&#120;220.jpg\\\',title: \\\'官方正版 巴别鱼口语一点通 点读笔 引领口语革命 V900陪练专家\\\',\\\'website\\\': \\\'http://shop1350273658930.1688.com\\\',company: \\\'京东乐购\\\'}
+
+{url: \\\'http://detail.1688.com/offer/38964643161.html\\\',photo: \\\'http://i01.c.aliimg.com/img/ibank/2014/044/395/1427593440_828465475.220&#120;220.jpg\\\',title: \\\'正品 指百针巴别鱼口语一点通V900S英语点读笔 第四代口语革命\\\',\\\'website\\\': \\\'http://shop1350273658930.1688.com\\\',company: \\\'京东乐购\\\'}',
 )

@@ -246,9 +246,22 @@
 			</table>
 		</div>
 		</form>
-		{else}
+		{else if !$lists}
 		{template 'noresult', 'message'}
 		{/if}
+		{if $lists}
+    <ul class="external">
+    {loop $lists $i $list}
+    <li>
+    <img src="{$list[photo]}" alt="{$list[title]}" width=170 height=170 />
+    <p>
+    <a href="javascript://">{$list[title]}</a>
+    </p>
+    </li>
+    {/loop}
+    <div class="c_b"></div>
+    </ul>
+    {/if}
 	</div>
 </div>
 <div class="m_n f_l">&nbsp;</div>

@@ -30,6 +30,36 @@ class keyword {
       }
     }
   }
+  function update_content($post){
+    $moduleid = $post['moduleid'];
+    $r = $this->db->get_one("SELECT * FROM $this->table WHERE moduleid=$moduleid AND word='$post[keyword]'");
+    $update = '';
+    if($post['related'] && $r['keyword'] == $r['word']){
+      $post['related'] = str_replace(' ','',$post['related']);
+      $post['related'] = preg_replace('/,$/','',$post['related']);
+      $kws = explode(',',$post['related']);
+      $exists = $this->get_list("moduleid = $moduleid and word in ('".implode("','",$kws)."')","itemid desc");
+      if($exists){
+        $kws = array_flip($kws);
+        foreach($exists as $v){
+          unset($kws[$v['word']]) ;
+        }
+      }
+      if($kws){
+        uksort($kws,'morelong');
+        $kws = array_flip($kws);
+        $num = 4;
+        $related = array_slice($kws,0,$num);
+        $kws = array_slice($kws,$num,20);
+        $update .= "keyword = '".implode(',',$related)."',";
+      }
+    }
+    $content = stripslashes($post['data']);
+    $content= preg_replace("/[\n\r]+/","```",$content);
+    $update .= 'content = "'.addslashes($content).'"';
+    $sql = "update {$this->table} set status = 3 , $update where itemid = $r[itemid]";
+    $this->db->query($sql);
+  }
 
 	function update($post) {
 		$this->add($post[0]);

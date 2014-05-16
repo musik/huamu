@@ -34,27 +34,40 @@ case "keyword_new":
     $post = $_POST;
   keyword_new($post['keywords'],$moduleid,$post['ali_cat']);
   break;
+case "keyword_update":
+  if($test){
+    include DT_ROOT.'/api/post/test/keyword_edit.php';
+  }
+  if(!$post)
+    $post = $_POST;
+  //pr($post);
+  keyword_update($post,$moduleid);
+  echo 'done';
+  break;
 case 'keywords_rss':
   require DT_ROOT.'/include/keyword.class.php';
   $status = isset($kstatus) ? intval($kstatus) : 2;
   $condition = "status=$status and sellids is null";
-  $pagesize = isset($pagesize) ? intval($pagesize) : 1000;
+  $pagesize = isset($_GET['pagesize']) ? intval($_GET['pagesize']) : 1000;
   $offset = ($page - 1) * $pagesize;
   $do = new keyword();
   $lists = $do->get_list($condition, 'itemid desc');
   keywords_rss_1688($lists);
 break;
-case 'keywords_full':
+case 'keywords':
   require DT_ROOT.'/include/keyword.class.php';
   $status = isset($kstatus) ? intval($kstatus) : 2;
-  $condition = "status=$status and sellids is not null";
-  $pagesize = 10000;
+  $condition = "status=$status and content is null";
+  $pagesize = isset($_GET['pagesize']) ? intval($_GET['pagesize']) : 1000;
   $offset = ($page - 1) * $pagesize;
   $do = new keyword();
   $lists = $do->get_list($condition, 'itemid desc');
+  echo "<div id='keywords'>";
   foreach($lists as $i=>$r){
-    echo "$r[word]<br />\n";
+    echo "$r[word],,,".urlencode(iconv("UTF-8","GBK",$r['word']))."<br />\n";
   }
+  echo "</div>";
+  echo $pages;
 break;
 case "cats":
   $cats = get_maincat(0,$moduleid);
